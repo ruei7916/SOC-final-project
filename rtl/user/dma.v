@@ -15,11 +15,13 @@ module dma(
     output wbs_cyc_o,
     output wbs_we_o,
     output [3:0] wbs_sel_o,
-    output reg ss_tvalid,
+    output ss_tvalid,
     input ss_tready,
     input sm_tvalid,
     output sm_tready,
-    input [31:0]sm_tdata
+    input [31:0]sm_tdata,
+    output sm_tready,
+    output reg[31:0] wbs_dat_o
 );
 assign ss_tdata = data_o_q;
 assign wbs_adr_o = adr_o_q;
@@ -62,7 +64,7 @@ reg [5:0]counter_d,counter_q;
 			cyc_o_d = 1;
 			radr_o_d = 32'h38000100;
 			counter_d = 0;
-			ss_tvalid_d = 1;
+			ss_tvalid_d = 0;
 		end
 		else if(dma_fir_tap_q && counter_q != 6'd10)begin
 			dma_fir_tap_d = 1;
@@ -78,6 +80,7 @@ reg [5:0]counter_d,counter_q;
 				radr_o_d = radr_o_q + 4;
 				counter_d = counter_q + 1;
 				ss_tvalid_d = 1;
+				data_o_d = read_dat_i;
 			end
 			else begin
 				ss_tvalid_d = 0;
@@ -99,6 +102,7 @@ reg [5:0]counter_d,counter_q;
 				counter_d = 6'd0;
 				ss_tvalid_d = 1;
 				wadr_o_d = radr_o_d;
+				data_o_d = read_dat_i;
 			end
 			else begin
 				ss_tvalid_d = 0;
@@ -106,9 +110,23 @@ reg [5:0]counter_d,counter_q;
 		end
 		else if(dma_mode_fir_q && counter_q != 6'd63)begin
 			dma_mode_fir_d = 1;
-			if(ss_tready)begin
+			if(dma_ack && ~write_flag_q)begin
+				radr_o_d = radr_o_q + 4;
+				ss_tvalid_d = 1;
+				read_flag_d = 1;
+				data_o_d = read_dat_i;
+			end
+			else if(ss_tready && read_flag_q)begin
 				stb_o_d = 1;
 				cyc_o_d = 1;
+				ss_tvalid_d = 0;
+				read_flag_d = 0;
+			end
+			else if(ss_tready && ~read_flag_q)begin
+				stb_o_d = 1;
+				cyc_o_d = 1;
+				ss_tvalid_d = 0;
+				read_flag_d = 0;
 			end
 			else if(sm_tvalid)begin
 				write_flag_d = 1;
@@ -116,16 +134,15 @@ reg [5:0]counter_d,counter_q;
 				cyc_o_d = 1;
 				we_o_d = 1;
 				sel_o_d = 4'b1111;
+				wbs_dat_o = sm_tdata;
 			end
 			else if(dma_ack && write_flag_q)begin
 				write_flag_d = 0;
 				wadr_o_d = wadr_o_q + 4;
 				counter_d = counter_q + 1;
 				sm_tready_d = 1;
-			end
-			else if(dma_ack && ~write_flag_q)begin
-				radr_o_d = radr_o_q + 4;
-				ss_tvalid_d = 1;
+				we_o_d = 0;
+				sel_o_d = 4'b0000;
 			end
 			else begin
 				stb_o_d = 0;
@@ -136,29 +153,128 @@ reg [5:0]counter_d,counter_q;
 		else if(dma_mode_fir_q && counter_q == 6'd63)begin
 			dma_mode_mm_d = 1;
 			dma_mode_fir_d = 0;
-			stb_o_d = 1;
-			cyc_o_d = 1;
-			if(wbs_ack)begin
-				adr_o_d = adr_o_q + 4;
-				counter_d = 6'd0;
+			if(dma_ack && ~write_flag_q)begin
+				radr_o_d = radr_o_q + 4;
+				ss_tvalid_d = 1;
+				read_flag_d = 1;
+				data_o_d = read_dat_i;
+			end
+			else if(ss_tready && read_flag_q)begin
+				stb_o_d = 1;
+				cyc_o_d = 1;
+				ss_tvalid_d = 0;
+				read_flag_d = 0;
+			end
+			else if(ss_tready && ~read_flag_q)begin
+				stb_o_d = 1;
+				cyc_o_d = 1;
+				ss_tvalid_d = 0;
+				read_flag_d = 0;
+			end
+			else if(sm_tvalid)begin
+				write_flag_d = 1;
+				stb_o_d = 1;
+				cyc_o_d = 1;
+				we_o_d = 1;
+				sel_o_d = 4'b1111;
+				wbs_dat_o = sm_tdata;
+			end
+			else if(dma_ack && write_flag_q)begin
+				write_flag_d = 0;
+				wadr_o_d = 32'h380002b4;
+				counter_d = 0;
+				sm_tready_d = 1;
+				we_o_d = 0;
+				sel_o_d = 4'b0000;
+			end
+			else begin
+				stb_o_d = 0;
+				cyc_o_d = 0;
+				sm_tready_d = 0;
 			end
 		end
 		else if(dma_mode_mm_q && (counter_q != 6'd31))begin
 			dma_mode_mm_d = 1;
-			stb_o_d = 1;
-			cyc_o_d = 1;
-			if(wbs_ack)begin
-				adr_o_d = adr_o_q + 4;
+			if(dma_ack && ~write_flag_q)begin
+				radr_o_d = radr_o_q + 4;
+				ss_tvalid_d = 1;
+				read_flag_d = 1;
+				data_o_d = read_dat_i;
+			end
+			else if(ss_tready && read_flag_q)begin
+				stb_o_d = 1;
+				cyc_o_d = 1;
+				ss_tvalid_d = 0;
+				read_flag_d = 0;
+			end
+			else if(ss_tready && ~read_flag_q)begin
+				stb_o_d = 1;
+				cyc_o_d = 1;
+				ss_tvalid_d = 0;
+				read_flag_d = 0;
+			end
+			else if(sm_tvalid)begin
+				write_flag_d = 1;
+				stb_o_d = 1;
+				cyc_o_d = 1;
+				we_o_d = 1;
+				sel_o_d = 4'b1111;
+				wbs_dat_o = sm_tdata;
+			end
+			else if(dma_ack && write_flag_q)begin
+				write_flag_d = 0;
+				wadr_o_d = wadr_o_q + 4;
 				counter_d = counter_q + 1;
+				sm_tready_d = 1;
+				we_o_d = 0;
+				sel_o_d = 4'b0000;
+			end
+			else begin
+				stb_o_d = 0;
+				cyc_o_d = 0;
+				sm_tready_d = 0;
 			end
 		end
 		else if(dma_mode_mm_q && (counter_q == 6'd31))begin
 			dma_mode_mm_d = 0;
-			stb_o_d = 0;
-			cyc_o_d = 0;
-			if(wbs_ack)begin
-				adr_o_d = 32'd0;
-				counter_d = 6'd0;
+			if(dma_ack && ~write_flag_q)begin
+				radr_o_d = radr_o_q + 4;
+				ss_tvalid_d = 1;
+				read_flag_d = 1;
+				data_o_d = read_dat_i;
+			end
+			else if(ss_tready && read_flag_q)begin
+				stb_o_d = 1;
+				cyc_o_d = 1;
+				ss_tvalid_d = 0;
+				read_flag_d = 0;
+			end
+			else if(ss_tready && ~read_flag_q)begin
+				stb_o_d = 1;
+				cyc_o_d = 1;
+				ss_tvalid_d = 0;
+				read_flag_d = 0;
+			end
+			else if(sm_tvalid)begin
+				write_flag_d = 1;
+				stb_o_d = 1;
+				cyc_o_d = 1;
+				we_o_d = 1;
+				sel_o_d = 4'b1111;
+				wbs_dat_o = sm_tdata;
+			end
+			else if(dma_ack && write_flag_q)begin
+				write_flag_d = 0;
+				wadr_o_d = 32'h380002b4;
+				counter_d = 0;
+				sm_tready_d = 1;
+				we_o_d = 0;
+				sel_o_d = 4'b0000;
+			end
+			else begin
+				stb_o_d = 0;
+				cyc_o_d = 0;
+				sm_tready_d = 0;
 			end
 		end
 	end
@@ -171,8 +287,15 @@ reg [5:0]counter_d,counter_q;
 			we_o_q <= 0;
 			sel_o_q <= 4'd0;
 			counter_q <= 6'd0;
+			dma_fir_tap_q <= 0;
 			dma_mode_fir_q <= 0;
 			dma_mode_mm_q <= 0;
+			ss_tvalid_q <= 0;
+			sm_tready_q <= 0;
+			radr_o_q <= 0;
+			wadr_o_q <= 0;
+			write_flag_q <= 0;
+			read_flag_q <= 0;
 		end
 		else begin
 			data_o_q <= data_o_d;
@@ -182,8 +305,15 @@ reg [5:0]counter_d,counter_q;
 			we_o_q <= we_o_d;
 			sel_o_q <= sel_o_d;
 			counter_q <= counter_d;
+			dma_fir_tap_q <= dma_fir_tap_d;
 			dma_mode_fir_q <= dma_mode_fir_d;
 			dma_mode_mm_q <= dma_mode_mm_d;
+			ss_tvalid_q <= ss_tvalid_d;
+			sm_tready_q <= sm_tready_d;
+			radr_o_q <= radr_o_d;
+			wadr_o_q <= wadr_o_d;
+			write_flag_q <= write_flag_d;
+			read_flag_q <= read_flag_d;
 		end
 		
 	end
