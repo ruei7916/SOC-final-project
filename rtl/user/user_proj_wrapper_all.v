@@ -163,7 +163,7 @@ always @(posedge clk) begin
         ctrl_in_valid_q <= 1'b0;
     end
     else begin
-        if (~wbs_we_i && valid && ~ctrl_busy && ctrl_in_valid_q == 1'b0)
+        if (~we_i && valid && ~ctrl_busy && ctrl_in_valid_q == 1'b0)
             ctrl_in_valid_q <= 1'b1;  
         else if (ctrl_out_valid)
             ctrl_in_valid_q <= 1'b0;
@@ -236,8 +236,8 @@ sdram_controller user_sdram_controller (
     .sdram_dqi(d2c_data),
     .sdram_dqo(c2d_data),
     .user_addr(ctrl_addr),
-    .rw(wbs_we_i),
-    .data_in(wbs_dat_i),
+    .rw(we_i),
+    .data_in(dat_i),
     .data_out(wbs_dat_o),
     .busy(ctrl_busy),
     .in_valid(ctrl_in_valid),
@@ -295,10 +295,7 @@ fir_mm u_fir_mm(
     .data_Di(data_Di),
     .data_Do(data_Do),
     .clk(axis_clk),
-    .rst(rst),
-    .tap_mode(dma_fir_tap),
-    .fir_mode(dma_mode_fir),
-    .mm_mode(dma_mode_mm)
+    .rst(rst)
 );
 
 bram16 tap_RAM(
