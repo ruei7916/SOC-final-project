@@ -115,7 +115,7 @@ end
 // REGS
 always @(posedge clk ) begin
     if(rst)begin
-        data_length <= 0;
+        data_length <= 64;
         state <= IDLE;
     end
     else begin
@@ -124,7 +124,7 @@ always @(posedge clk ) begin
     end
 end
 always @(posedge clk) begin
-    if(rst|(wbs_enable&wbs_we_i&wbs_dat_i[0]))begin
+    if(rst|_state!=IDLE)begin
         data_idx <= 0;
         tap_idx <= 0;
         acc <= 0;

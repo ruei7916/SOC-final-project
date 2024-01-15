@@ -295,7 +295,10 @@ fir_mm u_fir_mm(
     .data_Di(data_Di),
     .data_Do(data_Do),
     .clk(axis_clk),
-    .rst(rst)
+    .rst(rst),
+    .tap_mode(dma_fir_tap),
+    .fir_mode(dma_mode_fir),
+    .mm_mode(dma_mode_mm)
 );
 
 bram16 tap_RAM(
