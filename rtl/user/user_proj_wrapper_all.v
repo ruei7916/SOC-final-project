@@ -99,6 +99,7 @@ wire [22:0] ctrl_addr;
 wire ctrl_busy;
 wire ctrl_in_valid, ctrl_out_valid;
 reg ctrl_in_valid_q;
+wire [31:0]sdram_dat_o;
 
 // uart signals
 wire decoded_uart;
@@ -113,7 +114,7 @@ wire dma_we;
 wire dma_ack_o;
 wire [3:0]dma_sel;
 wire [31:0]dma_dat_i;
-//
+
 wire ack_o;
 wire stb_i;
 wire cyc_i;
@@ -124,6 +125,7 @@ wire [31:0] dat_i;
 wire dma_fir_tap;
 wire dma_mode_fir;
 wire dma_mode_mm;
+
 
 //hardware
  wire tap_WE;
@@ -193,7 +195,8 @@ arbiter u_arbiter(
     .sdram_adr_i(adr_i),
     .cpu_ack_o(wbs_ack_o),
     .dma_ack_o(dma_ack_o),
-    .wbs_dat_o(wbs_dat_o)
+    .sdram_dat_o(sdram_dat_o),
+    .arbiter_dat_o(wbs_dat_o)
 );
 dma u_dma(
     .wb_clk_i(clk),
@@ -238,7 +241,7 @@ sdram_controller user_sdram_controller (
     .user_addr(ctrl_addr),
     .rw(we_i),
     .data_in(dat_i),
-    .data_out(wbs_dat_o),
+    .data_out(sdram_dat_o),
     .busy(ctrl_busy),
     .in_valid(ctrl_in_valid),
     .out_valid(ctrl_out_valid)
@@ -270,7 +273,7 @@ fir_mm u_fir_mm(
     .wbs_dat_i(wbs_dat_i),
     .wbs_adr_i(wbs_adr_i),
     .wbs_ack_o(wbs_ack_o),
-    .wbs_dat_o(wbs_dat_o),
+    .wbs_dat_o(),
     // axi-stream
     .ss_tvalid(ss_tvalid),
     .ss_tdata(ss_tdata),
