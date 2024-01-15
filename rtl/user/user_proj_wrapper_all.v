@@ -81,68 +81,117 @@ module user_project_wrapper #(
 
 wire clk;
 wire rst;
+// sdram signal
+wire valid;
+wire sdram_cle;
+wire sdram_cs;
+wire sdram_cas;
+wire sdram_ras;
+wire sdram_we;
+wire sdram_dqm;
+wire [1:0] sdram_ba;
+wire [12:0] sdram_a;
+wire [31:0] d2c_data;
+wire [31:0] c2d_data;
+wire [3:0]  bram_mask;
+wire decoded;
+wire [22:0] ctrl_addr;
+wire ctrl_busy;
+wire ctrl_in_valid, ctrl_out_valid;
+reg ctrl_in_valid_q;
 
-// bram signals
-wire decoded_bram;
-wire valid_bram;
-wire [3:0] wstrb_bram;
-reg bram_ready;
-wire [31:0] bram_rdata;
-wire [31:0] bram_wdata;
-reg [BITS-17:0] delayed_count;
-reg [BITS-17:0] _delay_count;
 // uart signals
 wire decoded_uart;
 wire uart_ack_o;
 wire [31:0] uart_dat_o;
 
-// 
+// dma
+wire [31:0]dma_addr;
+wire dma_stb;
+wire dma_cyc;
+wire dma_we;
+wire [3:0]dma_sel;
+
 assign clk = wb_clk_i;
 assign rst = wb_rst_i;
 
-// bram
-assign decoded_bram = (wbs_adr_i[31:20] == 12'h380) ? 1'b1 : 1'b0;
-assign valid_bram = wbs_cyc_i && wbs_stb_i && decoded_bram; 
-assign wstrb_bram = wbs_sel_i & {4{wbs_we_i}} & {4{decoded_bram}};
-assign bram_wdata = wbs_dat_i;
-assign wbs_dat_o = decoded_bram ? bram_rdata : uart_dat_o;//
-assign wbs_ack_o = decoded_bram ? bram_ready : uart_ack_o;//
+assign valid = wbs_stb_i && wbs_cyc_i;
+assign ctrl_in_valid = wbs_we_i ? valid : ~ctrl_in_valid_q & valid;
+assign wbs_ack_o = (wbs_we_i) ? ~ctrl_busy && valid : ctrl_out_valid ; 
+assign bram_mask = wbs_sel_i & {4{wbs_we_i}};
+assign ctrl_addr = wbs_adr_i[22:0];
 
 // uart
 assign decoded_uart = (wbs_adr_i[31:20] == 12'h300) ? 1'b1 : 1'b0;
-
-
-always @(posedge clk ) begin
-    if(rst)begin
-        delayed_count <= 0;
+assign rst_n = ~rst;
+    always @(posedge clk) begin
+        if (rst) begin
+            ctrl_in_valid_q <= 1'b0;
+        end
+        else begin
+            if (~wbs_we_i && valid && ~ctrl_busy && ctrl_in_valid_q == 1'b0)
+                ctrl_in_valid_q <= 1'b1;  
+            else if (ctrl_out_valid)
+                ctrl_in_valid_q <= 1'b0;
+        end
     end
-    else begin
-        delayed_count <= _delay_count;
-    end
-end
-always @(*) begin
-    bram_ready = (delayed_count==DELAYS) ? 1'b1 : 1'b0;
-    if(valid_bram)begin
-        if(delayed_count==DELAYS) _delay_count = 0;
-        else _delay_count = delayed_count + 1;
-    end
-    else begin
-        _delay_count = 0;
-    end
-end
+    /*
+    dma DMA(
+    .wb_clk_i(clk),
+    .wb_rst_i(rst),
+    .wbs_stb_i(wbs_stb_i),
+    .wbs_cyc_i(wbs_cyc_i),
+    .wbs_we_i(wbs_we_i),
+    .wbs_sel_i(wbs_sel_i),
+    .wbs_dat_i(wbs_dat_o),
+    .wbs_adr_i(wbs_adr_i),
+    .wbs_ack(wbs_ack_o),
+    .wbs_dat_o(),
+    .wbs_adr_o(dma_addr),
+    .wbs_stb_o(dma_stb),
+    .wbs_cyc_o(dma_cyc),
+    .wbs_we_o(dma_we),
+    .wbs_sel_o(dma_sel)
+    );
+    */
+    sdram_controller user_sdram_controller (
+        .clk(clk),
+        .rst(rst),
+        
+        .sdram_cle(sdram_cle),
+        .sdram_cs(sdram_cs),
+        .sdram_cas(sdram_cas),
+        .sdram_ras(sdram_ras),
+        .sdram_we(sdram_we),
+        .sdram_dqm(sdram_dqm),
+        .sdram_ba(sdram_ba),
+        .sdram_a(sdram_a),
+        .sdram_dqi(d2c_data),
+        .sdram_dqo(c2d_data),
 
+        .user_addr(ctrl_addr),
+        .rw(wbs_we_i),
+        .data_in(wbs_dat_i),
+        .data_out(wbs_dat_o),
+        .busy(ctrl_busy),
+        .in_valid(ctrl_in_valid),
+        .out_valid(ctrl_out_valid)
+    );
 
-/*--------------------------------------*/
-/* User project is instantiated  here   */
-/*--------------------------------------*/
-bram user_bram (
-    .CLK(clk),
-    .WE0(wstrb_bram),
-    .EN0(valid_bram),
-    .Di0(bram_wdata),
-    .Do0(bram_rdata),
-    .A0(wbs_adr_i)
-);
+    sdr user_bram (
+        .Rst_n(rst_n),
+        .Clk(clk),
+        .Cke(sdram_cle),
+        .Cs_n(sdram_cs),
+        .Ras_n(sdram_ras),
+        .Cas_n(sdram_cas),
+        .We_n(sdram_we),
+        .Addr(sdram_a),
+        .Ba(sdram_ba),
+        .Dqm(bram_mask),
+        .Dqi(c2d_data),
+        .Dqo(d2c_data)
+    );
 
 uart uart (
 `ifdef USE_POWER_PINS
