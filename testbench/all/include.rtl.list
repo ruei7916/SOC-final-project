@@ -13,6 +13,8 @@
 -v ../../rtl/user/sdr.v
 -v ../../rtl/user/dma.v
 -v ../../rtl/user/arbiter.v
+-v ../../rtl/user/fir_mm.v
+-v ../../rtl/user/bram16.v
 ## VIP
 -v ../../vip/tbuart.v
 -v ../../vip/spiflash.v

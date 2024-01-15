@@ -206,6 +206,87 @@ sdr user_bram (
     .Dqo(d2c_data)
 );
 
+
+    wire tap_WE;
+    wire tap_RE;
+    wire [11:0]tap_WADDR;
+    wire [11:0]tap_RADDR;
+    wire [31:0]tap_Di;
+    wire [31:0]tap_Do;
+    wire data_WE;
+    wire data_RE;
+    wire [11:0]data_WADDR;
+    wire [11:0]data_RADDR;
+    wire [31:0]data_Di;
+    wire [31:0]data_Do;
+
+    wire            ss_tvalid;
+    wire [31:0]     ss_tdata;
+    wire            ss_tlast;
+    wire            ss_tready;
+    wire            sm_tready;
+    wire            sm_tvalid;
+    wire [31:0]     sm_tdata;
+    wire            sm_tlast;
+
+
+fir_mm u_fir_mm(
+    // wishbone
+    .wbs_stb_i(wbs_stb_i), // Valid data transfer cycle (kind of chip select)
+    .wbs_cyc_i(wbs_cyc_i), // Bus Cycle in progress (active high)
+    .wbs_we_i(wbs_we_i), // READ (negate), WRITE(assert)
+    .wbs_sel_i(wbs_sel_i), // Valid data(Byte-enable)
+    .wbs_dat_i(wbs_dat_i),
+    .wbs_adr_i(wbs_adr_i),
+    .wbs_ack_o(wbs_ack_o),
+    .wbs_dat_o(wbs_dat_o),
+    // axi-stream
+    .ss_tvalid(ss_tvalid),
+    .ss_tdata(ss_tdata),
+    .ss_tlast(ss_tlast),
+    .ss_tready(ss_tready),
+    .sm_tready(sm_tready),
+    .sm_tvalid(sm_tvalid),
+    .sm_tdata(sm_tdata),
+    .sm_tlast(sm_tlast),
+    // bram for tap RAM
+    .tap_WE(tap_WE),
+    .tap_RE(tap_RE),
+    .tap_WADDR(tap_WADDR),
+    .tap_RADDR(tap_RADDR),
+    .tap_Di(tap_Di),
+    .tap_Do(tap_Do),
+    // bram for data RAM
+    .data_WE(data_WE),
+    .data_RE(data_RE),
+    .data_WADDR(data_WADDR),
+    .data_RADDR(data_RADDR),
+    .data_Di(data_Di),
+    .data_Do(data_Do),
+    .clk(axis_clk),
+    .rst(rst)
+);
+
+bram16 tap_RAM(
+    .clk(axis_clk),
+    .we(tap_WE),
+    .re(tap_RE),
+    .waddr(tap_WADDR),
+    .raddr(tap_RADDR),
+    .wdi(tap_Di),
+    .rdo(tap_Do)
+);
+bram16 data_RAM(
+    .clk(axis_clk),
+    .we(data_WE),
+    .re(data_RE),
+    .waddr(data_WADDR),
+    .raddr(data_RADDR),
+    .wdi(data_Di),
+    .rdo(data_Do)
+);
+
+
 // uart
 assign decoded_uart = (wbs_adr_i[31:20] == 12'h300) ? 1'b1 : 1'b0;
 uart uart (
