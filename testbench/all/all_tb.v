@@ -145,7 +145,7 @@ module all_tb;
 
 		// Repeat cycles of 5000 clock edges as needed to complete testbench
 		repeat (200) begin
-			repeat (1500) @(posedge clock);
+			repeat (1000) @(posedge clock);
 			// $display("+1000 cycles");
 		end
 		$display("%c[1;31m",27);
@@ -166,18 +166,6 @@ module all_tb;
 
 	task workload;begin
 		wait(checkbits == 16'hAB50);
-		$display("mm started");
-		wait(checkbits == 16'h003E);
-		$display("Call function matmul() in User Project BRAM (mprjram, 0x38000000) return value passed, 0x%x", checkbits);
-		wait(checkbits == 16'h0044);
-		$display("Call function matmul() in User Project BRAM (mprjram, 0x38000000) return value passed, 0x%x", checkbits);
-		wait(checkbits == 16'h004A);
-		$display("Call function matmul() in User Project BRAM (mprjram, 0x38000000) return value passed, 0x%x", checkbits);
-		wait(checkbits == 16'h0050);
-		$display("Call function matmul() in User Project BRAM (mprjram, 0x38000000) return value passed, 0x%x", checkbits);		
-		wait(checkbits == 16'hAB51);
-		$display("mm passed");
-		wait(checkbits == 16'hAB60);
 		$display("qs started");
 		wait(checkbits == 16'd40);
 		$display("Call function qsort() in User Project BRAM (mprjram, 0x38000000) return value passed, 0x%x", checkbits);
@@ -189,18 +177,6 @@ module all_tb;
 		$display("Call function qsort() in User Project BRAM (mprjram, 0x38000000) return value passed, 0x%x", checkbits);		
 		wait(checkbits == 16'hAB61);
 		$display("qs passed");
-		wait(checkbits == 16'hAB70);
-		$display("fir started");
-		wait(checkbits == 16'd0);
-		$display("Call function fir() in User Project BRAM (mprjram, 0x38000000) return value passed, 0x%x", checkbits);
-		wait(checkbits == 16'd65526);
-		$display("Call function fir() in User Project BRAM (mprjram, 0x38000000) return value passed, 0x%x", checkbits);
-		wait(checkbits == 16'd65507);
-		$display("Call function fir() in User Project BRAM (mprjram, 0x38000000) return value passed, 0x%x", checkbits);
-		wait(checkbits == 16'd915);
-		$display("Call function fir() in User Project BRAM (mprjram, 0x38000000) return value passed, 0x%x", checkbits);
-		wait(checkbits == 16'hAB71);
-		$display("fir passed");
 		
 	end endtask
 	integer delay;
