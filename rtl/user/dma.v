@@ -88,7 +88,7 @@ reg [5:0]counter_d,counter_q;
 				ss_tvalid_d = 0;
 			end
 		end
-		else if(dma_fir_tap_q && counter_q == 6'd10)begin
+		else if(dma_fir_tap_q && counter_q == 6'd10 && dma_ack)begin
 			dma_fir_tap_d = 0;
 			dma_mode_fir_d = 1;
 			if(ss_tready)begin
@@ -96,7 +96,7 @@ reg [5:0]counter_d,counter_q;
 				cyc_o_d = 1;
 			end
 			if(dma_ack)begin
-				radr_o_d = radr_o_q + 4;
+				radr_o_d = 32'h38000130;
 				counter_d = 6'd0;
 				ss_tvalid_d = 1;
 				wadr_o_d = radr_o_d;
