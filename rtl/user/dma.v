@@ -113,18 +113,16 @@ reg [5:0]counter_d,counter_q;
 				ss_tvalid_d = 1;
 				read_flag_d = 1;
 				data_o_d = read_dat_i;
+				stb_o_d = 0;
+				cyc_o_d = 0;
 			end
-			else if(ss_tready && read_flag_q)begin
-				stb_o_d = 1;
-				cyc_o_d = 1;
-				ss_tvalid_d = 0;
-				read_flag_d = 0;
-			end
-			else if(ss_tready && ~read_flag_q)begin
-				stb_o_d = 1;
-				cyc_o_d = 1;
-				ss_tvalid_d = 0;
-				read_flag_d = 0;
+			else if(dma_ack && write_flag_q)begin
+				write_flag_d = 0;
+				wadr_o_d = wadr_o_q + 4;
+				counter_d = counter_q + 1;
+				sm_tready_d = 1;
+				we_o_d = 0;
+				sel_o_d = 4'b0000;
 			end
 			else if(sm_tvalid)begin
 				write_flag_d = 1;
@@ -134,13 +132,17 @@ reg [5:0]counter_d,counter_q;
 				sel_o_d = 4'b1111;
 				wbs_dat_o = sm_tdata;
 			end
-			else if(dma_ack && write_flag_q)begin
-				write_flag_d = 0;
-				wadr_o_d = wadr_o_q + 4;
-				counter_d = counter_q + 1;
-				sm_tready_d = 1;
-				we_o_d = 0;
-				sel_o_d = 4'b0000;
+			else if(ss_tready && read_flag_q)begin
+				//stb_o_d = 1;
+				//cyc_o_d = 1;
+				ss_tvalid_d = 0;
+				read_flag_d = 0;
+			end
+			else if(ss_tready && ~read_flag_q)begin
+				stb_o_d = 1;
+				cyc_o_d = 1;
+				ss_tvalid_d = 0;
+				read_flag_d = 0;
 			end
 			else begin
 				stb_o_d = 0;
