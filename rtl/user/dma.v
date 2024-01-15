@@ -20,7 +20,10 @@ module dma(
     input sm_tvalid,
     output sm_tready,
     input [31:0]sm_tdata,
-    output reg[31:0] wbs_dat_o
+    output reg[31:0] wbs_dat_o,
+    output dma_fir_tap,
+    output dma_mode_fir,
+    output dma_mode_mm
 );
 assign ss_tdata = data_o_q;
 assign wbs_adr_o = sm_tvalid ? wadr_o_q : radr_o_q;
@@ -30,7 +33,9 @@ assign wbs_we_o = we_o_q;
 assign wbs_sel_o = sel_o_q;
 assign ss_tvalid = ss_tvalid_q;
 assign sm_tready = sm_tready_q;
-
+assign dma_fir_tap = dma_fir_tap_q;
+assign dma_mode_fir = dma_mode_fir_q;
+assign dma_mode_mm = dma_mode_mm_q;
 reg ss_tvalid_d,ss_tvalid_q;
 reg sm_tready_d,sm_tready_q;
 reg [31:0]data_o_d,data_o_q;
