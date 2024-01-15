@@ -189,7 +189,7 @@ end
 
 // stall
 always @(*) begin
-    if(state==RUN_FIR&&({sm_tvalid,sm_tready}=={2'b10}||(ss_tvalid==0&&tap_idx==0)))
+    if(state==RUN_FIR&&({sm_tvalid,sm_tready}=={2'b10}||(ss_tvalid==0&&tap_idx==2)))
         stall = 1'b1;
     else if(state==RUN_MM&&data_idx[2:1]!=2'b00&&({sm_tvalid,sm_tready}=={2'b10}))
         stall = 1'b1;
@@ -294,6 +294,7 @@ assign data_RE = 1'b1;
 wire [4:0] data_RADDR_t;
 assign data_RADDR_t = tap_idx + data_A_shift;
 always @( *) begin
+    data_RADDR = 0;
     case (state)
         RUN_FIR: begin
             if(data_RADDR_t>10)
