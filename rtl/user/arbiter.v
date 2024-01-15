@@ -25,10 +25,10 @@ module arbiter(
     output reg [3:0] sdram_sel_i,
     output reg [31:0] sdram_dat_i,
     output reg [31:0] sdram_adr_i,
-
-    output [31:0] wbs_dat_o
+    input [31:0] sdram_dat_o,
+    output reg[31:0] arbiter_dat_o
 );
-
+assign arbiter_dat_o = sdram_dat_o;
 reg busy_d, busy_q;
 
 always@(*)begin
