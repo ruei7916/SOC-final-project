@@ -118,23 +118,21 @@ wire ack_o;
 wire stb_i;
 wire cyc_i;
 wire we_i;
-wire sel_i;
-wire [31:0]adr_i;
-wire [31:0]dat_i;
+wire [3:0]  sel_i;
+wire [31:0] adr_i;
+wire [31:0] dat_i;
 
 
 assign clk = wb_clk_i;
 assign rst = wb_rst_i;
+assign rst_n = ~rst;
 
-assign valid = stb_i && cyc_i;
-assign ctrl_in_valid = we_i ? valid : ~ctrl_in_valid_q & valid;
-assign ack_o = we_i ? ~ctrl_busy && valid : ctrl_out_valid ; 
+assign valid = stb_i && cyc_i;//to sdram
+assign ctrl_in_valid = we_i ? valid : (~ctrl_in_valid_q & valid);
+assign ack_o = we_i ? ~ctrl_busy && valid : ctrl_out_valid ;
 assign bram_mask = sel_i & {4{we_i}};
 assign ctrl_addr = adr_i[22:0];
 
-// uart
-assign decoded_uart = (wbs_adr_i[31:20] == 12'h300) ? 1'b1 : 1'b0;
-assign rst_n = ~rst;
 always @(posedge clk) begin
     if (rst) begin
         ctrl_in_valid_q <= 1'b0;
@@ -208,6 +206,8 @@ sdr user_bram (
     .Dqo(d2c_data)
 );
 
+// uart
+assign decoded_uart = (wbs_adr_i[31:20] == 12'h300) ? 1'b1 : 1'b0;
 uart uart (
 `ifdef USE_POWER_PINS
 	.vccd1(vccd1),	// User area 1 1.8V power
