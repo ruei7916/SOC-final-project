@@ -14,14 +14,14 @@ module arbiter(
     input [3:0] dma_sel_i,
     input [31:0] dma_dat_i,
     input [31:0] dma_adr_i,
-    output wb_stb_i,
-    output wb_cyc_i,
-    output wb_we_i,
-    output [3:0] wb_sel_i,
-    output [31:0] wb_dat_i,
-    output [31:0] wb_adr_i,
-    output cpu_ack_o,
-    output dma_ack_o,
+    output reg wb_stb_i,
+    output reg wb_cyc_i,
+    output reg wb_we_i,
+    output reg [3:0] wb_sel_i,
+    output reg [31:0] wb_dat_i,
+    output reg [31:0] wb_adr_i,
+    output reg cpu_ack_o,
+    output reg dma_ack_o,
     output [31:0] wbs_dat_o
 );
 reg busy_d,busy_q;

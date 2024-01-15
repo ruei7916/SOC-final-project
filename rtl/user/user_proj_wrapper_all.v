@@ -146,7 +146,7 @@ assign rst_n = ~rst;
                 ctrl_in_valid_q <= 1'b0;
         end
     end
-    arbiter(
+    arbiter u_arbiter(
     .wb_clk_i(clk),
     .wb_rst_i(rst),
     .wb_ack_o(ack_o),
