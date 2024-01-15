@@ -282,7 +282,6 @@ reg [5:0]counter_d,counter_q;
     	always@(posedge wb_clk_i or posedge wb_rst_i)begin
     		if(wb_rst_i)begin
     			data_o_q <= 32'd0;
-    			adr_o_q <= 32'd0;
     			stb_o_q <= 0;
 			cyc_o_q <= 0;
 			we_o_q <= 0;
@@ -300,7 +299,6 @@ reg [5:0]counter_d,counter_q;
 		end
 		else begin
 			data_o_q <= data_o_d;
-    			adr_o_q <= adr_o_d;
     			stb_o_q <= stb_o_d;
 			cyc_o_q <= cyc_o_d;
 			we_o_q <= we_o_d;
