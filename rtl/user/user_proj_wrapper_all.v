@@ -266,13 +266,13 @@ sdr user_bram (
 
 fir_mm u_fir_mm(
     // wishbone
-    .wbs_stb_i(wbs_stb_i), // Valid data transfer cycle (kind of chip select)
-    .wbs_cyc_i(wbs_cyc_i), // Bus Cycle in progress (active high)
-    .wbs_we_i(wbs_we_i), // READ (negate), WRITE(assert)
-    .wbs_sel_i(wbs_sel_i), // Valid data(Byte-enable)
-    .wbs_dat_i(wbs_dat_i),
-    .wbs_adr_i(wbs_adr_i),
-    .wbs_ack_o(wbs_ack_o),
+    .wbs_stb_i(0), // Valid data transfer cycle (kind of chip select)
+    .wbs_cyc_i(0), // Bus Cycle in progress (active high)
+    .wbs_we_i(0), // READ (negate), WRITE(assert)
+    .wbs_sel_i(0), // Valid data(Byte-enable)
+    .wbs_dat_i(0),
+    .wbs_adr_i(0),
+    .wbs_ack_o(),
     .wbs_dat_o(),
     // axi-stream
     .ss_tvalid(ss_tvalid),
@@ -297,7 +297,7 @@ fir_mm u_fir_mm(
     .data_RADDR(data_RADDR),
     .data_Di(data_Di),
     .data_Do(data_Do),
-    .clk(axis_clk),
+    .clk(wb_clk_i),
     .rst(rst),
     .tap_mode(dma_fir_tap),
     .fir_mode(dma_mode_fir),
@@ -305,7 +305,7 @@ fir_mm u_fir_mm(
 );
 
 bram16 tap_RAM(
-    .clk(axis_clk),
+    .clk(wb_clk_i),
     .we(tap_WE),
     .re(tap_RE),
     .waddr(tap_WADDR),
@@ -314,7 +314,7 @@ bram16 tap_RAM(
     .rdo(tap_Do)
 );
 bram16 data_RAM(
-    .clk(axis_clk),
+    .clk(wb_clk_i),
     .we(data_WE),
     .re(data_RE),
     .waddr(data_WADDR),

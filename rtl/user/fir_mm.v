@@ -124,7 +124,7 @@ always @(posedge clk ) begin
     end
 end
 always @(posedge clk) begin
-    if(rst|_state!=IDLE)begin
+    if(rst||_state!=IDLE)begin
         data_idx <= 0;
         tap_idx <= 0;
         acc <= 0;
