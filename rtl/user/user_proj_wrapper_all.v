@@ -121,7 +121,32 @@ wire we_i;
 wire [3:0]  sel_i;
 wire [31:0] adr_i;
 wire [31:0] dat_i;
+wire dma_fir_tap;
+wire dma_mode_fir;
+wire dma_mode_mm;
 
+//hardware
+ wire tap_WE;
+    wire tap_RE;
+    wire [11:0]tap_WADDR;
+    wire [11:0]tap_RADDR;
+    wire [31:0]tap_Di;
+    wire [31:0]tap_Do;
+    wire data_WE;
+    wire data_RE;
+    wire [11:0]data_WADDR;
+    wire [11:0]data_RADDR;
+    wire [31:0]data_Di;
+    wire [31:0]data_Do;
+
+    wire            ss_tvalid;
+    wire [31:0]     ss_tdata;
+    wire            ss_tlast;
+    wire            ss_tready;
+    wire            sm_tready;
+    wire            sm_tvalid;
+    wire [31:0]     sm_tdata;
+    wire            sm_tlast;
 
 assign clk = wb_clk_i;
 assign rst = wb_rst_i;
@@ -158,7 +183,7 @@ arbiter u_arbiter(
     .dma_cyc_i(dma_cyc),
     .dma_we_i(dma_we),
     .dma_sel_i(dma_sel),
-    .dma_dat_i(32'd1),
+    .dma_dat_i(dma_dat_i),
     .dma_adr_i(dma_addr),
     .sdram_stb_i(stb_i),
     .sdram_cyc_i(cyc_i),
@@ -169,6 +194,33 @@ arbiter u_arbiter(
     .cpu_ack_o(wbs_ack_o),
     .dma_ack_o(dma_ack_o),
     .wbs_dat_o(wbs_dat_o)
+);
+dma u_dma(
+    .wb_clk_i(clk),
+    .wb_rst_i(rst),
+    .wbs_stb_i(wbs_stb_i),
+    .wbs_cyc_i(wbs_cyc_i),
+    .wbs_we_i(wbs_we_i),
+    .wbs_sel_i(wbs_sel_i),
+    .read_dat_i(wbs_dat_o),
+    .wbs_adr_i(wbs_adr_i),
+    .wbs_ack(wbs_ack_o),
+    .dma_ack(dma_ack_o),
+    .ss_tdata(ss_tdata),
+    .wbs_adr_o(dma_addr),
+    .wbs_stb_o(dma_stb),
+    .wbs_cyc_o(dma_cyc),
+    .wbs_we_o(dma_we),
+    .wbs_sel_o(dma_sel),
+    .ss_tvalid(ss_tvalid),
+    .ss_tready(ss_tready),
+    .sm_tvalid(sm_tvalid),
+    .sm_tready(sm_tready),
+    .sm_tdata(sm_tdata),
+    .wbs_dat_o(dma_dat_i),
+    .dma_fir_tap(dma_fir_tap),
+    .dma_mode_fir(dma_mode_fir),
+    .dma_mode_mm(dma_mode_mm)
 );
 sdram_controller user_sdram_controller (
     .clk(clk),
@@ -207,27 +259,6 @@ sdr user_bram (
 );
 
 
-    wire tap_WE;
-    wire tap_RE;
-    wire [11:0]tap_WADDR;
-    wire [11:0]tap_RADDR;
-    wire [31:0]tap_Di;
-    wire [31:0]tap_Do;
-    wire data_WE;
-    wire data_RE;
-    wire [11:0]data_WADDR;
-    wire [11:0]data_RADDR;
-    wire [31:0]data_Di;
-    wire [31:0]data_Do;
-
-    wire            ss_tvalid;
-    wire [31:0]     ss_tdata;
-    wire            ss_tlast;
-    wire            ss_tready;
-    wire            sm_tready;
-    wire            sm_tvalid;
-    wire [31:0]     sm_tdata;
-    wire            sm_tlast;
 
 
 fir_mm u_fir_mm(
