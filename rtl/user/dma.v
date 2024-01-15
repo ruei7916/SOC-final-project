@@ -78,10 +78,6 @@ reg [5:0]counter_d,counter_q;
 				stb_o_d = 1;
 				cyc_o_d = 1;
 			end
-			else begin
-				stb_o_d = 0;
-				cyc_o_d = 0;
-			end
 			if(dma_ack)begin
 				radr_o_d = radr_o_q + 4;
 				counter_d = counter_q + 1;
@@ -98,10 +94,6 @@ reg [5:0]counter_d,counter_q;
 			if(ss_tready)begin
 				stb_o_d = 1;
 				cyc_o_d = 1;
-			end
-			else begin
-				stb_o_d = 0;
-				cyc_o_d = 0;
 			end
 			if(dma_ack)begin
 				radr_o_d = radr_o_q + 4;

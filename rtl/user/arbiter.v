@@ -30,8 +30,9 @@ module arbiter(
 );
 assign arbiter_dat_o = sdram_dat_o;
 reg busy_d, busy_q;
-
+reg flag_d,flag_q;
 always@(*)begin
+	flag_d = flag_q;
 	if(dma_stb_i & dma_cyc_i & ~busy_q)begin
 		busy_d = 1;
 		sdram_stb_i = dma_stb_i;
@@ -42,8 +43,21 @@ always@(*)begin
 		sdram_adr_i = dma_adr_i;
         dma_ack_o = sdram_ack_o;
         cpu_ack_o = 0;	
+        flag_d = 1;
     end
-    else if(dma_stb_i & dma_cyc_i & busy_q & sdram_ack_o)begin
+    else if(dma_stb_i & dma_cyc_i & busy_q & ~sdram_ack_o & flag_q)begin
+		busy_d = 1;
+		sdram_stb_i = dma_stb_i;
+		sdram_cyc_i = dma_cyc_i;
+		sdram_we_i = dma_we_i;
+		sdram_sel_i = dma_sel_i;
+        sdram_dat_i = dma_dat_i;
+        sdram_adr_i = dma_adr_i;
+        dma_ack_o = sdram_ack_o;
+        cpu_ack_o = 0;
+        flag_d = 1;
+    end
+    else if(dma_stb_i & dma_cyc_i & busy_q & sdram_ack_o & flag_q)begin
 		busy_d = 0;
 		sdram_stb_i = dma_stb_i;
 		sdram_cyc_i = dma_cyc_i;
@@ -53,6 +67,7 @@ always@(*)begin
         sdram_adr_i = dma_adr_i;
         dma_ack_o = sdram_ack_o;
         cpu_ack_o = 0;
+        flag_q = 0;
     end
     else if(cpu_stb_i & cpu_cyc_i & busy_q & sdram_ack_o)begin
         busy_d = 0;
@@ -92,9 +107,11 @@ end
 always@(posedge clk or posedge rst)begin
     if(rst)begin
         busy_q <= 0;
+        flag_q <= 0;
 	end
 	else begin
 		busy_q <= busy_d;
+		flag_q <= flag_d;
 	end
 end
 
