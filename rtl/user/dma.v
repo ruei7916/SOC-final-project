@@ -64,7 +64,7 @@ reg [5:0]counter_d,counter_q;
 		dma_mode_mm_d = dma_mode_mm_q;
 		write_flag_d = write_flag_q;
 		read_flag_d = read_flag_q;
-		if(wbs_adr_i == 32'h380002b0 && wbs_stb_i && wbs_cyc_i && wbs_ack)begin
+		if(wbs_adr_i == 32'h380002ac && wbs_stb_i && wbs_cyc_i && wbs_ack)begin
 			dma_fir_tap_d = 1;
 			stb_o_d = 1;
 			cyc_o_d = 1;
