@@ -160,7 +160,7 @@ module all_tb;
 	initial begin
 		fork
 			workload;
-			uart;
+			//uart;
 		join
 	end
 
