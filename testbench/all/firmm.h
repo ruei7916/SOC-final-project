@@ -109,4 +109,5 @@
 #define reg_user_B14 (*(volatile uint32_t*)0x380002a8)
 #define reg_user_B15 (*(volatile uint32_t*)0x380002ac)
 #define reg_fir_start (*(volatile uint32_t*)0x380002b0)
+#define reg_fir_start (*(volatile uint32_t*)0x380002b0)
 #endif

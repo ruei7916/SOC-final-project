@@ -110,16 +110,27 @@ wire [31:0]dma_addr;
 wire dma_stb;
 wire dma_cyc;
 wire dma_we;
+wire dma_ack_o;
 wire [3:0]dma_sel;
+wire [31:0]dma_dat_i;
+
+wire ack_o;
+wire stb_i;
+wire cyc_i;
+wire we_i;
+wire sel_i;
+wire [31:0]adr_i;
+wire [31:0]dat_i;
+
 
 assign clk = wb_clk_i;
 assign rst = wb_rst_i;
 
-assign valid = wbs_stb_i && wbs_cyc_i;
-assign ctrl_in_valid = wbs_we_i ? valid : ~ctrl_in_valid_q & valid;
-assign wbs_ack_o = (wbs_we_i) ? ~ctrl_busy && valid : ctrl_out_valid ; 
-assign bram_mask = wbs_sel_i & {4{wbs_we_i}};
-assign ctrl_addr = wbs_adr_i[22:0];
+assign valid = stb_i && cyc_i;
+assign ctrl_in_valid = we_i ? valid : ~ctrl_in_valid_q & valid;
+assign ack_o = we_i ? ~ctrl_busy && valid : ctrl_out_valid ; 
+assign bram_mask = sel_i & {4{we_i}};
+assign ctrl_addr = adr_i[22:0];
 
 // uart
 assign decoded_uart = (wbs_adr_i[31:20] == 12'h300) ? 1'b1 : 1'b0;
@@ -135,7 +146,32 @@ assign rst_n = ~rst;
                 ctrl_in_valid_q <= 1'b0;
         end
     end
-    /*
+    arbiter(
+    .wb_clk_i(clk),
+    .wb_rst_i(rst),
+    .wb_ack_o(ack_o),
+    .cpu_stb_i(wbs_stb_i),
+    .cpu_cyc_i(wbs_cyc_i),
+    .cpu_we_i(wbs_we_i),
+    .cpu_sel_i(wbs_sel_i),
+    .cpu_dat_i(wbs_dat_i),
+    .cpu_adr_i(wbs_adr_i),
+    .dma_stb_i(dma_stb),
+    .dma_cyc_i(dma_cyc),
+    .dma_we_i(dma_we),
+    .dma_sel_i(dma_sel),
+    .dma_dat_i(32'd1),
+    .dma_adr_i(dma_addr),
+    .wb_stb_i(stb_i),
+    .wb_cyc_i(cyc_i),
+    .wb_we_i(we_i),
+    .wb_sel_i(sel_i),
+    .wb_dat_i(dat_i),
+    .wb_adr_i(adr_i),
+    .cpu_ack_o(wbs_ack_o),
+    .dma_ack_o(dma_ack_o),
+    .wbs_dat_o(wbs_dat_o)
+    );
     dma DMA(
     .wb_clk_i(clk),
     .wb_rst_i(rst),
@@ -143,17 +179,22 @@ assign rst_n = ~rst;
     .wbs_cyc_i(wbs_cyc_i),
     .wbs_we_i(wbs_we_i),
     .wbs_sel_i(wbs_sel_i),
-    .wbs_dat_i(wbs_dat_o),
+    .read_dat_i(wbs_dat_o),
     .wbs_adr_i(wbs_adr_i),
-    .wbs_ack(wbs_ack_o),
-    .wbs_dat_o(),
+    .wbs_ack(ack_o),
+    .dma_ack(dma_ack_o),
+    .ss_tdata(ss_tdata),
     .wbs_adr_o(dma_addr),
     .wbs_stb_o(dma_stb),
     .wbs_cyc_o(dma_cyc),
     .wbs_we_o(dma_we),
-    .wbs_sel_o(dma_sel)
+    .wbs_sel_o(dma_sel),
+    .ss_tvalid,
+    .ss_tready,
+    .sm_tvalid,
+    .sm_tready,
+    .sm_tdata
     );
-    */
     sdram_controller user_sdram_controller (
         .clk(clk),
         .rst(rst),
