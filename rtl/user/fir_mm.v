@@ -40,7 +40,9 @@ module fir_mm #(
     input   wire                     clk,
     input   wire                     rst,
 
-    input   wire                     fir_mm_mode
+    input   wire                     tap_mode,
+    input   wire                     fir_mode,
+    input   wire                     mm_mode
 );
 
 reg [2:0] state, _state;
@@ -64,10 +66,16 @@ always @(*) begin
     _state = state;
     case (state)
         IDLE: begin
+            /*
             if (wbs_enable&wbs_we_i) begin
                 _state = wbs_dat_i[5:4];
             end
-            else if(fir_mm_mode)
+            */
+            if(tap_mode)
+                _state = SET_TAP;
+            else if(fir_mode)
+                _state = RUN_FIR;
+            else if(mm_mode)
                 _state = RUN_MM;
         end
         SET_TAP: begin
