@@ -36,7 +36,6 @@ reg stb_o_d,stb_o_q;
 reg cyc_o_d,cyc_o_q;
 reg we_o_d,we_o_q;
 reg[3:0] sel_o_d,sel_o_q;
-reg count_d, count_q;
 reg dma_fir_tap_d,dma_mode_fir_d,dma_mode_mm_d,dma_fir_tap_q,dma_mode_fir_q,dma_mode_mm_q;
 reg [5:0]counter_d,counter_q;
 assign ss_tdata = data_o_q;
@@ -65,7 +64,6 @@ assign dma_mode_mm = dma_mode_mm_q;
         dma_mode_mm_d = dma_mode_mm_q;
         write_flag_d = write_flag_q;
         read_flag_d = read_flag_q;
-        //count_d = count_q;
         start = 0;
         if(wbs_adr_i == 32'h380002ac && wbs_stb_i && wbs_cyc_i && wbs_ack)begin
             dma_fir_tap_d = 1;
@@ -273,10 +271,10 @@ assign dma_mode_mm = dma_mode_mm_q;
                 wbs_dat_o = sm_tdata;
             end
         end
-        else if(dma_mode_mm_q && (count_q == 6'd48))begin
+        else if(dma_mode_mm_q && (counter_q == 6'd48))begin
             start = 0;
             dma_mode_mm_d = 0;
-            count_d = 0;
+            counter_d = 0;
             stb_o_d = 0;
             cyc_o_d = 0;
             sm_tready = 0;
