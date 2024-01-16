@@ -55,6 +55,7 @@ reg [(pDATA_WIDTH-1):0] acc, _acc, mul_out, adder_out;
 reg stall;
 wire acc_reset;
 wire wbs_enable;
+reg stall_delay;
 
 localparam IDLE = 2'b00;
 localparam SET_TAP = 2'b01;
@@ -137,6 +138,9 @@ always @(posedge clk) begin
         data_A_shift <= _data_A_shift;
     end
 end
+always @(posedge clk ) begin
+    stall_delay <= stall;
+end
 
 
 // tap_idx
@@ -184,7 +188,7 @@ assign acc_reset = ((state==RUN_MM&&tap_idx[1:0]==2'b01)||(state==RUN_FIR&&tap_i
 always @(*) begin
     mul_out = data_Do * tap_Do;
     adder_out = mul_out + (acc_reset ? 0 : acc);
-    _acc = stall ? acc : adder_out;
+    _acc = stall_delay ? acc : adder_out;
 end
 
 // stall
