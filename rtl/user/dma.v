@@ -254,27 +254,32 @@ assign dma_mode_mm = dma_mode_mm_q;
         else if(dma_mode_mm_q && (counter_q == 6'd47))begin
             dma_mode_mm_d = 1;
             start = 1;
-            if(sm_tvalid)begin
+            if(dma_ack && write_flag_q)begin
+                write_flag_d = 0;
+                wadr_o_d = wadr_o_q;
+                counter_d = counter_q + 1;
+                sm_tready = 1;
+                we_o_d = 0;
+                sel_o_d = 4'b0000;
                 stb_o_d = 1;
                 cyc_o_d = 1;
             end
-            else begin
-                stb_o_d = 0;
-                cyc_o_d = 0;
-                dma_mode_mm_d = 0;
-                ss_tvalid_d = 0;
-                start = 0;
+            else if(sm_tvalid)begin
+                write_flag_d = 1;
+                stb_o_d = 1;
+                cyc_o_d = 1;
+                we_o_d = 1;
+                sel_o_d = 4'b1111;
+                wbs_dat_o = sm_tdata;
             end
-            if(dma_ack)begin
-                radr_o_d = radr_o_q + 4;
-                counter_d = 6'd0;
-                ss_tvalid_d = 1;
-                wadr_o_d = radr_o_d;
-                data_o_d = read_dat_i;
-            end
-            else begin
-                ss_tvalid_d = 0;
-            end
+        end
+        else if(dma_mode_mm_q && (count_q == 6'd48))begin
+            start = 0;
+            dma_mode_mm_d = 0;
+            count_d = 0;
+            stb_o_d = 0;
+            cyc_o_d = 0;
+            sm_tready = 0;
         end
     end
         always@(posedge wb_clk_i or posedge wb_rst_i)begin
