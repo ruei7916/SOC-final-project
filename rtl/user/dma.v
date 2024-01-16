@@ -220,7 +220,7 @@ assign dma_mode_mm = dma_mode_mm_q;
                 ss_tvalid_d = 0;
             end
         end
-        else if(dma_mode_mm_q && (counter_q != 6'd47))begin
+        else if(dma_mode_mm_q && (counter_q < 6'd47))begin
             dma_mode_mm_d = 1;
             start = 1;
             ss_tvalid_d = 0;
