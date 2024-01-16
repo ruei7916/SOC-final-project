@@ -271,7 +271,11 @@ module sdram_controller (
                 else if (ready_q && fetch_count_q == 2'd2) begin
                     fetch_d2 = dqi_q;
                     fetch_count_d = 2'd1;
-                end                    
+                end  
+                else if (ready_q && fetch_count_q == 2'd1) begin
+                    fetch_d3 = dqi_q;
+                    fetch_count_d = 2'd0;
+                end               
                 else if (!ready_q) begin // operation waiting
                     ready_d = 1'b1; // clear the queue
                     rw_op_d = saved_rw_q; // save the values we'll need later
@@ -416,12 +420,6 @@ module sdram_controller (
                 delay_ctr_d = tCASL;
                 state_d = WAIT;
                 next_state_d = IDLE;
-                if(fetch_a1 == addr_q)
-                    fetch_d1 = data_q;
-                if(fetch_a2 == addr_q)
-                    fetch_d2 = data_q;
-                if(fetch_a3 == addr_q)
-                    fetch_d3 = data_q;
             end
 
             ///// PRECHARGE /////
