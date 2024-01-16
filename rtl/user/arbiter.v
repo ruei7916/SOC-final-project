@@ -26,11 +26,12 @@ module arbiter(
     output reg [31:0] sdram_dat_i,
     output reg [31:0] sdram_adr_i,
     input [31:0] sdram_dat_o,
-    output [31:0] arbiter_dat_o
+    output [31:0] arbiter_dat_o,
+    input start
 );
 assign arbiter_dat_o = sdram_dat_o;
 always@(*)begin
-	if(dma_stb_i & dma_cyc_i)begin
+	if(start)begin
 		sdram_stb_i = dma_stb_i;
 		sdram_cyc_i = dma_cyc_i;
 		sdram_we_i = dma_we_i;
@@ -40,7 +41,7 @@ always@(*)begin
         dma_ack_o = sdram_ack_o;
         cpu_ack_o = 0;	
     end
-    else if(cpu_stb_i & cpu_cyc_i)begin
+    /*else if(cpu_stb_i & cpu_cyc_i)begin
         sdram_stb_i = cpu_stb_i;
 		sdram_cyc_i = cpu_cyc_i;
 		sdram_we_i = cpu_we_i;
@@ -49,7 +50,7 @@ always@(*)begin
         sdram_adr_i = cpu_adr_i;
         cpu_ack_o = sdram_ack_o;
         dma_ack_o = 0;
-    end
+    end*/
     else begin
 		sdram_stb_i = cpu_stb_i;
 		sdram_cyc_i = cpu_cyc_i;
@@ -57,7 +58,7 @@ always@(*)begin
 		sdram_sel_i = cpu_sel_i;
         sdram_dat_i = cpu_dat_i;
         sdram_adr_i = cpu_adr_i;
-        cpu_ack_o = 0;
+        cpu_ack_o = sdram_ack_o;
         dma_ack_o = 0;
     end
 end
