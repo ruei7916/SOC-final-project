@@ -38,7 +38,7 @@ reg we_o_d,we_o_q;
 reg[3:0] sel_o_d,sel_o_q;
 reg count_d, count_q;
 reg dma_fir_tap_d,dma_mode_fir_d,dma_mode_mm_d,dma_fir_tap_q,dma_mode_fir_q,dma_mode_mm_q;
-reg [6:0]counter_d,counter_q;
+reg [5:0]counter_d,counter_q;
 assign ss_tdata = data_o_q;
 assign wbs_adr_o = sm_tvalid ? wadr_o_q : radr_o_q;
 assign wbs_stb_o = stb_o_q;
@@ -222,11 +222,10 @@ assign dma_mode_mm = dma_mode_mm_q;
                 ss_tvalid_d = 0;
             end
         end
-        else if(dma_mode_mm_q && (counter_q != 7'd95))begin
+        else if(dma_mode_mm_q && (counter_q != 6'd47))begin
             dma_mode_mm_d = 1;
             start = 1;
             ss_tvalid_d = 0;
-
             if(dma_ack && write_flag_q)begin
                 write_flag_d = 0;
                 wadr_o_d = wadr_o_q + 4;
@@ -252,7 +251,7 @@ assign dma_mode_mm = dma_mode_mm_q;
             end
             //
         end
-        else if(dma_mode_mm_q && (counter_q == 7'd95))begin
+        else if(dma_mode_mm_q && (counter_q == 6'd47))begin
             dma_mode_mm_d = 1;
             start = 1;
             if(sm_tvalid)begin
