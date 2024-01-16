@@ -255,7 +255,7 @@ assign dma_mode_mm = dma_mode_mm_q;
         else if(dma_mode_mm_q && (counter_q == 7'd95))begin
             dma_mode_mm_d = 1;
             start = 1;
-            if(ss_tready)begin
+            if(sm_tvalid)begin
                 stb_o_d = 1;
                 cyc_o_d = 1;
             end
