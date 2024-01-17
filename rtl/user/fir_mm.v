@@ -67,17 +67,15 @@ always @(*) begin
     _state = state;
     case (state)
         IDLE: begin
-            /*
-            if (wbs_enable&wbs_we_i) begin
-                _state = wbs_dat_i[5:4];
-            end
-            */
             if(tap_mode)
                 _state = SET_TAP;
             else if(fir_mode)
                 _state = RUN_FIR;
             else if(mm_mode)
                 _state = RUN_MM;
+            else if (wbs_enable&wbs_we_i) begin
+                _state = wbs_dat_i[5:4];
+            end
         end
         SET_TAP: begin
             if(tap_idx==5'd10&ss_tready&ss_tvalid)begin
@@ -102,7 +100,7 @@ end
 */
 assign wbs_enable = wbs_cyc_i & wbs_stb_i;
 assign wbs_ack_o = wbs_enable;
-assign wbs_dat_o = {30'b0,(_state==IDLE?1'b1:1'b0),1'b0};
+assign wbs_dat_o = {16'b0,10'b0,state,2'b00,(_state==IDLE?1'b1:1'b0),1'b0};
 always @( *) begin
     _data_length = data_length;
     if(state==IDLE)begin
