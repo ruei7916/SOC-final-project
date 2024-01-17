@@ -196,8 +196,7 @@ arbiter u_arbiter(
     .cpu_ack_o(wbs_ack_o),
     .dma_ack_o(dma_ack_o),
     .sdram_dat_o(sdram_dat_o),
-    .arbiter_dat_o(wbs_dat_o),
-    .start(start)
+    .arbiter_dat_o(wbs_dat_o)
 );
 dma u_dma(
     .wb_clk_i(clk),
@@ -224,8 +223,7 @@ dma u_dma(
     .wbs_dat_o(dma_dat_i),
     .dma_fir_tap(dma_fir_tap),
     .dma_mode_fir(dma_mode_fir),
-    .dma_mode_mm(dma_mode_mm),
-    .start(start)
+    .dma_mode_mm(dma_mode_mm)
 );
 sdram_controller user_sdram_controller (
     .clk(clk),

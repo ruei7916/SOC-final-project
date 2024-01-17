@@ -26,40 +26,78 @@ module arbiter(
     output reg [31:0] sdram_dat_i,
     output reg [31:0] sdram_adr_i,
     input [31:0] sdram_dat_o,
-    output [31:0] arbiter_dat_o,
-    input start
+    output [31:0] arbiter_dat_o
 );
+reg [1:0]arbiter_state_d,arbiter_state_q;
 assign arbiter_dat_o = sdram_dat_o;
+
 always@(*)begin
-	if(start)begin
-		sdram_stb_i = dma_stb_i;
-		sdram_cyc_i = dma_cyc_i;
-		sdram_we_i = dma_we_i;
-		sdram_sel_i = dma_sel_i;
-		sdram_dat_i = dma_dat_i;
-		sdram_adr_i = dma_adr_i;
-        dma_ack_o = sdram_ack_o;
-        cpu_ack_o = 0;	
+    if(arbiter_state_q == 2'b00 && dma_stb_i && dma_cyc_i)begin
+        sdram_stb_i = dma_stb_i;
+	sdram_cyc_i = dma_cyc_i;
+	sdram_we_i = dma_we_i;
+	sdram_sel_i = dma_sel_i;
+	sdram_dat_i = dma_dat_i;
+	sdram_adr_i = dma_adr_i;
+	dma_ack_o = sdram_ack_o;
+	cpu_ack_o = 0;
+	arbiter_state_d = 2'b01;
     end
-    /*else if(cpu_stb_i & cpu_cyc_i)begin
+    else if(arbiter_state_q == 2'b00 && cpu_stb_i && cpu_cyc_i)begin
         sdram_stb_i = cpu_stb_i;
-		sdram_cyc_i = cpu_cyc_i;
-		sdram_we_i = cpu_we_i;
-		sdram_sel_i = cpu_sel_i;
-        sdram_dat_i = cpu_dat_i;
-        sdram_adr_i = cpu_adr_i;
-        cpu_ack_o = sdram_ack_o;
-        dma_ack_o = 0;
-    end*/
-    else begin
-		sdram_stb_i = cpu_stb_i;
-		sdram_cyc_i = cpu_cyc_i;
-		sdram_we_i = cpu_we_i;
-		sdram_sel_i = cpu_sel_i;
-        sdram_dat_i = cpu_dat_i;
-        sdram_adr_i = cpu_adr_i;
-        cpu_ack_o = sdram_ack_o;
-        dma_ack_o = 0;
+	sdram_cyc_i = cpu_cyc_i;
+	sdram_we_i = cpu_we_i;
+	sdram_sel_i = cpu_sel_i;
+	sdram_dat_i = cpu_dat_i;
+	sdram_adr_i = cpu_adr_i;
+	dma_ack_o = 0;
+	cpu_ack_o = sdram_ack_o;
+	arbiter_state_d = 2'b10;
     end
+    else if(arbiter_state_q == 2'b01)begin
+        sdram_stb_i = dma_stb_i;
+	sdram_cyc_i = dma_cyc_i;
+	sdram_we_i = dma_we_i;
+	sdram_sel_i = dma_sel_i;
+	sdram_dat_i = dma_dat_i;
+	sdram_adr_i = dma_adr_i;
+	dma_ack_o = sdram_ack_o;
+	cpu_ack_o = 0;
+	if(sdram_ack_o == 1)
+	    arbiter_state_d = 2'b00;
+	else
+	    arbiter_state_d = 2'b01;
+    end
+    else if(arbiter_state_q == 2'b10)begin
+        sdram_stb_i = cpu_stb_i;
+	sdram_cyc_i = cpu_cyc_i;
+	sdram_we_i = cpu_we_i;
+	sdram_sel_i = cpu_sel_i;
+	sdram_dat_i = cpu_dat_i;
+	sdram_adr_i = cpu_adr_i;
+	dma_ack_o = 0;
+	cpu_ack_o = sdram_ack_o;
+	if(sdram_ack_o == 1)
+	    arbiter_state_d = 2'b00;
+	else
+	    arbiter_state_d = 2'b10;
+    end
+    else begin
+        sdram_stb_i = cpu_stb_i;
+	sdram_cyc_i = cpu_cyc_i;
+	sdram_we_i = cpu_we_i;
+	sdram_sel_i = cpu_sel_i;
+	sdram_dat_i = cpu_dat_i;
+	sdram_adr_i = cpu_adr_i;
+	dma_ack_o = 0;
+	cpu_ack_o = 0;
+	arbiter_state_d = arbiter_state_q;
+    end
+end
+always@(posedge clk or posedge rst)begin
+    if(rst)
+        arbiter_state_q <= 2'b00;
+    else
+        arbiter_state_q = arbiter_state_d;
 end
 endmodule

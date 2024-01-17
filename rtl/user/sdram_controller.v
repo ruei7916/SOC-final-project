@@ -288,8 +288,13 @@ module sdram_controller (
                     if (row_open_q[saved_addr_q[9:8]]) begin
                         if (row_addr_q[saved_addr_q[9:8]] == saved_addr_q[22:10]) begin
                             // Row is already open
-                            if (saved_rw_q)
+                            if (saved_rw_q)begin
                                 state_d = WRITE;
+                                if (fetch_count_q == 2'd1) begin
+                                    fetch_d3 = dqi_q;
+                                    fetch_count_d = 2'd0;
+                                end    
+                            end
                             else if(fetch_count_q == 2'd1)begin
                                 fetch_d3 = dqi_q;
                                 fetch_count_d = 2'd0;
