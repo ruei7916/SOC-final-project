@@ -15,6 +15,7 @@
 -v ../../rtl/user/arbiter.v
 -v ../../rtl/user/fir_mm.v
 -v ../../rtl/user/bram16.v
+-v ../../rtl/user/sdram.v
 ## VIP
 -v ../../vip/tbuart.v
 -v ../../vip/spiflash.v

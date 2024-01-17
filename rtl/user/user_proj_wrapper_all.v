@@ -13,7 +13,7 @@
 // limitations under the License.
 // SPDX-License-Identifier: Apache-2.0
 
-`default_nettype wire
+`default_nettype none
 /*
  *-------------------------------------------------------------
  *
@@ -53,8 +53,8 @@ module user_project_wrapper #(
     input [3:0] wbs_sel_i,
     input [31:0] wbs_dat_i,
     input [31:0] wbs_adr_i,
-    output wbs_ack_o,
-    output [31:0] wbs_dat_o,
+    output reg wbs_ack_o,
+    output reg [31:0] wbs_dat_o,
 
     // Logic Analyzer Signals
     input  [127:0] la_data_in,
@@ -81,30 +81,56 @@ module user_project_wrapper #(
 
 wire clk;
 wire rst;
-// sdram signal
-wire valid;
-wire sdram_cle;
-wire sdram_cs;
-wire sdram_cas;
-wire sdram_ras;
-wire sdram_we;
-wire sdram_dqm;
-wire [1:0] sdram_ba;
-wire [12:0] sdram_a;
-wire [31:0] d2c_data;
-wire [31:0] c2d_data;
-wire [3:0]  bram_mask;
-wire decoded;
-wire [22:0] ctrl_addr;
-wire ctrl_busy;
-wire ctrl_in_valid, ctrl_out_valid;
-reg ctrl_in_valid_q;
-wire [31:0]sdram_dat_o;
 
-// uart signals
-wire decoded_uart;
-wire uart_ack_o;
+
+
+//wb decode addr
+/*
+sdram       0x3800_0xxx
+dma         0x3800_02ac
+fir_mm      0x301x_xxxx
+uart        0x300x_xxxx
+*/
+wire [31:0] cpu_dat_o;
+wire cpu_ack_o;
+wire decoded_cpu;
+wire [31:0] fir_dat_o;
+wire fir_ack_o;
+wire decoded_fir_mm;
 wire [31:0] uart_dat_o;
+wire uart_ack_o;
+wire decoded_uart;
+
+assign decoded_cpu = (wbs_adr_i[31:16]==16'h3800)?1'b1:1'b0;
+assign decoded_fir_mm = (wbs_adr_i[31:20]==12'h301) ? 1'b1 : 1'b0;
+assign decoded_uart = (wbs_adr_i[31:20] == 12'h300) ? 1'b1 : 1'b0;
+
+always @(*) begin
+    if(decoded_cpu)begin
+        wbs_dat_o = cpu_dat_o;
+        wbs_ack_o = cpu_ack_o;
+    end
+    else if(decoded_fir_mm)begin
+        wbs_dat_o = fir_dat_o;
+        wbs_ack_o = fir_ack_o;
+    end
+    else begin
+        wbs_dat_o = uart_dat_o;
+        wbs_ack_o = uart_ack_o;
+    end
+end
+
+
+
+// arbiter to sdram signal
+wire sdram_cyc_i;
+wire sdram_stb_i;
+wire sdram_we_i;
+wire [3:0] sdram_sel_i;
+wire sdram_ack_o;
+wire [31:0] sdram_dat_i;
+wire [31:0] sdram_dat_o;
+wire [31:0] sdram_adr_i;
 
 // dma
 wire [31:0]dma_addr;
@@ -115,97 +141,47 @@ wire dma_ack_o;
 wire [3:0]dma_sel;
 wire [31:0]dma_dat_i;
 
-wire ack_o;
-wire stb_i;
-wire cyc_i;
-wire we_i;
-wire [3:0]  sel_i;
-wire [31:0] adr_i;
-wire [31:0] dat_i;
+// mode select for fir_mm
 wire dma_fir_tap;
 wire dma_mode_fir;
 wire dma_mode_mm;
-wire start;
 
-//hardware
- wire tap_WE;
-    wire tap_RE;
-    wire [11:0]tap_WADDR;
-    wire [11:0]tap_RADDR;
-    wire [31:0]tap_Di;
-    wire [31:0]tap_Do;
-    wire data_WE;
-    wire data_RE;
-    wire [11:0]data_WADDR;
-    wire [11:0]data_RADDR;
-    wire [31:0]data_Di;
-    wire [31:0]data_Do;
-
-    wire            ss_tvalid;
-    wire [31:0]     ss_tdata;
-    wire            ss_tlast;
-    wire            ss_tready;
-    wire            sm_tready;
-    wire            sm_tvalid;
-    wire [31:0]     sm_tdata;
-    wire            sm_tlast;
+// fir_mm to tap ram
+wire tap_WE;
+wire tap_RE;
+wire [11:0]tap_WADDR;
+wire [11:0]tap_RADDR;
+wire [31:0]tap_Di;
+wire [31:0]tap_Do;
+// fir_mm to data ram
+wire data_WE;
+wire data_RE;
+wire [11:0]data_WADDR;
+wire [11:0]data_RADDR;
+wire [31:0]data_Di;
+wire [31:0]data_Do;
+// ss
+wire            ss_tvalid;
+wire [31:0]     ss_tdata;
+wire            ss_tlast;
+wire            ss_tready;
+// sm
+wire            sm_tready;
+wire            sm_tvalid;
+wire [31:0]     sm_tdata;
+wire            sm_tlast;
 
 assign clk = wb_clk_i;
 assign rst = wb_rst_i;
-assign rst_n = ~rst;
 
-assign valid = stb_i && cyc_i;//to sdram
-assign ctrl_in_valid = we_i ? valid : (~ctrl_in_valid_q & valid);
-assign ack_o = we_i ? ~ctrl_busy && valid : ctrl_out_valid ;
-assign bram_mask = sel_i & {4{we_i}};
-assign ctrl_addr = adr_i[22:0];
-
-always @(posedge clk) begin
-    if (rst) begin
-        ctrl_in_valid_q <= 1'b0;
-    end
-    else begin
-        if (~we_i && valid && ~ctrl_busy && ctrl_in_valid_q == 1'b0)
-            ctrl_in_valid_q <= 1'b1;  
-        else if (ctrl_out_valid)
-            ctrl_in_valid_q <= 1'b0;
-    end
-end
-arbiter u_arbiter(
-    .clk(clk),
-    .rst(rst),
-    .sdram_ack_o(ack_o),
-    .cpu_stb_i(wbs_stb_i),
-    .cpu_cyc_i(wbs_cyc_i),
-    .cpu_we_i(wbs_we_i),
-    .cpu_sel_i(wbs_sel_i),
-    .cpu_dat_i(wbs_dat_i),
-    .cpu_adr_i(wbs_adr_i),
-    .dma_stb_i(dma_stb),
-    .dma_cyc_i(dma_cyc),
-    .dma_we_i(dma_we),
-    .dma_sel_i(dma_sel),
-    .dma_dat_i(dma_dat_i),
-    .dma_adr_i(dma_addr),
-    .sdram_stb_i(stb_i),
-    .sdram_cyc_i(cyc_i),
-    .sdram_we_i(we_i),
-    .sdram_sel_i(sel_i),
-    .sdram_dat_i(dat_i),
-    .sdram_adr_i(adr_i),
-    .cpu_ack_o(wbs_ack_o),
-    .dma_ack_o(dma_ack_o),
-    .sdram_dat_o(sdram_dat_o),
-    .arbiter_dat_o(wbs_dat_o)
-);
 dma u_dma(
     .wb_clk_i(clk),
     .wb_rst_i(rst),
-    .wbs_stb_i(wbs_stb_i),
+    .wbs_stb_i(wbs_stb_i&decoded_cpu),
     .wbs_cyc_i(wbs_cyc_i),
     .wbs_we_i(wbs_we_i),
     .wbs_sel_i(wbs_sel_i),
-    .read_dat_i(wbs_dat_o),
+    .read_dat_i(cpu_dat_o),
     .wbs_adr_i(wbs_adr_i),
     .wbs_ack(wbs_ack_o),
     .dma_ack(dma_ack_o),
@@ -225,55 +201,60 @@ dma u_dma(
     .dma_mode_fir(dma_mode_fir),
     .dma_mode_mm(dma_mode_mm)
 );
-sdram_controller user_sdram_controller (
+
+arbiter u_arbiter(
     .clk(clk),
     .rst(rst),
-    .sdram_cle(sdram_cle),
-    .sdram_cs(sdram_cs),
-    .sdram_cas(sdram_cas),
-    .sdram_ras(sdram_ras),
-    .sdram_we(sdram_we),
-    .sdram_dqm(sdram_dqm),
-    .sdram_ba(sdram_ba),
-    .sdram_a(sdram_a),
-    .sdram_dqi(d2c_data),
-    .sdram_dqo(c2d_data),
-    .user_addr(ctrl_addr),
-    .rw(we_i),
-    .data_in(dat_i),
-    .data_out(sdram_dat_o),
-    .busy(ctrl_busy),
-    .in_valid(ctrl_in_valid),
-    .out_valid(ctrl_out_valid)
-);
-sdr user_bram (
-    .Rst_n(rst_n),
-    .Clk(clk),
-    .Cke(sdram_cle),
-    .Cs_n(sdram_cs),
-    .Ras_n(sdram_ras),
-    .Cas_n(sdram_cas),
-    .We_n(sdram_we),
-    .Addr(sdram_a),
-    .Ba(sdram_ba),
-    .Dqm(bram_mask),
-    .Dqi(c2d_data),
-    .Dqo(d2c_data)
+    .cpu_stb_i(wbs_stb_i),
+    .cpu_cyc_i(wbs_cyc_i),
+    .cpu_ack_o(cpu_ack_o),
+    .cpu_we_i(wbs_we_i),
+    .cpu_sel_i(wbs_sel_i),
+    .cpu_dat_i(wbs_dat_i),
+    .cpu_adr_i(wbs_adr_i),
+    .dma_stb_i(dma_stb),
+    .dma_cyc_i(dma_cyc),
+    .dma_ack_o(dma_ack_o),
+    .dma_we_i(dma_we),
+    .dma_sel_i(dma_sel),
+    .dma_dat_i(dma_dat_i),
+    .dma_adr_i(dma_addr),
+    .sdram_stb_i(sdram_stb_i),
+    .sdram_cyc_i(sdram_cyc_i),
+    .sdram_ack_o(sdram_ack_o),
+    .sdram_we_i(sdram_we_i),
+    .sdram_sel_i(sdram_sel_i),
+    .sdram_dat_i(sdram_dat_i),
+    .sdram_adr_i(sdram_adr_i),
+    .sdram_dat_o(sdram_dat_o),
+    .arbiter_dat_o(cpu_dat_o)
 );
 
 
+sdram u_sdram(
+    .wb_clk_i(clk),
+    .wb_rst_i(rst),
+    .wbs_stb_i(sdram_stb_i),
+    .wbs_cyc_i(sdram_cyc_i),
+    .wbs_we_i(sdram_we_i),
+    .wbs_sel_i(sdram_sel_i),
+    .wbs_dat_i(sdram_dat_i),
+    .wbs_adr_i(sdram_adr_i),
+    .wbs_ack_o(sdram_ack_o),
+    .wbs_dat_o(sdram_dat_o)
+);
 
 
 fir_mm u_fir_mm(
     // wishbone
-    .wbs_stb_i(0), // Valid data transfer cycle (kind of chip select)
-    .wbs_cyc_i(0), // Bus Cycle in progress (active high)
-    .wbs_we_i(0), // READ (negate), WRITE(assert)
-    .wbs_sel_i(0), // Valid data(Byte-enable)
-    .wbs_dat_i(0),
-    .wbs_adr_i(0),
-    .wbs_ack_o(),
-    .wbs_dat_o(),
+    .wbs_stb_i(wbs_stb_i&decoded_fir_mm), // Valid data transfer cycle (kind of chip select)
+    .wbs_cyc_i(wbs_cyc_i), // Bus Cycle in progress (active high)
+    .wbs_we_i(wbs_we_i), // READ (negate), WRITE(assert)
+    .wbs_sel_i(wbs_sel_i), // Valid data(Byte-enable)
+    .wbs_dat_i(wbs_dat_i),
+    .wbs_adr_i(wbs_adr_i),
+    .wbs_ack_o(fir_ack_o),
+    .wbs_dat_o(fir_dat_o),
     // axi-stream
     .ss_tvalid(ss_tvalid),
     .ss_tdata(ss_tdata),
@@ -325,7 +306,6 @@ bram16 data_RAM(
 
 
 // uart
-assign decoded_uart = (wbs_adr_i[31:20] == 12'h300) ? 1'b1 : 1'b0;
 uart uart (
 `ifdef USE_POWER_PINS
 	.vccd1(vccd1),	// User area 1 1.8V power
