@@ -100,7 +100,7 @@ end
 */
 assign wbs_enable = wbs_cyc_i & wbs_stb_i;
 assign wbs_ack_o = wbs_enable;
-assign wbs_dat_o = {16'b0,10'b0,state,2'b00,(_state==IDLE?1'b1:1'b0),1'b0};
+assign wbs_dat_o = {data_length,10'b0,state,2'b00,(_state==IDLE?1'b1:1'b0),1'b0};
 always @( *) begin
     _data_length = data_length;
     if(state==IDLE)begin
