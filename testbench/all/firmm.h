@@ -1,6 +1,25 @@
 #ifndef _FIRMM_H
 #define _FIRMM_H
 
+#define reg_fir_start (*(volatile uint32_t*)0x380002ac)
+
+int taps[11] __attribute__ ( ( section ( ".FIR_TAP" ) ) ) = {0,-10,-9,23,56,63,56,23,-9,-10,0};
+
+int fir_inputsignal[64] __attribute__ ( ( section ( ".FIR_X" ) ) ) = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63};
+
+int A[16] __attribute__ ( ( section ( ".MATRIX_A" ) ) ) = {0, 1, 2, 3,
+			0, 1, 2, 3,
+			0, 1, 2, 3,
+			0, 1, 2, 3,
+	};
+
+int B[16] __attribute__ ( ( section ( ".MATRIX_B" ) ) )  = {1, 2, 3, 4,
+		5, 6, 7, 8,
+		9, 10, 11, 12,
+		13, 14, 15, 16,
+	};
+
+/* deprecated
 #define reg_user_tap0  (*(volatile uint32_t*)0x38000100)
 #define reg_user_tap1  (*(volatile uint32_t*)0x38000104)
 #define reg_user_tap2  (*(volatile uint32_t*)0x38000108)
@@ -108,5 +127,5 @@
 #define reg_user_B13 (*(volatile uint32_t*)0x380002a0)
 #define reg_user_B14 (*(volatile uint32_t*)0x380002a4)
 #define reg_user_B15 (*(volatile uint32_t*)0x380002a8)
-#define reg_fir_start (*(volatile uint32_t*)0x380002ac)
+*/
 #endif

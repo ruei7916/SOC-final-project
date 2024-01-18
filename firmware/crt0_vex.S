@@ -71,6 +71,19 @@ sram_loop:
   j sram_loop
 sram_done:    
 
+input_data_init:
+  la a0, _finput_data
+  la a1, _einput_data
+  la a2, _einput_data_rom
+input_data_loop:
+  beq a0,a1,input_data_done
+  lw a3,0(a2)
+  sw a3,0(a0)
+  add a0,a0,4
+  add a2,a2,4
+  j input_data_loop
+input_data_done:   
+
 data_init:
   la a0, _fdata
   la a1, _edata

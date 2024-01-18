@@ -15,6 +15,7 @@ MEMORY {
 	flash : ORIGIN = 0x10000000, LENGTH = 0x01000000
 	mprj : ORIGIN = 0x30000000, LENGTH = 0x00100000
 	mprjram : ORIGIN = 0x38000000, LENGTH = 0x00000100
+	input_data : ORIGIN = 0x38000100, LENGTH = 0x00000200
 	mprjram_bank2 : ORIGIN = 0x38000300, LENGTH = 0x00000600
 	hk : ORIGIN = 0x26000000, LENGTH = 0x00100000
 	csr : ORIGIN = 0xf0000000, LENGTH = 0x00010000
@@ -78,6 +79,15 @@ SECTIONS
 		_fsram = .;
 		*libgcc.a:*(.text .text.*)
 	} > mprjram AT > flash
+
+	.input_data :
+	{
+		_finput_data = .;
+		*(.FIR_TAP)
+		*(.FIR_X)
+		*(.MATRIX_A)
+		*(.MATRIX_B)
+	} > input_data AT > flash
 }
 
 PROVIDE(_fstack = ORIGIN(dff2) + LENGTH(dff2));
@@ -87,3 +97,6 @@ PROVIDE(_edata_rom = LOADADDR(.data) + SIZEOF(.data));
 
 PROVIDE(_esram = ORIGIN(mprjram) + SIZEOF(.mprjram));
 PROVIDE(_esram_rom = LOADADDR(.mprjram));
+
+PROVIDE(_einput_data = ORIGIN(input_data) + SIZEOF(.input_data));
+PROVIDE(_einput_data_rom = LOADADDR(.input_data));
