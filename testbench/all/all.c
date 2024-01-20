@@ -122,27 +122,6 @@ void main()
 	/* Apply configuration */
 	reg_mprj_xfer = 1;
 	while (reg_mprj_xfer == 1);
-<<<<<<< HEAD
-	// start
-	asm ("nop;"
-		"nop;"
-		"nop;"
-	);
-	reg_mprj_datal = 0xAB500000;
-	reg_fir_start = 1;
-	// Flag start of the test 
-	int *tmp = qsort();
-	reg_mprj_datal = *tmp << 16;
-	reg_mprj_datal = *(tmp+1) << 16;
-	reg_mprj_datal = *(tmp+2) << 16;
-	reg_mprj_datal = *(tmp+3) << 16;
-	reg_mprj_datal = *(tmp+4) << 16;
-	reg_mprj_datal = *(tmp+5) << 16;
-	reg_mprj_datal = *(tmp+6) << 16;
-	reg_mprj_datal = *(tmp+7) << 16;
-	reg_mprj_datal = *(tmp+8) << 16;
-	reg_mprj_datal = *(tmp+9) << 16;
-=======
 
 	// Flag start of the test 
 	reg_mprj_datal = 0xAB500000;
@@ -159,6 +138,5 @@ void main()
 	reg_mprj_datal = Q[7] << 16;
 	reg_mprj_datal = Q[8] << 16;
 	reg_mprj_datal = Q[9] << 16;
->>>>>>> 0c3d45d0f02d4144b80500b6bf78d34e0abf1162
 	reg_mprj_datal = 0xAB610000;
 }
