@@ -1,5 +1,11 @@
 #include "qsort.h"
+<<<<<<< HEAD
 int __attribute__ ( ( section ( ".mprjram" ) ) ) partition(int low,int hi){
+=======
+#define reg_fir_start (*(volatile unsigned int*)0x380002ac)
+
+int __attribute__ ( ( section ( ".mprjram.3" ) ) ) partition(int low,int hi){
+>>>>>>> 0c3d45d0f02d4144b80500b6bf78d34e0abf1162
 	int pivot = Q[hi];
 	int i = low-1,j;
 	int temp;
@@ -19,7 +25,7 @@ int __attribute__ ( ( section ( ".mprjram" ) ) ) partition(int low,int hi){
 	return i+1;
 }
 
-void __attribute__ ( ( section ( ".mprjram" ) ) ) sort(int low, int hi){
+void __attribute__ ( ( section ( ".mprjram.2" ) ) ) sort(int low, int hi){
 	if(low < hi){
 		int p = partition(low, hi);
 		sort(low,p-1);
@@ -27,7 +33,9 @@ void __attribute__ ( ( section ( ".mprjram" ) ) ) sort(int low, int hi){
 	}
 }
 
-int* __attribute__ ( ( section ( ".mprjram" ) ) ) qsort(){
+void __attribute__ ( ( section ( ".mprjram.1" ) ) ) start_workload(){
+	// start DMA and fir_mm
+	reg_fir_start = 1;
 	sort(0,size-1);
-	return Q;
+	//return Q;
 }

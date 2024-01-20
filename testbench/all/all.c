@@ -31,7 +31,9 @@ extern void uart_write_string();
 extern void uart_reset_write_fifo();
 extern int uart_isr();
 extern int uart_read();
-extern int* qsort();
+//extern int* qsort();
+extern void start_workload();
+extern int Q[];
 // --------------------------------------------------------
 
 /*
@@ -120,6 +122,7 @@ void main()
 	/* Apply configuration */
 	reg_mprj_xfer = 1;
 	while (reg_mprj_xfer == 1);
+<<<<<<< HEAD
 	// start
 	asm ("nop;"
 		"nop;"
@@ -139,5 +142,23 @@ void main()
 	reg_mprj_datal = *(tmp+7) << 16;
 	reg_mprj_datal = *(tmp+8) << 16;
 	reg_mprj_datal = *(tmp+9) << 16;
+=======
+
+	// Flag start of the test 
+	reg_mprj_datal = 0xAB500000;
+
+	//int *tmp = qsort();
+	start_workload();
+	reg_mprj_datal = Q[0] << 16;
+	reg_mprj_datal = Q[1] << 16;
+	reg_mprj_datal = Q[2] << 16;
+	reg_mprj_datal = Q[3] << 16;
+	reg_mprj_datal = Q[4] << 16;
+	reg_mprj_datal = Q[5] << 16;
+	reg_mprj_datal = Q[6] << 16;
+	reg_mprj_datal = Q[7] << 16;
+	reg_mprj_datal = Q[8] << 16;
+	reg_mprj_datal = Q[9] << 16;
+>>>>>>> 0c3d45d0f02d4144b80500b6bf78d34e0abf1162
 	reg_mprj_datal = 0xAB610000;
 }

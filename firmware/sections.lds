@@ -77,6 +77,9 @@ SECTIONS
 	{
 		. = ALIGN(8);
 		_fsram = .;
+		*(.mprjram.1)
+		*(.mprjram.2)
+		*(.mprjram.3)
 		*libgcc.a:*(.text .text.*)
 	} > mprjram AT > flash
 
