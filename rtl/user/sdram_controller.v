@@ -519,14 +519,18 @@ module sdram_controller (
                     end
                     else begin
                         // no rows open
-                        if(prefetch_bank == 2'b00)
-                             bank0_fetch_d3 = dqi_q;
-                        else if(prefetch_bank == 2'b01)
-                             bank1_fetch_d3 = dqi_q;
-                        else if(prefetch_bank == 2'b10)
-                             bank2_fetch_d3 = dqi_q;
-                        else 
-                             bank3_fetch_d3 = dqi_q;
+                        bank0_fetch_a1 = {addr_q[22:8],8'hff};
+                        bank0_fetch_a2 = {addr_q[22:8],8'hff};
+                        bank0_fetch_a3 = {addr_q[22:8],8'hff};
+                        bank1_fetch_a1 = {addr_q[22:8],8'hff};
+                        bank1_fetch_a2 = {addr_q[22:8],8'hff};
+                        bank1_fetch_a3 = {addr_q[22:8],8'hff};
+                        bank2_fetch_a1 = {addr_q[22:8],8'hff};
+                        bank2_fetch_a2 = {addr_q[22:8],8'hff};
+                        bank2_fetch_a3 = {addr_q[22:8],8'hff};
+                        bank3_fetch_a1 = {addr_q[22:8],8'hff};
+                        bank3_fetch_a2 = {addr_q[22:8],8'hff};
+                        bank3_fetch_a3 = {addr_q[22:8],8'hff};
                         state_d = ACTIVATE; // open the row
                     end
                 end
