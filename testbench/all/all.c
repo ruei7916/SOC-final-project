@@ -125,9 +125,9 @@ void main()
 		"nop;"
 		"nop;"
 	);
+	reg_mprj_datal = 0xAB500000;
 	reg_fir_start = 1;
 	// Flag start of the test 
-	reg_mprj_datal = 0xAB500000;
 	int *tmp = qsort();
 	reg_mprj_datal = *tmp << 16;
 	reg_mprj_datal = *(tmp+1) << 16;

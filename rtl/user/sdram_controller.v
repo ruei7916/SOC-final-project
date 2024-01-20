@@ -109,8 +109,8 @@ module sdram_controller (
     reg [STATE_SIZE-1:0] state_d, state_q;
     reg [STATE_SIZE-1:0] next_state_d, next_state_q;
 
-    reg [22:0] addr_d, addr_q, fetch_a1, fetch_a2, fetch_a3;
-    reg [31:0] data_d, data_q, fetch_d1, fetch_d2, fetch_d3, prefetch_data;
+    reg [22:0] addr_d, addr_q, bank0_fetch_a1, bank0_fetch_a2, bank0_fetch_a3, bank1_fetch_a1, bank1_fetch_a2, bank1_fetch_a3, bank2_fetch_a1, bank2_fetch_a2, bank2_fetch_a3, bank3_fetch_a1, bank3_fetch_a2, bank3_fetch_a3;
+    reg [31:0] data_d, data_q, bank0_fetch_d1, bank0_fetch_d2, bank0_fetch_d3, bank1_fetch_d1, bank1_fetch_d2, bank1_fetch_d3, bank2_fetch_d1, bank2_fetch_d2, bank2_fetch_d3, bank3_fetch_d1, bank3_fetch_d2, bank3_fetch_d3, prefetch_data;
     reg out_valid_d, out_valid_q, prefetch_check;
 
     reg [15:0] delay_ctr_d, delay_ctr_q;
@@ -131,6 +131,7 @@ module sdram_controller (
     reg [2:0] precharge_bank_d, precharge_bank_q;
     integer i;
     reg [1:0] fetch_count_d, fetch_count_q;
+    reg [1:0]prefetch_bank;
     assign data_out = prefetch_check ? prefetch_data : data_q;
     assign busy = !ready_q;
     assign out_valid = out_valid_q | prefetch_check;
@@ -234,18 +235,60 @@ module sdram_controller (
                 case (delay_ctr_q[1:0])
                     2'd2: begin
                         cmd_d = CMD_READ;
-                        a_d = {2'b0, 1'b0, fetch_a1[7:0], 2'b00};
-                        ba_d = fetch_a1[9:8];
+                        if(prefetch_bank == 2'b00)begin
+                            a_d = {2'b0, 1'b0, bank0_fetch_a1[7:0], 2'b00};
+                            ba_d = bank0_fetch_a1[9:8];
+                        end
+                        else if(prefetch_bank == 2'b01)begin
+                            a_d = {2'b0, 1'b0, bank1_fetch_a1[7:0], 2'b00};
+                            ba_d = bank1_fetch_a1[9:8];
+                        end
+                        else if(prefetch_bank == 2'b10)begin
+                            a_d = {2'b0, 1'b0, bank2_fetch_a1[7:0], 2'b00};
+                            ba_d = bank2_fetch_a1[9:8];
+                        end
+                        else begin
+                            a_d = {2'b0, 1'b0, bank3_fetch_a1[7:0], 2'b00};
+                            ba_d = bank3_fetch_a1[9:8];
+                        end
                     end
                     2'd1: begin
                         cmd_d = CMD_READ;
-                        a_d = {2'b0, 1'b0, fetch_a2[7:0], 2'b00};
-                        ba_d = fetch_a2[9:8];
+                        if(prefetch_bank == 2'b00)begin
+                            a_d = {2'b0, 1'b0, bank0_fetch_a2[7:0], 2'b00};
+                            ba_d = bank0_fetch_a2[9:8];
+                        end
+                        else if(prefetch_bank == 2'b01)begin
+                            a_d = {2'b0, 1'b0, bank1_fetch_a2[7:0], 2'b00};
+                            ba_d = bank1_fetch_a2[9:8];
+                        end
+                        else if(prefetch_bank == 2'b10)begin
+                            a_d = {2'b0, 1'b0, bank2_fetch_a2[7:0], 2'b00};
+                            ba_d = bank2_fetch_a2[9:8];
+                        end
+                        else begin
+                            a_d = {2'b0, 1'b0, bank3_fetch_a2[7:0], 2'b00};
+                            ba_d = bank3_fetch_a2[9:8];
+                        end
                     end
                     2'd0: begin
                         cmd_d = CMD_READ;
-                        a_d = {2'b0, 1'b0, fetch_a3[7:0], 2'b00};
-                        ba_d = fetch_a3[9:8];                    
+                        if(prefetch_bank == 2'b00)begin
+                            a_d = {2'b0, 1'b0, bank0_fetch_a3[7:0], 2'b00};
+                            ba_d = bank0_fetch_a3[9:8];
+                        end
+                        else if(prefetch_bank == 2'b01)begin
+                            a_d = {2'b0, 1'b0, bank1_fetch_a3[7:0], 2'b00};
+                            ba_d = bank1_fetch_a3[9:8];
+                        end
+                        else if(prefetch_bank == 2'b10)begin
+                            a_d = {2'b0, 1'b0, bank2_fetch_a3[7:0], 2'b00};
+                            ba_d = bank2_fetch_a3[9:8];
+                        end
+                        else begin
+                            a_d = {2'b0, 1'b0, bank3_fetch_a3[7:0], 2'b00};
+                            ba_d = bank3_fetch_a3[9:8];
+                        end                    
                         state_d = next_state_q;
                     end
                     default: begin
@@ -265,15 +308,36 @@ module sdram_controller (
                     refresh_flag_d = 1'b0; // clear the refresh flag
                 end   
                 else if (ready_q && fetch_count_q == 2'd3) begin
-                    fetch_d1 = dqi_q;
+                    if(prefetch_bank == 2'b00)
+                        bank0_fetch_d1 = dqi_q;
+                    else if(prefetch_bank == 2'b01)
+                        bank1_fetch_d1 = dqi_q;
+                    else if(prefetch_bank == 2'b10)
+                        bank2_fetch_d1 = dqi_q;
+                    else 
+                        bank3_fetch_d1 = dqi_q;
                     fetch_count_d = 2'd2;
                 end
                 else if (ready_q && fetch_count_q == 2'd2) begin
-                    fetch_d2 = dqi_q;
+                    if(prefetch_bank == 2'b00)
+                        bank0_fetch_d2 = dqi_q;
+                    else if(prefetch_bank == 2'b01)
+                        bank1_fetch_d2 = dqi_q;
+                    else if(prefetch_bank == 2'b10)
+                        bank2_fetch_d2 = dqi_q;
+                    else 
+                        bank3_fetch_d2 = dqi_q;
                     fetch_count_d = 2'd1;
                 end  
                 else if (ready_q && fetch_count_q == 2'd1) begin
-                    fetch_d3 = dqi_q;
+                    if(prefetch_bank == 2'b00)
+                        bank0_fetch_d3 = dqi_q;
+                    else if(prefetch_bank == 2'b01)
+                        bank1_fetch_d3 = dqi_q;
+                    else if(prefetch_bank == 2'b10)
+                        bank2_fetch_d3 = dqi_q;
+                    else 
+                        bank3_fetch_d3 = dqi_q;
                     fetch_count_d = 2'd0;
                 end               
                 else if (!ready_q) begin // operation waiting
@@ -291,49 +355,153 @@ module sdram_controller (
                             if (saved_rw_q)begin
                                 state_d = WRITE;
                                 if (fetch_count_q == 2'd1) begin
-                                    fetch_d3 = dqi_q;
+                                    if(prefetch_bank == 2'b00)
+                                         bank0_fetch_d3 = dqi_q;
+                                    else if(prefetch_bank == 2'b01)
+                                         bank1_fetch_d3 = dqi_q;
+                                    else if(prefetch_bank == 2'b10)
+                                         bank2_fetch_d3 = dqi_q;
+                                    else 
+                                         bank3_fetch_d3 = dqi_q;
                                     fetch_count_d = 2'd0;
                                 end    
                             end
                             else if(fetch_count_q == 2'd1)begin
-                                fetch_d3 = dqi_q;
-                                fetch_count_d = 2'd0;
-                                if(saved_addr_q == fetch_a1)begin
-                                    prefetch_data = fetch_d1;
+                                if(prefetch_bank == 2'b00)
+                                     bank0_fetch_d3 = dqi_q;
+                                else if(prefetch_bank == 2'b01)
+                                     bank1_fetch_d3 = dqi_q;
+                                else if(prefetch_bank == 2'b10)
+                                     bank2_fetch_d3 = dqi_q;
+                                else 
+                                     bank3_fetch_d3 = dqi_q;
+                                if(saved_addr_q == bank0_fetch_a1)begin
+                                    prefetch_data = bank0_fetch_d1;
                                     prefetch_check = 1;
                                     state_d = IDLE;
                                 end
-                                else if(saved_addr_q == fetch_a2)begin
-                                    prefetch_data = fetch_d2;
+                                else if(saved_addr_q == bank1_fetch_a1)begin
+                                    prefetch_data = bank1_fetch_d1;
                                     prefetch_check = 1;
                                     state_d = IDLE;
                                 end
-                                else if(saved_addr_q == fetch_a3)begin
-                                    prefetch_data = fetch_d3;
+                                else if(saved_addr_q == bank2_fetch_a1)begin
+                                    prefetch_data = bank2_fetch_d1;
                                     prefetch_check = 1;
                                     state_d = IDLE;
-                                end         
+                                end
+                                else if(saved_addr_q == bank3_fetch_a1)begin
+                                    prefetch_data = bank3_fetch_d1;
+                                    prefetch_check = 1;
+                                    state_d = IDLE;
+                                end
+                                else if(saved_addr_q == bank0_fetch_a2)begin
+                                    prefetch_data = bank0_fetch_d2;
+                                    prefetch_check = 1;
+                                    state_d = IDLE;
+                                end
+                                else if(saved_addr_q == bank1_fetch_a2)begin
+                                    prefetch_data = bank1_fetch_d2;
+                                    prefetch_check = 1;
+                                    state_d = IDLE;
+                                end
+                                else if(saved_addr_q == bank2_fetch_a2)begin
+                                    prefetch_data = bank2_fetch_d2;
+                                    prefetch_check = 1;
+                                    state_d = IDLE;
+                                end
+                                else if(saved_addr_q == bank3_fetch_a2)begin
+                                    prefetch_data = bank3_fetch_d2;
+                                    prefetch_check = 1;
+                                    state_d = IDLE;
+                                end
+                                else if(saved_addr_q == bank0_fetch_a3)begin
+                                    prefetch_data = bank0_fetch_d3;
+                                    prefetch_check = 1;
+                                    state_d = IDLE;
+                                end
+                                else if(saved_addr_q == bank1_fetch_a3)begin
+                                    prefetch_data = bank1_fetch_d3;
+                                    prefetch_check = 1;
+                                    state_d = IDLE;
+                                end        
+                                else if(saved_addr_q == bank2_fetch_a3)begin
+                                    prefetch_data = bank2_fetch_d3;
+                                    prefetch_check = 1;
+                                    state_d = IDLE;
+                                end 
+                                else if(saved_addr_q == bank3_fetch_a3)begin
+                                    prefetch_data = bank3_fetch_d3;
+                                    prefetch_check = 1;
+                                    state_d = IDLE;
+                                end
                                 else begin
                                     prefetch_check = 0;
                                     state_d = READ;
-                                end                                                      
+                                end 
+                                fetch_count_d = 2'd0;                                                     
                             end
                             else if(fetch_count_q == 2'd0)begin
-                                if(saved_addr_q == fetch_a1)begin
-                                    prefetch_data = fetch_d1;
+                                if(saved_addr_q == bank0_fetch_a1)begin
+                                    prefetch_data = bank0_fetch_d1;
                                     prefetch_check = 1;
                                     state_d = IDLE;
                                 end
-                                else if(saved_addr_q == fetch_a2)begin
-                                    prefetch_data = fetch_d2;
+                                else if(saved_addr_q == bank1_fetch_a1)begin
+                                    prefetch_data = bank1_fetch_d1;
                                     prefetch_check = 1;
                                     state_d = IDLE;
                                 end
-                                else if(saved_addr_q == fetch_a3)begin
-                                    prefetch_data = fetch_d3;
+                                else if(saved_addr_q == bank2_fetch_a1)begin
+                                    prefetch_data = bank2_fetch_d1;
                                     prefetch_check = 1;
                                     state_d = IDLE;
-                                end         
+                                end
+                                else if(saved_addr_q == bank3_fetch_a1)begin
+                                    prefetch_data = bank3_fetch_d1;
+                                    prefetch_check = 1;
+                                    state_d = IDLE;
+                                end
+                                else if(saved_addr_q == bank0_fetch_a2)begin
+                                    prefetch_data = bank0_fetch_d2;
+                                    prefetch_check = 1;
+                                    state_d = IDLE;
+                                end
+                                else if(saved_addr_q == bank1_fetch_a2)begin
+                                    prefetch_data = bank1_fetch_d2;
+                                    prefetch_check = 1;
+                                    state_d = IDLE;
+                                end
+                                else if(saved_addr_q == bank2_fetch_a2)begin
+                                    prefetch_data = bank2_fetch_d2;
+                                    prefetch_check = 1;
+                                    state_d = IDLE;
+                                end
+                                else if(saved_addr_q == bank3_fetch_a2)begin
+                                    prefetch_data = bank3_fetch_d2;
+                                    prefetch_check = 1;
+                                    state_d = IDLE;
+                                end
+                                else if(saved_addr_q == bank0_fetch_a3)begin
+                                    prefetch_data = bank0_fetch_d3;
+                                    prefetch_check = 1;
+                                    state_d = IDLE;
+                                end
+                                else if(saved_addr_q == bank1_fetch_a3)begin
+                                    prefetch_data = bank1_fetch_d3;
+                                    prefetch_check = 1;
+                                    state_d = IDLE;
+                                end        
+                                else if(saved_addr_q == bank2_fetch_a3)begin
+                                    prefetch_data = bank2_fetch_d3;
+                                    prefetch_check = 1;
+                                    state_d = IDLE;
+                                end 
+                                else if(saved_addr_q == bank3_fetch_a3)begin
+                                    prefetch_data = bank3_fetch_d3;
+                                    prefetch_check = 1;
+                                    state_d = IDLE;
+                                end    
                                 else begin
                                     prefetch_check = 0;
                                     state_d = READ;
@@ -351,6 +519,14 @@ module sdram_controller (
                     end
                     else begin
                         // no rows open
+                        if(prefetch_bank == 2'b00)
+                             bank0_fetch_d3 = dqi_q;
+                        else if(prefetch_bank == 2'b01)
+                             bank1_fetch_d3 = dqi_q;
+                        else if(prefetch_bank == 2'b10)
+                             bank2_fetch_d3 = dqi_q;
+                        else 
+                             bank3_fetch_d3 = dqi_q;
                         state_d = ACTIVATE; // open the row
                     end
                 end
@@ -373,7 +549,6 @@ module sdram_controller (
                 cmd_d = CMD_ACTIVE;
                 a_d = addr_q[22:10];
                 ba_d = addr_q[9:8];
-
                 // Jiin:
                 //      delay_ctr_d = 13'd0;
                 delay_ctr_d = tACT;
@@ -394,9 +569,27 @@ module sdram_controller (
                 cmd_d = CMD_READ;
                 a_d = {2'b0, 1'b0, addr_q[7:0], 2'b00};
                 ba_d = addr_q[9:8];
-                fetch_a1 = {addr_q[22:8],addr_q[7:0]+8'd4};
-                fetch_a2 = {addr_q[22:8],addr_q[7:0]+8'd8};
-                fetch_a3 = {addr_q[22:8],addr_q[7:0]+8'd12};
+                prefetch_bank = addr_q[9:8];
+                if(addr_q[9:8] == 2'b00)begin
+                    bank0_fetch_a1 = {addr_q[22:8],addr_q[7:0]+8'd4};
+                    bank0_fetch_a2 = {addr_q[22:8],addr_q[7:0]+8'd8};
+                    bank0_fetch_a3 = {addr_q[22:8],addr_q[7:0]+8'd12};
+                end
+                else if(addr_q[9:8] == 2'b01)begin
+                    bank1_fetch_a1 = {addr_q[22:8],addr_q[7:0]+8'd4};
+                    bank1_fetch_a2 = {addr_q[22:8],addr_q[7:0]+8'd8};
+                    bank1_fetch_a3 = {addr_q[22:8],addr_q[7:0]+8'd12};
+                end
+                else if(addr_q[9:8] == 2'b10)begin
+                    bank2_fetch_a1 = {addr_q[22:8],addr_q[7:0]+8'd4};
+                    bank2_fetch_a2 = {addr_q[22:8],addr_q[7:0]+8'd8};
+                    bank2_fetch_a3 = {addr_q[22:8],addr_q[7:0]+8'd12};
+                end
+                else if(addr_q[9:8] == 2'b11)begin
+                    bank3_fetch_a1 = {addr_q[22:8],addr_q[7:0]+8'd4};
+                    bank3_fetch_a2 = {addr_q[22:8],addr_q[7:0]+8'd8};
+                    bank3_fetch_a3 = {addr_q[22:8],addr_q[7:0]+8'd12};
+                end
                 state_d = PREFETCH;
 
                 // Jiin
@@ -422,6 +615,30 @@ module sdram_controller (
                 dq_en_d = 1'b1; // enable out bus
                 a_d = {2'b0, 1'b0, addr_q[7:0], 2'b00};
                 ba_d = addr_q[9:8];
+                if(addr_q == bank0_fetch_a1)
+                    bank0_fetch_d1 = data_q;
+                else if(addr_q == bank0_fetch_a2)
+                    bank0_fetch_d2 = data_q;
+                else if(addr_q == bank0_fetch_a3)
+                    bank0_fetch_d3 = data_q;
+                else if(addr_q == bank1_fetch_a1)
+                    bank1_fetch_d1 = data_q;
+                else if(addr_q == bank1_fetch_a2)
+                    bank1_fetch_d2 = data_q;
+                else if(addr_q == bank1_fetch_a3)
+                    bank1_fetch_d3 = data_q;
+                else if(addr_q == bank2_fetch_a1)
+                    bank2_fetch_d1 = data_q;
+                else if(addr_q == bank2_fetch_a2)
+                    bank2_fetch_d2 = data_q;
+                else if(addr_q == bank2_fetch_a3)
+                    bank2_fetch_d3 = data_q;
+                else if(addr_q == bank3_fetch_a1)
+                    bank3_fetch_d1 = data_q;
+                else if(addr_q == bank3_fetch_a2)
+                    bank3_fetch_d2 = data_q;
+                else if(addr_q == bank3_fetch_a3)
+                    bank3_fetch_d3 = data_q;
                 delay_ctr_d = tCASL;
                 state_d = WAIT;
                 next_state_d = IDLE;
