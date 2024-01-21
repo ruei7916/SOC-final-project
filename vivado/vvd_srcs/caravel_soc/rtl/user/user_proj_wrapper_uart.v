@@ -30,8 +30,7 @@
  */
 
 module user_project_wrapper #(
-    //parameter BITS = 32,
-    parameter DELAYS=1
+    parameter BITS = 32
 ) (
 `ifdef USE_POWER_PINS
     inout vdda1,	// User area 1 3.3V supply
@@ -79,71 +78,9 @@ module user_project_wrapper #(
     output [2:0] user_irq
 );
 
-wire clk;
-wire rst;
-
-// bram signals
-wire decoded_bram;
-wire valid_bram;
-wire [3:0] wstrb_bram;
-reg bram_ready;
-wire [31:0] bram_rdata;
-wire [31:0] bram_wdata;
-reg delayed_count;
-reg _delay_count;
-// uart signals
-wire decoded_uart;
-wire uart_ack_o;
-wire [31:0] uart_dat_o;
-
-// 
-assign clk = wb_clk_i;
-assign rst = wb_rst_i;
-
-// bram
-assign decoded_bram = (wbs_adr_i[31:20] == 12'h380) ? 1'b1 : 1'b0;
-assign valid_bram = wbs_cyc_i && wbs_stb_i && decoded_bram; 
-assign wstrb_bram = wbs_sel_i & {4{wbs_we_i}} & {4{decoded_bram}};
-assign bram_wdata = wbs_dat_i;
-assign wbs_dat_o = decoded_bram ? bram_rdata : uart_dat_o;//
-assign wbs_ack_o = decoded_bram ? bram_ready : uart_ack_o;//
-
-// uart
-assign decoded_uart = (wbs_adr_i[31:20] == 12'h300) ? 1'b1 : 1'b0;
-
-
-always @(posedge clk ) begin
-    if(rst)begin
-        delayed_count <= 0;
-    end
-    else begin
-        delayed_count <= _delay_count;
-    end
-end
-always @(*) begin
-    bram_ready = (delayed_count==DELAYS) ? 1'b1 : 1'b0;
-    if(valid_bram)begin
-        if(delayed_count==DELAYS) _delay_count = 0;
-        else _delay_count = delayed_count + 1;
-    end
-    else begin
-        _delay_count = 0;
-    end
-end
-
-
 /*--------------------------------------*/
 /* User project is instantiated  here   */
 /*--------------------------------------*/
-bram user_bram (
-    .CLK(clk),
-    .WE0(wstrb_bram),
-    .EN0(valid_bram),
-    .Di0(bram_wdata),
-    .Do0(bram_rdata),
-    .A0(wbs_adr_i)
-);
-
 uart uart (
 `ifdef USE_POWER_PINS
 	.vccd1(vccd1),	// User area 1 1.8V power
@@ -154,14 +91,14 @@ uart uart (
 
     // MGMT SoC Wishbone Slave
 
-    .wbs_stb_i(wbs_stb_i&decoded_uart),
-    .wbs_cyc_i(wbs_cyc_i&decoded_uart),
+    .wbs_stb_i(wbs_stb_i),
+    .wbs_cyc_i(wbs_cyc_i),
     .wbs_we_i(wbs_we_i),
     .wbs_sel_i(wbs_sel_i),
     .wbs_dat_i(wbs_dat_i),
     .wbs_adr_i(wbs_adr_i),
-    .wbs_ack_o(uart_ack_o),//
-    .wbs_dat_o(uart_dat_o),//
+    .wbs_ack_o(wbs_ack_o),
+    .wbs_dat_o(wbs_dat_o),
 
     // IO ports
     .io_in  (io_in      ),
