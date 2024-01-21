@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1 (lin64) Build 3526262 Mon Apr 18 15:47:01 MDT 2022
-| Date         : Thu Dec 14 03:35:37 2023
-| Host         : ubuntu2004 running 64-bit Ubuntu 20.04.4 LTS
+| Date         : Mon Jan 22 05:46:08 2024
+| Host         : ubuntu2004 running 64-bit Ubuntu 20.04.6 LTS
 | Command      : report_clock_utilization -file design_1_wrapper_clock_utilization_routed.rpt
 | Design       : design_1_wrapper
 | Device       : 7z020-clg400
@@ -17,18 +17,27 @@ Table of Contents
 1. Clock Primitive Utilization
 2. Global Clock Resources
 3. Global Clock Source Details
-4. Clock Regions: Key Resource Utilization
-5. Clock Regions : Global Clock Summary
-6. Device Cell Placement Summary for Global Clock g0
-7. Device Cell Placement Summary for Global Clock g1
-8. Device Cell Placement Summary for Global Clock g2
-9. Device Cell Placement Summary for Global Clock g3
-10. Device Cell Placement Summary for Global Clock g4
-11. Clock Region Cell Placement per Global Clock: Region X0Y0
-12. Clock Region Cell Placement per Global Clock: Region X0Y1
-13. Clock Region Cell Placement per Global Clock: Region X1Y1
-14. Clock Region Cell Placement per Global Clock: Region X0Y2
-15. Clock Region Cell Placement per Global Clock: Region X1Y2
+4. Local Clock Details
+5. Clock Regions: Key Resource Utilization
+6. Clock Regions : Global Clock Summary
+7. Device Cell Placement Summary for Global Clock g0
+8. Device Cell Placement Summary for Global Clock g1
+9. Device Cell Placement Summary for Global Clock g2
+10. Device Cell Placement Summary for Global Clock g3
+11. Device Cell Placement Summary for Global Clock g4
+12. Device Cell Placement Summary for Global Clock g5
+13. Device Cell Placement Summary for Global Clock g6
+14. Device Cell Placement Summary for Global Clock g7
+15. Device Cell Placement Summary for Global Clock g8
+16. Device Cell Placement Summary for Global Clock g9
+17. Device Cell Placement Summary for Global Clock g10
+18. Device Cell Placement Summary for Global Clock g11
+19. Device Cell Placement Summary for Global Clock g12
+20. Clock Region Cell Placement per Global Clock: Region X0Y0
+21. Clock Region Cell Placement per Global Clock: Region X0Y1
+22. Clock Region Cell Placement per Global Clock: Region X1Y1
+23. Clock Region Cell Placement per Global Clock: Region X0Y2
+24. Clock Region Cell Placement per Global Clock: Region X1Y2
 
 1. Clock Primitive Utilization
 ------------------------------
@@ -36,7 +45,7 @@ Table of Contents
 +----------+------+-----------+-----+--------------+--------+
 | Type     | Used | Available | LOC | Clock Region | Pblock |
 +----------+------+-----------+-----+--------------+--------+
-| BUFGCTRL |    5 |        32 |   0 |            0 |      0 |
+| BUFGCTRL |   13 |        32 |   0 |            0 |      0 |
 | BUFH     |    0 |        72 |   0 |            0 |      0 |
 | BUFIO    |    0 |        16 |   0 |            0 |      0 |
 | BUFMR    |    0 |         8 |   0 |            0 |      0 |
@@ -49,15 +58,23 @@ Table of Contents
 2. Global Clock Resources
 -------------------------
 
-+-----------+-----------+-----------------+------------+----------------+--------------+-------------------+-------------+-----------------+--------------+------------+--------------------------------------------------------------------------+-------------------------------------------------------------------+
-| Global Id | Source Id | Driver Type/Pin | Constraint | Site           | Clock Region | Load Clock Region | Clock Loads | Non-Clock Loads | Clock Period | Clock      | Driver Pin                                                               | Net                                                               |
-+-----------+-----------+-----------------+------------+----------------+--------------+-------------------+-------------+-----------------+--------------+------------+--------------------------------------------------------------------------+-------------------------------------------------------------------+
-| g0        | src0      | BUFG/O          | None       | BUFGCTRL_X0Y20 | n/a          |                 5 |        5235 |               2 |       25.000 | clk_fpga_0 | design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O | design_1_i/processing_system7_0/inst/FCLK_CLK0                    |
-| g1        | src1      | BUFG/O          | None       | BUFGCTRL_X0Y16 | n/a          |                 4 |         615 |               0 |              |            | design_1_i/caravel_0/inst/housekeeping/csclk_BUFG_inst/O                 | design_1_i/caravel_0/inst/housekeeping/csclk_BUFG                 |
-| g2        | src2      | BUFG/O          | None       | BUFGCTRL_X0Y17 | n/a          |                 4 |         310 |               4 |              |            | design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_clock_BUFG_inst/O  | design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_clock_BUFG  |
-| g3        | src3      | BUFG/O          | None       | BUFGCTRL_X0Y18 | n/a          |                 4 |         190 |               0 |              |            | design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_strobe_BUFG_inst/O | design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_strobe_BUFG |
-| g4        | src4      | BUFG/O          | None       | BUFGCTRL_X0Y19 | n/a          |                 1 |          52 |               0 |              |            | design_1_i/caravel_0/inst/soc/core/flash_clk_BUFG_inst/O                 | design_1_i/caravel_0/inst/soc/core/flash_clk_BUFG                 |
-+-----------+-----------+-----------------+------------+----------------+--------------+-------------------+-------------+-----------------+--------------+------------+--------------------------------------------------------------------------+-------------------------------------------------------------------+
++-----------+-----------+-----------------+------------+----------------+--------------+-------------------+-------------+-----------------+--------------+------------+--------------------------------------------------------------------------+---------------------------------------------------------------------------+
+| Global Id | Source Id | Driver Type/Pin | Constraint | Site           | Clock Region | Load Clock Region | Clock Loads | Non-Clock Loads | Clock Period | Clock      | Driver Pin                                                               | Net                                                                       |
++-----------+-----------+-----------------+------------+----------------+--------------+-------------------+-------------+-----------------+--------------+------------+--------------------------------------------------------------------------+---------------------------------------------------------------------------+
+| g0        | src0      | BUFG/O          | None       | BUFGCTRL_X0Y28 | n/a          |                 5 |        5495 |               3 |       25.000 | clk_fpga_0 | design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O | design_1_i/processing_system7_0/inst/FCLK_CLK0                            |
+| g1        | src1      | BUFG/O          | None       | BUFGCTRL_X0Y20 | n/a          |                 2 |         615 |               0 |              |            | design_1_i/caravel_0/hkspi_disable_reg_i_2/O                             | design_1_i/caravel_0/housekeeping/csclk                                   |
+| g2        | src2      | BUFG/O          | None       | BUFGCTRL_X0Y25 | n/a          |                 1 |         310 |               0 |              |            | design_1_i/caravel_0/n_2_4217_BUFG_inst/O                                | design_1_i/caravel_0/n_2_4217_BUFG                                        |
+| g3        | src0      | BUFG/O          | None       | BUFGCTRL_X0Y16 | n/a          |                 2 |         231 |               0 |       25.000 | clk_fpga_0 | design_1_i/caravel_0/RAM_reg_i_1__4/O                                    | design_1_i/caravel_0/mprj/u_sdram/user_bram/Sys_clk                       |
+| g4        | src3      | BUFG/O          | None       | BUFGCTRL_X0Y26 | n/a          |                 1 |         190 |               0 |              |            | design_1_i/caravel_0/n_3_4234_BUFG_inst/O                                | design_1_i/caravel_0/n_3_4234_BUFG                                        |
+| g5        | src4      | BUFG/O          | None       | BUFGCTRL_X0Y17 | n/a          |                 2 |          33 |               0 |              |            | design_1_i/caravel_0/bank0_fetch_a3_reg[7]_i_1/O                         | design_1_i/caravel_0/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3__0 |
+| g6        | src5      | BUFG/O          | None       | BUFGCTRL_X0Y18 | n/a          |                 2 |          33 |               0 |              |            | design_1_i/caravel_0/bank1_fetch_a3_reg[7]_i_1/O                         | design_1_i/caravel_0/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3__0 |
+| g7        | src6      | BUFG/O          | None       | BUFGCTRL_X0Y19 | n/a          |                 2 |          33 |               0 |              |            | design_1_i/caravel_0/bank2_fetch_a3_reg[7]_i_1/O                         | design_1_i/caravel_0/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3__0 |
+| g8        | src7      | BUFG/O          | None       | BUFGCTRL_X0Y27 | n/a          |                 2 |          33 |               0 |              |            | design_1_i/caravel_0/n_4_2520_BUFG_inst/O                                | design_1_i/caravel_0/n_4_2520_BUFG                                        |
+| g9        | src8      | BUFG/O          | None       | BUFGCTRL_X0Y22 | n/a          |                 1 |          32 |               0 |              |            | design_1_i/caravel_0/instn_5_4014_BUFG_inst/O                            | design_1_i/caravel_0/instn_5_4014_BUFG                                    |
+| g10       | src9      | BUFG/O          | None       | BUFGCTRL_X0Y23 | n/a          |                 1 |          32 |               0 |              |            | design_1_i/caravel_0/instn_5_4015_BUFG_inst/O                            | design_1_i/caravel_0/instn_5_4015_BUFG                                    |
+| g11       | src10     | BUFG/O          | None       | BUFGCTRL_X0Y24 | n/a          |                 1 |          32 |               0 |              |            | design_1_i/caravel_0/instn_5_4016_BUFG_inst/O                            | design_1_i/caravel_0/instn_5_4016_BUFG                                    |
+| g12       | src11     | BUFG/O          | None       | BUFGCTRL_X0Y21 | n/a          |                 2 |          32 |               0 |              |            | design_1_i/caravel_0/input_buffer_reg[31]_i_2/O                          | design_1_i/caravel_0/mprj/u_dma/ss_tvalid_d1_out                          |
++-----------+-----------+-----------------+------------+----------------+--------------+-------------------+-------------+-----------------+--------------+------------+--------------------------------------------------------------------------+---------------------------------------------------------------------------+
 * Clock Loads column represents the clock pin loads (pin count). Internal cell leaf pins are not counted
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
 
@@ -65,20 +82,41 @@ Table of Contents
 3. Global Clock Source Details
 ------------------------------
 
-+-----------+-----------+-----------------+------------+---------------+--------------+-------------+-----------------+---------------------+--------------+-----------------------------------------------------------------+--------------------------------------------------------------+
-| Source Id | Global Id | Driver Type/Pin | Constraint | Site          | Clock Region | Clock Loads | Non-Clock Loads | Source Clock Period | Source Clock | Driver Pin                                                      | Net                                                          |
-+-----------+-----------+-----------------+------------+---------------+--------------+-------------+-----------------+---------------------+--------------+-----------------------------------------------------------------+--------------------------------------------------------------+
-| src0      | g0        | PS7/FCLKCLK[0]  | PS7_X0Y0   | PS7_X0Y0      | X0Y2         |           1 |               0 |              25.000 | clk_fpga_0   | design_1_i/processing_system7_0/inst/PS7_i/FCLKCLK[0]           | design_1_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]  |
-| src1      | g1        | LUT2/O          | None       | SLICE_X48Y50  | X0Y1         |           1 |               0 |                     |              | design_1_i/caravel_0/inst/housekeeping/hkspi_disable_i_2/O      | design_1_i/caravel_0/inst/housekeeping/csclk                 |
-| src2      | g2        | LUT3/O          | None       | SLICE_X49Y104 | X0Y2         |           1 |               0 |                     |              | design_1_i/caravel_0/inst/housekeeping/shift_register[12]_i_1/O | design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_clock  |
-| src3      | g3        | LUT3/O          | None       | SLICE_X49Y104 | X0Y2         |           1 |               0 |                     |              | design_1_i/caravel_0/inst/housekeeping/gpio_dm[2]_C_i_1/O       | design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_strobe |
-| src4      | g4        | FDRE/Q          | None       | SLICE_X59Y73  | X1Y1         |           1 |               0 |                     |              | design_1_i/caravel_0/inst/soc/core/flash_clk_reg/Q              | design_1_i/caravel_0/inst/soc/core/flash_clk                 |
-+-----------+-----------+-----------------+------------+---------------+--------------+-------------+-----------------+---------------------+--------------+-----------------------------------------------------------------+--------------------------------------------------------------+
++-----------+-----------+-----------------+------------+---------------+--------------+-------------+-----------------+---------------------+--------------+-------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------+
+| Source Id | Global Id | Driver Type/Pin | Constraint | Site          | Clock Region | Clock Loads | Non-Clock Loads | Source Clock Period | Source Clock | Driver Pin                                                                                | Net                                                                                     |
++-----------+-----------+-----------------+------------+---------------+--------------+-------------+-----------------+---------------------+--------------+-------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------+
+| src0      | g0        | PS7/FCLKCLK[0]  | PS7_X0Y0   | PS7_X0Y0      | X0Y2         |           1 |               0 |              25.000 | clk_fpga_0   | design_1_i/processing_system7_0/inst/PS7_i/FCLKCLK[0]                                     | design_1_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]                             |
+| src0      | g3        | LUT2/O          | None       | SLICE_X50Y50  | X1Y1         |           1 |               0 |              25.000 | clk_fpga_0   | design_1_i/caravel_0/inst/mprj/u_sdram/user_bram/RAM_reg_i_4__0/O                         | design_1_i/caravel_0/inst/mprj/u_sdram/user_bram/buffer_fclk_clk_0.FCLK_CLK_0_BUFG      |
+| src1      | g1        | LUT2/O          | None       | SLICE_X50Y51  | X1Y1         |           1 |               0 |                     |              | design_1_i/caravel_0/inst/housekeeping/hkspi_disable_i_7/O                                | design_1_i/caravel_0/inst/housekeeping/wbbd_busy_reg_0                                  |
+| src2      | g2        | LUT3/O          | None       | SLICE_X43Y115 | X0Y2         |           1 |               4 |                     |              | design_1_i/caravel_0/inst/housekeeping/n_2_4217_BUFG_inst_i_1/O                           | design_1_i/caravel_0/inst/housekeeping/serial_bb_clock_reg_0                            |
+| src3      | g4        | LUT3/O          | None       | SLICE_X50Y52  | X1Y1         |           1 |               0 |                     |              | design_1_i/caravel_0/inst/housekeeping/n_3_4234_BUFG_inst_i_1/O                           | design_1_i/caravel_0/inst/housekeeping/n_3_4234_BUFG_inst_n_4                           |
+| src4      | g5        | LUT6/O          | None       | SLICE_X50Y51  | X1Y1         |           1 |               0 |                     |              | design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3_reg[7]_i_2/O  | design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/state_q_reg[2]_2           |
+| src5      | g6        | LUT6/O          | None       | SLICE_X50Y51  | X1Y1         |           1 |               0 |                     |              | design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3_reg[7]_i_2/O  | design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/state_q_reg[2]_0           |
+| src6      | g7        | LUT6/O          | None       | SLICE_X50Y51  | X1Y1         |           1 |               0 |                     |              | design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3_reg[7]_i_2/O  | design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/state_q_reg[2]_1           |
+| src7      | g8        | LUT6/O          | None       | SLICE_X50Y52  | X1Y1         |           1 |               0 |                     |              | design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/n_4_2520_BUFG_inst_i_1/O     | design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/n_4_2520_BUFG_inst_n_5     |
+| src8      | g9        | LUT6/O          | None       | SLICE_X50Y50  | X1Y1         |           1 |               0 |                     |              | design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/instn_5_4014_BUFG_inst_i_1/O | design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/instn_5_4014_BUFG_inst_n_5 |
+| src9      | g10       | LUT6/O          | None       | SLICE_X50Y50  | X1Y1         |           1 |               0 |                     |              | design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/instn_5_4015_BUFG_inst_i_1/O | design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/instn_5_4015_BUFG_inst_n_5 |
+| src10     | g11       | LUT6/O          | None       | SLICE_X50Y50  | X1Y1         |           1 |               0 |                     |              | design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/instn_5_4016_BUFG_inst_i_1/O | design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/instn_5_4016_BUFG_inst_n_5 |
+| src11     | g12       | LUT6/O          | None       | SLICE_X55Y121 | X1Y2         |           1 |               4 |                     |              | design_1_i/caravel_0/inst/mprj/u_dma/FSM_sequential_r_state_q[1]_i_2/O                    | design_1_i/caravel_0/inst/mprj/u_dma/FSM_sequential_r_state_q_reg[1]_1                  |
++-----------+-----------+-----------------+------------+---------------+--------------+-------------+-----------------+---------------------+--------------+-------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------+
 * Clock Loads column represents the clock pin loads (pin count). Internal cell leaf pins are not counted
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
 
 
-4. Clock Regions: Key Resource Utilization
+4. Local Clock Details
+----------------------
+
++----------+-----------------+------------+-------------------+--------------+-------------+-----------------+--------------+-------+----------------------------------------------------+----------------------------------------------+
+| Local Id | Driver Type/Pin | Constraint | Site/BEL          | Clock Region | Clock Loads | Non-Clock Loads | Clock Period | Clock | Driver Pin                                         | Net                                          |
++----------+-----------------+------------+-------------------+--------------+-------------+-----------------+--------------+-------+----------------------------------------------------+----------------------------------------------||
+| 0        | FDRE/Q          | None       | SLICE_X29Y109/AFF | X0Y2         |          52 |               0 |              |       | design_1_i/caravel_0/inst/soc/core/flash_clk_reg/Q | design_1_i/caravel_0/inst/soc/core/flash_clk - Static -
++----------+-----------------+------------+-------------------+--------------+-------------+-----------------+--------------+-------+----------------------------------------------------+----------------------------------------------||
+* Local Clocks in this context represents only clocks driven by non-global buffers
+** Clock Loads column represents the clock pin loads (pin count). Internal cell leaf pins are not counted
+*** Non-Clock Loads column represents the non-clock pin loads (pin count)
+
+
+5. Clock Regions: Key Resource Utilization
 ------------------------------------------
 
 +-------------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+
@@ -86,36 +124,36 @@ Table of Contents
 +-------------------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+
 | Clock Region Name | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail |
 +-------------------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+
-| X0Y0              |    2 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |  461 |  2500 |  219 |  1000 |    0 |    60 |    3 |    30 |    0 |    60 |
+| X0Y0              |    1 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |  292 |  2500 |   96 |  1000 |    0 |    60 |    3 |    30 |    0 |    60 |
 | X1Y0              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  3200 |    0 |   850 |    0 |    60 |    0 |    30 |    0 |    40 |
-| X0Y1              |    4 |    12 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 | 3002 |  1200 | 1215 |   400 |    1 |    20 |    1 |    10 |    0 |    20 |
-| X1Y1              |    4 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 | 1859 |  2600 |  552 |   850 |    2 |    60 |    0 |    30 |    0 |    40 |
-| X0Y2              |    4 |    12 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |  734 |  1200 |  271 |   400 |    0 |    20 |    0 |    10 |    0 |    20 |
-| X1Y2              |    4 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |  103 |  2600 |   39 |   850 |    0 |    60 |    0 |    30 |    0 |    40 |
+| X0Y1              |    2 |    12 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 | 1866 |  1200 |  783 |   400 |    0 |    20 |    0 |    10 |    0 |    20 |
+| X1Y1              |    6 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |  347 |  2600 |  139 |   850 |    0 |    60 |    3 |    30 |    0 |    40 |
+| X0Y2              |    5 |    12 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 | 2814 |  1200 |  956 |   400 |    1 |    20 |    0 |    10 |    3 |    20 |
+| X1Y2              |   10 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 | 1308 |  2600 |  400 |   850 |    1 |    60 |    1 |    30 |    0 |    40 |
 +-------------------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+
 * Global Clock column represents track count; while other columns represents cell counts
 
 
-5. Clock Regions : Global Clock Summary
+6. Clock Regions : Global Clock Summary
 ---------------------------------------
 
 All Modules
 +----+----+----+
 |    | X0 | X1 |
 +----+----+----+
-| Y2 |  4 |  4 |
-| Y1 |  4 |  4 |
-| Y0 |  2 |  0 |
+| Y2 |  5 | 10 |
+| Y1 |  2 |  6 |
+| Y0 |  1 |  0 |
 +----+----+----+
 
 
-6. Device Cell Placement Summary for Global Clock g0
+7. Device Cell Placement Summary for Global Clock g0
 ----------------------------------------------------
 
 +-----------+-----------------+-------------------+------------+-------------+----------------+-------------+----------+----------------+----------+------------------------------------------------+
 | Global Id | Driver Type/Pin | Driver Region (D) | Clock      | Period (ns) | Waveform (ns)  | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                                            |
 +-----------+-----------------+-------------------+------------+-------------+----------------+-------------+----------+----------------+----------+------------------------------------------------+
-| g0        | BUFG/O          | n/a               | clk_fpga_0 |      25.000 | {0.000 12.500} |        5221 |        0 |              0 |        0 | design_1_i/processing_system7_0/inst/FCLK_CLK0 |
+| g0        | BUFG/O          | n/a               | clk_fpga_0 |      25.000 | {0.000 12.500} |        5469 |        0 |              0 |        0 | design_1_i/processing_system7_0/inst/FCLK_CLK0 |
 +-----------+-----------------+-------------------+------------+-------------+----------------+-------------+----------+----------------+----------+------------------------------------------------+
 * Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
 ** IO Loads column represents load cell count of IO types
@@ -126,66 +164,273 @@ All Modules
 +----+-------+-------+-----------------------+
 |    | X0    | X1    | HORIZONTAL PROG DELAY |
 +----+-------+-------+-----------------------+
-| Y2 |   138 |    14 |                     0 |
-| Y1 |  2911 |  1725 |                     0 |
-| Y0 |   433 |     0 |                     0 |
+| Y2 |  1760 |  1248 |                     0 |
+| Y1 |  2013 |   189 |                     0 |
+| Y0 |   259 |     0 |                     0 |
 +----+-------+-------+-----------------------+
 
 
-7. Device Cell Placement Summary for Global Clock g1
+8. Device Cell Placement Summary for Global Clock g1
 ----------------------------------------------------
 
-+-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+---------------------------------------------------+
-| Global Id | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                                               |
-+-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+---------------------------------------------------+
-| g1        | BUFG/O          | n/a               |       |             |               |         615 |        0 |              0 |        0 | design_1_i/caravel_0/inst/housekeeping/csclk_BUFG |
-+-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+---------------------------------------------------+
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+-----------------------------------------+
+| Global Id | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                                     |
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+-----------------------------------------+
+| g1        | BUFG/O          | n/a               |       |             |               |         615 |        0 |              0 |        0 | design_1_i/caravel_0/housekeeping/csclk |
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+-----------------------------------------+
 * Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
 ** IO Loads column represents load cell count of IO types
 *** Clocking Loads column represents load cell count that are clock resources (global clock buffer, MMCM, PLL, etc)
 **** GT Loads column represents load cell count of GT types
 
 
-+----+------+-----+-----------------------+
-|    | X0   | X1  | HORIZONTAL PROG DELAY |
-+----+------+-----+-----------------------+
-| Y2 |  495 |  69 |                     0 |
-| Y1 |   47 |   4 |                     0 |
-| Y0 |    0 |   0 |                     - |
-+----+------+-----+-----------------------+
++----+------+----+-----------------------+
+|    | X0   | X1 | HORIZONTAL PROG DELAY |
++----+------+----+-----------------------+
+| Y2 |  614 |  0 |                     0 |
+| Y1 |    1 |  0 |                     0 |
+| Y0 |    0 |  0 |                     - |
++----+------+----+-----------------------+
 
 
-8. Device Cell Placement Summary for Global Clock g2
+9. Device Cell Placement Summary for Global Clock g2
 ----------------------------------------------------
 
-+-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+------------------------------------------------------------------+
-| Global Id | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                                                              |
-+-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+------------------------------------------------------------------+
-| g2        | BUFG/O          | n/a               |       |             |               |         314 |        0 |              0 |        0 | design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_clock_BUFG |
-+-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+------------------------------------------------------------------+
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+------------------------------------+
+| Global Id | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                                |
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+------------------------------------+
+| g2        | BUFG/O          | n/a               |       |             |               |         310 |        0 |              0 |        0 | design_1_i/caravel_0/n_2_4217_BUFG |
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+------------------------------------+
 * Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
 ** IO Loads column represents load cell count of IO types
 *** Clocking Loads column represents load cell count that are clock resources (global clock buffer, MMCM, PLL, etc)
 **** GT Loads column represents load cell count of GT types
 
 
-+----+------+-----+-----------------------+
-|    | X0   | X1  | HORIZONTAL PROG DELAY |
-+----+------+-----+-----------------------+
-| Y2 |   82 |  17 |                     0 |
-| Y1 |  127 |  88 |                     0 |
-| Y0 |    0 |   0 |                     - |
-+----+------+-----+-----------------------+
++----+------+----+-----------------------+
+|    | X0   | X1 | HORIZONTAL PROG DELAY |
++----+------+----+-----------------------+
+| Y2 |  310 |  0 |                     0 |
+| Y1 |    0 |  0 |                     - |
+| Y0 |    0 |  0 |                     - |
++----+------+----+-----------------------+
 
 
-9. Device Cell Placement Summary for Global Clock g3
-----------------------------------------------------
+10. Device Cell Placement Summary for Global Clock g3
+-----------------------------------------------------
 
-+-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+-------------------------------------------------------------------+
-| Global Id | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                                                               |
-+-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+-------------------------------------------------------------------+
-| g3        | BUFG/O          | n/a               |       |             |               |         190 |        0 |              0 |        0 | design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_strobe_BUFG |
-+-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+-------------------------------------------------------------------+
++-----------+-----------------+-------------------+------------+-------------+----------------+-------------+----------+----------------+----------+-----------------------------------------------------+
+| Global Id | Driver Type/Pin | Driver Region (D) | Clock      | Period (ns) | Waveform (ns)  | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                                                 |
++-----------+-----------------+-------------------+------------+-------------+----------------+-------------+----------+----------------+----------+-----------------------------------------------------+
+| g3        | BUFG/O          | n/a               | clk_fpga_0 |      25.000 | {0.000 12.500} |         227 |        0 |              0 |        0 | design_1_i/caravel_0/mprj/u_sdram/user_bram/Sys_clk |
++-----------+-----------------+-------------------+------------+-------------+----------------+-------------+----------+----------------+----------+-----------------------------------------------------+
+* Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
+** IO Loads column represents load cell count of IO types
+*** Clocking Loads column represents load cell count that are clock resources (global clock buffer, MMCM, PLL, etc)
+**** GT Loads column represents load cell count of GT types
+
+
++----+----+------+-----------------------+
+|    | X0 | X1   | HORIZONTAL PROG DELAY |
++----+----+------+-----------------------+
+| Y2 |  0 |   65 |                     0 |
+| Y1 |  0 |  162 |                     0 |
+| Y0 |  0 |    0 |                     - |
++----+----+------+-----------------------+
+
+
+11. Device Cell Placement Summary for Global Clock g4
+-----------------------------------------------------
+
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+------------------------------------+
+| Global Id | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                                |
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+------------------------------------+
+| g4        | BUFG/O          | n/a               |       |             |               |         190 |        0 |              0 |        0 | design_1_i/caravel_0/n_3_4234_BUFG |
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+------------------------------------+
+* Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
+** IO Loads column represents load cell count of IO types
+*** Clocking Loads column represents load cell count that are clock resources (global clock buffer, MMCM, PLL, etc)
+**** GT Loads column represents load cell count of GT types
+
+
++----+------+----+-----------------------+
+|    | X0   | X1 | HORIZONTAL PROG DELAY |
++----+------+----+-----------------------+
+| Y2 |  190 |  0 |                     0 |
+| Y1 |    0 |  0 |                     - |
+| Y0 |    0 |  0 |                     - |
++----+------+----+-----------------------+
+
+
+12. Device Cell Placement Summary for Global Clock g5
+-----------------------------------------------------
+
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+---------------------------------------------------------------------------+
+| Global Id | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                                                                       |
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+---------------------------------------------------------------------------+
+| g5        | BUFG/O          | n/a               |       |             |               |          33 |        0 |              0 |        0 | design_1_i/caravel_0/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3__0 |
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+---------------------------------------------------------------------------+
+* Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
+** IO Loads column represents load cell count of IO types
+*** Clocking Loads column represents load cell count that are clock resources (global clock buffer, MMCM, PLL, etc)
+**** GT Loads column represents load cell count of GT types
+
+
++----+----+-----+-----------------------+
+|    | X0 | X1  | HORIZONTAL PROG DELAY |
++----+----+-----+-----------------------+
+| Y2 |  0 |  22 |                     0 |
+| Y1 |  0 |  11 |                     0 |
+| Y0 |  0 |   0 |                     - |
++----+----+-----+-----------------------+
+
+
+13. Device Cell Placement Summary for Global Clock g6
+-----------------------------------------------------
+
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+---------------------------------------------------------------------------+
+| Global Id | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                                                                       |
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+---------------------------------------------------------------------------+
+| g6        | BUFG/O          | n/a               |       |             |               |          33 |        0 |              0 |        0 | design_1_i/caravel_0/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3__0 |
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+---------------------------------------------------------------------------+
+* Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
+** IO Loads column represents load cell count of IO types
+*** Clocking Loads column represents load cell count that are clock resources (global clock buffer, MMCM, PLL, etc)
+**** GT Loads column represents load cell count of GT types
+
+
++----+----+-----+-----------------------+
+|    | X0 | X1  | HORIZONTAL PROG DELAY |
++----+----+-----+-----------------------+
+| Y2 |  0 |  23 |                     0 |
+| Y1 |  0 |  10 |                     0 |
+| Y0 |  0 |   0 |                     - |
++----+----+-----+-----------------------+
+
+
+14. Device Cell Placement Summary for Global Clock g7
+-----------------------------------------------------
+
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+---------------------------------------------------------------------------+
+| Global Id | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                                                                       |
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+---------------------------------------------------------------------------+
+| g7        | BUFG/O          | n/a               |       |             |               |          33 |        0 |              0 |        0 | design_1_i/caravel_0/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3__0 |
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+---------------------------------------------------------------------------+
+* Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
+** IO Loads column represents load cell count of IO types
+*** Clocking Loads column represents load cell count that are clock resources (global clock buffer, MMCM, PLL, etc)
+**** GT Loads column represents load cell count of GT types
+
+
++----+----+-----+-----------------------+
+|    | X0 | X1  | HORIZONTAL PROG DELAY |
++----+----+-----+-----------------------+
+| Y2 |  0 |  19 |                     0 |
+| Y1 |  0 |  14 |                     0 |
+| Y0 |  0 |   0 |                     - |
++----+----+-----+-----------------------+
+
+
+15. Device Cell Placement Summary for Global Clock g8
+-----------------------------------------------------
+
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+------------------------------------+
+| Global Id | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                                |
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+------------------------------------+
+| g8        | BUFG/O          | n/a               |       |             |               |          33 |        0 |              0 |        0 | design_1_i/caravel_0/n_4_2520_BUFG |
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+------------------------------------+
+* Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
+** IO Loads column represents load cell count of IO types
+*** Clocking Loads column represents load cell count that are clock resources (global clock buffer, MMCM, PLL, etc)
+**** GT Loads column represents load cell count of GT types
+
+
++----+----+-----+-----------------------+
+|    | X0 | X1  | HORIZONTAL PROG DELAY |
++----+----+-----+-----------------------+
+| Y2 |  0 |   4 |                     0 |
+| Y1 |  0 |  29 |                     0 |
+| Y0 |  0 |   0 |                     - |
++----+----+-----+-----------------------+
+
+
+16. Device Cell Placement Summary for Global Clock g9
+-----------------------------------------------------
+
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+----------------------------------------+
+| Global Id | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                                    |
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+----------------------------------------+
+| g9        | BUFG/O          | n/a               |       |             |               |          32 |        0 |              0 |        0 | design_1_i/caravel_0/instn_5_4014_BUFG |
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+----------------------------------------+
+* Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
+** IO Loads column represents load cell count of IO types
+*** Clocking Loads column represents load cell count that are clock resources (global clock buffer, MMCM, PLL, etc)
+**** GT Loads column represents load cell count of GT types
+
+
++----+----+-----+-----------------------+
+|    | X0 | X1  | HORIZONTAL PROG DELAY |
++----+----+-----+-----------------------+
+| Y2 |  0 |  32 |                     0 |
+| Y1 |  0 |   0 |                     - |
+| Y0 |  0 |   0 |                     - |
++----+----+-----+-----------------------+
+
+
+17. Device Cell Placement Summary for Global Clock g10
+------------------------------------------------------
+
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+----------------------------------------+
+| Global Id | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                                    |
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+----------------------------------------+
+| g10       | BUFG/O          | n/a               |       |             |               |          32 |        0 |              0 |        0 | design_1_i/caravel_0/instn_5_4015_BUFG |
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+----------------------------------------+
+* Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
+** IO Loads column represents load cell count of IO types
+*** Clocking Loads column represents load cell count that are clock resources (global clock buffer, MMCM, PLL, etc)
+**** GT Loads column represents load cell count of GT types
+
+
++----+----+-----+-----------------------+
+|    | X0 | X1  | HORIZONTAL PROG DELAY |
++----+----+-----+-----------------------+
+| Y2 |  0 |  32 |                     0 |
+| Y1 |  0 |   0 |                     - |
+| Y0 |  0 |   0 |                     - |
++----+----+-----+-----------------------+
+
+
+18. Device Cell Placement Summary for Global Clock g11
+------------------------------------------------------
+
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+----------------------------------------+
+| Global Id | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                                    |
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+----------------------------------------+
+| g11       | BUFG/O          | n/a               |       |             |               |          32 |        0 |              0 |        0 | design_1_i/caravel_0/instn_5_4016_BUFG |
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+----------------------------------------+
+* Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
+** IO Loads column represents load cell count of IO types
+*** Clocking Loads column represents load cell count that are clock resources (global clock buffer, MMCM, PLL, etc)
+**** GT Loads column represents load cell count of GT types
+
+
++----+----+-----+-----------------------+
+|    | X0 | X1  | HORIZONTAL PROG DELAY |
++----+----+-----+-----------------------+
+| Y2 |  0 |  32 |                     0 |
+| Y1 |  0 |   0 |                     - |
+| Y0 |  0 |   0 |                     - |
++----+----+-----+-----------------------+
+
+
+19. Device Cell Placement Summary for Global Clock g12
+------------------------------------------------------
+
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+--------------------------------------------------+
+| Global Id | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                                              |
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+--------------------------------------------------+
+| g12       | BUFG/O          | n/a               |       |             |               |          32 |        0 |              0 |        0 | design_1_i/caravel_0/mprj/u_dma/ss_tvalid_d1_out |
++-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+--------------------------------------------------+
 * Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
 ** IO Loads column represents load cell count of IO types
 *** Clocking Loads column represents load cell count that are clock resources (global clock buffer, MMCM, PLL, etc)
@@ -195,108 +440,91 @@ All Modules
 +----+-----+-----+-----------------------+
 |    | X0  | X1  | HORIZONTAL PROG DELAY |
 +----+-----+-----+-----------------------+
-| Y2 |  41 |   5 |                     0 |
-| Y1 |  87 |  57 |                     0 |
+| Y2 |  11 |  21 |                     0 |
+| Y1 |   0 |   0 |                     - |
 | Y0 |   0 |   0 |                     - |
 +----+-----+-----+-----------------------+
 
 
-10. Device Cell Placement Summary for Global Clock g4
------------------------------------------------------
-
-+-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+---------------------------------------------------+
-| Global Id | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                                               |
-+-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+---------------------------------------------------+
-| g4        | BUFG/O          | n/a               |       |             |               |          52 |        0 |              0 |        0 | design_1_i/caravel_0/inst/soc/core/flash_clk_BUFG |
-+-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+---------------------------------------------------+
-* Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
-** IO Loads column represents load cell count of IO types
-*** Clocking Loads column represents load cell count that are clock resources (global clock buffer, MMCM, PLL, etc)
-**** GT Loads column represents load cell count of GT types
-
-
-+----+-----+----+-----------------------+
-|    | X0  | X1 | HORIZONTAL PROG DELAY |
-+----+-----+----+-----------------------+
-| Y2 |   0 |  0 |                     - |
-| Y1 |   0 |  0 |                     - |
-| Y0 |  52 |  0 |                     0 |
-+----+-----+----+-----------------------+
-
-
-11. Clock Region Cell Placement per Global Clock: Region X0Y0
+20. Clock Region Cell Placement per Global Clock: Region X0Y0
 -------------------------------------------------------------
 
-+-----------+-------+-----------------+------------+-------------+-----------------+-----+-------------+------+-----+----+------+-----+---------+---------------------------------------------------+
-| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF  | Memory LUTs | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                               |
-+-----------+-------+-----------------+------------+-------------+-----------------+-----+-------------+------+-----+----+------+-----+---------+---------------------------------------------------+
-| g0        | n/a   | BUFG/O          | None       |         433 |               0 | 409 |          21 |    3 |   0 |  0 |    0 |   0 |       0 | design_1_i/processing_system7_0/inst/FCLK_CLK0    |
-| g4        | n/a   | BUFG/O          | None       |          52 |               0 |  52 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/inst/soc/core/flash_clk_BUFG |
-+-----------+-------+-----------------+------------+-------------+-----------------+-----+-------------+------+-----+----+------+-----+---------+---------------------------------------------------+
++-----------+-------+-----------------+------------+-------------+-----------------+-----+-------------+------+-----+----+------+-----+---------+------------------------------------------------+
+| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF  | Memory LUTs | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                            |
++-----------+-------+-----------------+------------+-------------+-----------------+-----+-------------+------+-----+----+------+-----+---------+------------------------------------------------+
+| g0        | n/a   | BUFG/O          | None       |         259 |               0 | 240 |          16 |    3 |   0 |  0 |    0 |   0 |       0 | design_1_i/processing_system7_0/inst/FCLK_CLK0 |
++-----------+-------+-----------------+------------+-------------+-----------------+-----+-------------+------+-----+----+------+-----+---------+------------------------------------------------+
 * Clock Loads column represents the clock pin loads (pin count). Internal cell leaf pins are not counted
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
 *** Columns FF, LUTRAM, RAMB through 'Hard IP' represents load cell counts
 
 
-12. Clock Region Cell Placement per Global Clock: Region X0Y1
+21. Clock Region Cell Placement per Global Clock: Region X0Y1
 -------------------------------------------------------------
 
-+-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+-------------------------------------------------------------------+
-| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF   | Memory LUTs | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                                               |
-+-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+-------------------------------------------------------------------+
-| g0        | n/a   | BUFG/O          | None       |        2909 |               2 | 2761 |         145 |    2 |   0 |  0 |    0 |   0 |       0 | design_1_i/processing_system7_0/inst/FCLK_CLK0                    |
-| g1        | n/a   | BUFG/O          | None       |          47 |               0 |   47 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/inst/housekeeping/csclk_BUFG                 |
-| g2        | n/a   | BUFG/O          | None       |         127 |               0 |  107 |          20 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_clock_BUFG  |
-| g3        | n/a   | BUFG/O          | None       |          87 |               0 |   87 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_strobe_BUFG |
-+-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+-------------------------------------------------------------------+
++-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+------------------------------------------------+
+| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF   | Memory LUTs | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                            |
++-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+------------------------------------------------+
+| g0        | n/a   | BUFG/O          | None       |        2013 |               0 | 1865 |         148 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/processing_system7_0/inst/FCLK_CLK0 |
+| g1        | n/a   | BUFG/O          | None       |           1 |               0 |    1 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/housekeeping/csclk        |
++-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+------------------------------------------------+
 * Clock Loads column represents the clock pin loads (pin count). Internal cell leaf pins are not counted
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
 *** Columns FF, LUTRAM, RAMB through 'Hard IP' represents load cell counts
 
 
-13. Clock Region Cell Placement per Global Clock: Region X1Y1
+22. Clock Region Cell Placement per Global Clock: Region X1Y1
 -------------------------------------------------------------
 
-+-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+-------------------------------------------------------------------+
-| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF   | Memory LUTs | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                                               |
-+-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+-------------------------------------------------------------------+
-| g0        | n/a   | BUFG/O          | None       |        1725 |               0 | 1721 |           0 |    2 |   0 |  0 |    0 |   0 |       0 | design_1_i/processing_system7_0/inst/FCLK_CLK0                    |
-| g1        | n/a   | BUFG/O          | None       |           4 |               0 |    4 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/inst/housekeeping/csclk_BUFG                 |
-| g2        | n/a   | BUFG/O          | None       |          88 |               0 |   77 |          11 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_clock_BUFG  |
-| g3        | n/a   | BUFG/O          | None       |          57 |               0 |   57 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_strobe_BUFG |
-+-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+-------------------------------------------------------------------+
++-----------+-------+-----------------+------------+-------------+-----------------+-----+-------------+------+-----+----+------+-----+---------+---------------------------------------------------------------------------+
+| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF  | Memory LUTs | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                                                       |
++-----------+-------+-----------------+------------+-------------+-----------------+-----+-------------+------+-----+----+------+-----+---------+---------------------------------------------------------------------------+
+| g0        | n/a   | BUFG/O          | None       |         188 |               1 | 188 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/processing_system7_0/inst/FCLK_CLK0                            |
+| g3        | n/a   | BUFG/O          | None       |         162 |               0 | 159 |           0 |    3 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/mprj/u_sdram/user_bram/Sys_clk                       |
+| g5        | n/a   | BUFG/O          | None       |          11 |               0 |   0 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3__0 |
+| g6        | n/a   | BUFG/O          | None       |          10 |               0 |   0 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3__0 |
+| g7        | n/a   | BUFG/O          | None       |          14 |               0 |   0 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3__0 |
+| g8        | n/a   | BUFG/O          | None       |          29 |               0 |   0 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/n_4_2520_BUFG                                        |
++-----------+-------+-----------------+------------+-------------+-----------------+-----+-------------+------+-----+----+------+-----+---------+---------------------------------------------------------------------------+
 * Clock Loads column represents the clock pin loads (pin count). Internal cell leaf pins are not counted
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
 *** Columns FF, LUTRAM, RAMB through 'Hard IP' represents load cell counts
 
 
-14. Clock Region Cell Placement per Global Clock: Region X0Y2
+23. Clock Region Cell Placement per Global Clock: Region X0Y2
 -------------------------------------------------------------
 
-+-----------+-------+-----------------+------------+-------------+-----------------+-----+-------------+------+-----+----+------+-----+---------+-------------------------------------------------------------------+
-| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF  | Memory LUTs | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                                               |
-+-----------+-------+-----------------+------------+-------------+-----------------+-----+-------------+------+-----+----+------+-----+---------+-------------------------------------------------------------------+
-| g0        | n/a   | BUFG/O          | None       |         138 |               0 | 125 |          12 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/processing_system7_0/inst/FCLK_CLK0                    |
-| g1        | n/a   | BUFG/O          | None       |         495 |               0 | 495 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/inst/housekeeping/csclk_BUFG                 |
-| g2        | n/a   | BUFG/O          | None       |          80 |               2 |  73 |           7 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_clock_BUFG  |
-| g3        | n/a   | BUFG/O          | None       |          41 |               0 |  41 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_strobe_BUFG |
-+-----------+-------+-----------------+------------+-------------+-----------------+-----+-------------+------+-----+----+------+-----+---------+-------------------------------------------------------------------+
++-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+--------------------------------------------------+
+| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF   | Memory LUTs | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                              |
++-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+--------------------------------------------------+
+| g0        | n/a   | BUFG/O          | None       |        1758 |               2 | 1738 |          14 |    1 |   3 |  0 |    0 |   0 |       0 | design_1_i/processing_system7_0/inst/FCLK_CLK0   |
+| g1        | n/a   | BUFG/O          | None       |         614 |               0 |  614 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/housekeeping/csclk          |
+| g2        | n/a   | BUFG/O          | None       |         310 |               0 |  272 |          38 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/n_2_4217_BUFG               |
+| g4        | n/a   | BUFG/O          | None       |         190 |               0 |  190 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/n_3_4234_BUFG               |
+| g12       | n/a   | BUFG/O          | None       |          11 |               0 |    0 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/mprj/u_dma/ss_tvalid_d1_out |
++-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+--------------------------------------------------+
 * Clock Loads column represents the clock pin loads (pin count). Internal cell leaf pins are not counted
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
 *** Columns FF, LUTRAM, RAMB through 'Hard IP' represents load cell counts
 
 
-15. Clock Region Cell Placement per Global Clock: Region X1Y2
+24. Clock Region Cell Placement per Global Clock: Region X1Y2
 -------------------------------------------------------------
 
-+-----------+-------+-----------------+------------+-------------+-----------------+----+-------------+------+-----+----+------+-----+---------+-------------------------------------------------------------------+
-| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF | Memory LUTs | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                                               |
-+-----------+-------+-----------------+------------+-------------+-----------------+----+-------------+------+-----+----+------+-----+---------+-------------------------------------------------------------------+
-| g0        | n/a   | BUFG/O          | None       |          14 |               0 | 14 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/processing_system7_0/inst/FCLK_CLK0                    |
-| g1        | n/a   | BUFG/O          | None       |          69 |               0 | 69 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/inst/housekeeping/csclk_BUFG                 |
-| g2        | n/a   | BUFG/O          | None       |          15 |               2 | 15 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_clock_BUFG  |
-| g3        | n/a   | BUFG/O          | None       |           5 |               0 |  5 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_strobe_BUFG |
-+-----------+-------+-----------------+------------+-------------+-----------------+----+-------------+------+-----+----+------+-----+---------+-------------------------------------------------------------------+
++-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+---------------------------------------------------------------------------+
+| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF   | Memory LUTs | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                                                       |
++-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+---------------------------------------------------------------------------+
+| g0        | n/a   | BUFG/O          | None       |        1248 |               0 | 1244 |           0 |    1 |   0 |  0 |    0 |   0 |       0 | design_1_i/processing_system7_0/inst/FCLK_CLK0                            |
+| g3        | n/a   | BUFG/O          | None       |          65 |               0 |   64 |           0 |    1 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/mprj/u_sdram/user_bram/Sys_clk                       |
+| g5        | n/a   | BUFG/O          | None       |          22 |               0 |    0 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3__0 |
+| g6        | n/a   | BUFG/O          | None       |          23 |               0 |    0 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3__0 |
+| g7        | n/a   | BUFG/O          | None       |          19 |               0 |    0 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3__0 |
+| g8        | n/a   | BUFG/O          | None       |           4 |               0 |    0 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/n_4_2520_BUFG                                        |
+| g9        | n/a   | BUFG/O          | None       |          32 |               0 |    0 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/instn_5_4014_BUFG                                    |
+| g10       | n/a   | BUFG/O          | None       |          32 |               0 |    0 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/instn_5_4015_BUFG                                    |
+| g11       | n/a   | BUFG/O          | None       |          32 |               0 |    0 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/instn_5_4016_BUFG                                    |
+| g12       | n/a   | BUFG/O          | None       |          21 |               0 |    0 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | design_1_i/caravel_0/mprj/u_dma/ss_tvalid_d1_out                          |
++-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+---------------------------------------------------------------------------+
 * Clock Loads column represents the clock pin loads (pin count). Internal cell leaf pins are not counted
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
 *** Columns FF, LUTRAM, RAMB through 'Hard IP' represents load cell counts
@@ -304,47 +532,111 @@ All Modules
 
 
 # Location of BUFG Primitives 
-set_property LOC BUFGCTRL_X0Y20 [get_cells design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG]
-set_property LOC BUFGCTRL_X0Y19 [get_cells design_1_i/caravel_0/inst/soc/core/flash_clk_BUFG_inst]
-set_property LOC BUFGCTRL_X0Y18 [get_cells design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_strobe_BUFG_inst]
-set_property LOC BUFGCTRL_X0Y17 [get_cells design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_clock_BUFG_inst]
-set_property LOC BUFGCTRL_X0Y16 [get_cells design_1_i/caravel_0/inst/housekeeping/csclk_BUFG_inst]
+set_property LOC BUFGCTRL_X0Y28 [get_cells design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG]
+set_property LOC BUFGCTRL_X0Y27 [get_cells design_1_i/caravel_0/n_4_2520_BUFG_inst]
+set_property LOC BUFGCTRL_X0Y26 [get_cells design_1_i/caravel_0/n_3_4234_BUFG_inst]
+set_property LOC BUFGCTRL_X0Y25 [get_cells design_1_i/caravel_0/n_2_4217_BUFG_inst]
+set_property LOC BUFGCTRL_X0Y19 [get_cells design_1_i/caravel_0/bank2_fetch_a3_reg[7]_i_1]
+set_property LOC BUFGCTRL_X0Y18 [get_cells design_1_i/caravel_0/bank1_fetch_a3_reg[7]_i_1]
+set_property LOC BUFGCTRL_X0Y17 [get_cells design_1_i/caravel_0/bank0_fetch_a3_reg[7]_i_1]
+set_property LOC BUFGCTRL_X0Y16 [get_cells design_1_i/caravel_0/RAM_reg_i_1__4]
+set_property LOC BUFGCTRL_X0Y21 [get_cells design_1_i/caravel_0/input_buffer_reg[31]_i_2]
+set_property LOC BUFGCTRL_X0Y24 [get_cells design_1_i/caravel_0/instn_5_4016_BUFG_inst]
+set_property LOC BUFGCTRL_X0Y23 [get_cells design_1_i/caravel_0/instn_5_4015_BUFG_inst]
+set_property LOC BUFGCTRL_X0Y22 [get_cells design_1_i/caravel_0/instn_5_4014_BUFG_inst]
+set_property LOC BUFGCTRL_X0Y20 [get_cells design_1_i/caravel_0/hkspi_disable_reg_i_2]
 
 # Location of IO Primitives which is load of clock spine
 
 # Location of clock ports
 
-# Clock net "design_1_i/processing_system7_0/inst/FCLK_CLK0" driven by instance "design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG" located at site "BUFGCTRL_X0Y20"
+# Clock net "design_1_i/processing_system7_0/inst/FCLK_CLK0" driven by instance "design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG" located at site "BUFGCTRL_X0Y28"
 #startgroup
 create_pblock {CLKAG_design_1_i/processing_system7_0/inst/FCLK_CLK0}
 add_cells_to_pblock [get_pblocks  {CLKAG_design_1_i/processing_system7_0/inst/FCLK_CLK0}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="design_1_i/processing_system7_0/inst/FCLK_CLK0"}]]]
 resize_pblock [get_pblocks {CLKAG_design_1_i/processing_system7_0/inst/FCLK_CLK0}] -add {CLOCKREGION_X0Y0:CLOCKREGION_X0Y0 CLOCKREGION_X0Y1:CLOCKREGION_X0Y1 CLOCKREGION_X0Y2:CLOCKREGION_X0Y2 CLOCKREGION_X1Y1:CLOCKREGION_X1Y1 CLOCKREGION_X1Y2:CLOCKREGION_X1Y2}
 #endgroup
 
-# Clock net "design_1_i/caravel_0/inst/soc/core/flash_clk_BUFG" driven by instance "design_1_i/caravel_0/inst/soc/core/flash_clk_BUFG_inst" located at site "BUFGCTRL_X0Y19"
+# Clock net "design_1_i/caravel_0/n_4_2520_BUFG" driven by instance "design_1_i/caravel_0/n_4_2520_BUFG_inst" located at site "BUFGCTRL_X0Y27"
 #startgroup
-create_pblock {CLKAG_design_1_i/caravel_0/inst/soc/core/flash_clk_BUFG}
-add_cells_to_pblock [get_pblocks  {CLKAG_design_1_i/caravel_0/inst/soc/core/flash_clk_BUFG}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="design_1_i/caravel_0/inst/soc/core/flash_clk_BUFG"}]]]
-resize_pblock [get_pblocks {CLKAG_design_1_i/caravel_0/inst/soc/core/flash_clk_BUFG}] -add {CLOCKREGION_X0Y0:CLOCKREGION_X0Y0}
+create_pblock {CLKAG_design_1_i/caravel_0/n_4_2520_BUFG}
+add_cells_to_pblock [get_pblocks  {CLKAG_design_1_i/caravel_0/n_4_2520_BUFG}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="design_1_i/caravel_0/n_4_2520_BUFG"}]]]
+resize_pblock [get_pblocks {CLKAG_design_1_i/caravel_0/n_4_2520_BUFG}] -add {CLOCKREGION_X1Y1:CLOCKREGION_X1Y1 CLOCKREGION_X1Y2:CLOCKREGION_X1Y2}
 #endgroup
 
-# Clock net "design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_strobe_BUFG" driven by instance "design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_strobe_BUFG_inst" located at site "BUFGCTRL_X0Y18"
+# Clock net "design_1_i/caravel_0/n_3_4234_BUFG" driven by instance "design_1_i/caravel_0/n_3_4234_BUFG_inst" located at site "BUFGCTRL_X0Y26"
 #startgroup
-create_pblock {CLKAG_design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_strobe_BUFG}
-add_cells_to_pblock [get_pblocks  {CLKAG_design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_strobe_BUFG}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_strobe_BUFG"}]]]
-resize_pblock [get_pblocks {CLKAG_design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_strobe_BUFG}] -add {CLOCKREGION_X0Y1:CLOCKREGION_X0Y1 CLOCKREGION_X0Y2:CLOCKREGION_X0Y2 CLOCKREGION_X1Y1:CLOCKREGION_X1Y1 CLOCKREGION_X1Y2:CLOCKREGION_X1Y2}
+create_pblock {CLKAG_design_1_i/caravel_0/n_3_4234_BUFG}
+add_cells_to_pblock [get_pblocks  {CLKAG_design_1_i/caravel_0/n_3_4234_BUFG}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="design_1_i/caravel_0/n_3_4234_BUFG"}]]]
+resize_pblock [get_pblocks {CLKAG_design_1_i/caravel_0/n_3_4234_BUFG}] -add {CLOCKREGION_X0Y2:CLOCKREGION_X0Y2}
 #endgroup
 
-# Clock net "design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_clock_BUFG" driven by instance "design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_clock_BUFG_inst" located at site "BUFGCTRL_X0Y17"
+# Clock net "design_1_i/caravel_0/n_2_4217_BUFG" driven by instance "design_1_i/caravel_0/n_2_4217_BUFG_inst" located at site "BUFGCTRL_X0Y25"
 #startgroup
-create_pblock {CLKAG_design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_clock_BUFG}
-add_cells_to_pblock [get_pblocks  {CLKAG_design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_clock_BUFG}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_clock_BUFG"}]]]
-resize_pblock [get_pblocks {CLKAG_design_1_i/caravel_0/inst/housekeeping/mprj_io_loader_clock_BUFG}] -add {CLOCKREGION_X0Y1:CLOCKREGION_X0Y1 CLOCKREGION_X0Y2:CLOCKREGION_X0Y2 CLOCKREGION_X1Y1:CLOCKREGION_X1Y1 CLOCKREGION_X1Y2:CLOCKREGION_X1Y2}
+create_pblock {CLKAG_design_1_i/caravel_0/n_2_4217_BUFG}
+add_cells_to_pblock [get_pblocks  {CLKAG_design_1_i/caravel_0/n_2_4217_BUFG}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="design_1_i/caravel_0/n_2_4217_BUFG"}]]]
+resize_pblock [get_pblocks {CLKAG_design_1_i/caravel_0/n_2_4217_BUFG}] -add {CLOCKREGION_X0Y2:CLOCKREGION_X0Y2}
 #endgroup
 
-# Clock net "design_1_i/caravel_0/inst/housekeeping/csclk_BUFG" driven by instance "design_1_i/caravel_0/inst/housekeeping/csclk_BUFG_inst" located at site "BUFGCTRL_X0Y16"
+# Clock net "design_1_i/caravel_0/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3__0" driven by instance "design_1_i/caravel_0/bank2_fetch_a3_reg[7]_i_1" located at site "BUFGCTRL_X0Y19"
 #startgroup
-create_pblock {CLKAG_design_1_i/caravel_0/inst/housekeeping/csclk_BUFG}
-add_cells_to_pblock [get_pblocks  {CLKAG_design_1_i/caravel_0/inst/housekeeping/csclk_BUFG}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="design_1_i/caravel_0/inst/housekeeping/csclk_BUFG"}]]]
-resize_pblock [get_pblocks {CLKAG_design_1_i/caravel_0/inst/housekeeping/csclk_BUFG}] -add {CLOCKREGION_X0Y1:CLOCKREGION_X0Y1 CLOCKREGION_X0Y2:CLOCKREGION_X0Y2 CLOCKREGION_X1Y1:CLOCKREGION_X1Y1 CLOCKREGION_X1Y2:CLOCKREGION_X1Y2}
+create_pblock {CLKAG_design_1_i/caravel_0/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3__0}
+add_cells_to_pblock [get_pblocks  {CLKAG_design_1_i/caravel_0/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3__0}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="design_1_i/caravel_0/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3__0"}]]]
+resize_pblock [get_pblocks {CLKAG_design_1_i/caravel_0/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3__0}] -add {CLOCKREGION_X1Y1:CLOCKREGION_X1Y1 CLOCKREGION_X1Y2:CLOCKREGION_X1Y2}
+#endgroup
+
+# Clock net "design_1_i/caravel_0/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3__0" driven by instance "design_1_i/caravel_0/bank1_fetch_a3_reg[7]_i_1" located at site "BUFGCTRL_X0Y18"
+#startgroup
+create_pblock {CLKAG_design_1_i/caravel_0/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3__0}
+add_cells_to_pblock [get_pblocks  {CLKAG_design_1_i/caravel_0/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3__0}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="design_1_i/caravel_0/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3__0"}]]]
+resize_pblock [get_pblocks {CLKAG_design_1_i/caravel_0/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3__0}] -add {CLOCKREGION_X1Y1:CLOCKREGION_X1Y1 CLOCKREGION_X1Y2:CLOCKREGION_X1Y2}
+#endgroup
+
+# Clock net "design_1_i/caravel_0/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3__0" driven by instance "design_1_i/caravel_0/bank0_fetch_a3_reg[7]_i_1" located at site "BUFGCTRL_X0Y17"
+#startgroup
+create_pblock {CLKAG_design_1_i/caravel_0/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3__0}
+add_cells_to_pblock [get_pblocks  {CLKAG_design_1_i/caravel_0/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3__0}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="design_1_i/caravel_0/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3__0"}]]]
+resize_pblock [get_pblocks {CLKAG_design_1_i/caravel_0/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3__0}] -add {CLOCKREGION_X1Y1:CLOCKREGION_X1Y1 CLOCKREGION_X1Y2:CLOCKREGION_X1Y2}
+#endgroup
+
+# Clock net "design_1_i/caravel_0/mprj/u_sdram/user_bram/Sys_clk" driven by instance "design_1_i/caravel_0/RAM_reg_i_1__4" located at site "BUFGCTRL_X0Y16"
+#startgroup
+create_pblock {CLKAG_design_1_i/caravel_0/mprj/u_sdram/user_bram/Sys_clk}
+add_cells_to_pblock [get_pblocks  {CLKAG_design_1_i/caravel_0/mprj/u_sdram/user_bram/Sys_clk}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="design_1_i/caravel_0/mprj/u_sdram/user_bram/Sys_clk"}]]]
+resize_pblock [get_pblocks {CLKAG_design_1_i/caravel_0/mprj/u_sdram/user_bram/Sys_clk}] -add {CLOCKREGION_X1Y1:CLOCKREGION_X1Y1 CLOCKREGION_X1Y2:CLOCKREGION_X1Y2}
+#endgroup
+
+# Clock net "design_1_i/caravel_0/mprj/u_dma/ss_tvalid_d1_out" driven by instance "design_1_i/caravel_0/input_buffer_reg[31]_i_2" located at site "BUFGCTRL_X0Y21"
+#startgroup
+create_pblock {CLKAG_design_1_i/caravel_0/mprj/u_dma/ss_tvalid_d1_out}
+add_cells_to_pblock [get_pblocks  {CLKAG_design_1_i/caravel_0/mprj/u_dma/ss_tvalid_d1_out}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="design_1_i/caravel_0/mprj/u_dma/ss_tvalid_d1_out"}]]]
+resize_pblock [get_pblocks {CLKAG_design_1_i/caravel_0/mprj/u_dma/ss_tvalid_d1_out}] -add {CLOCKREGION_X0Y2:CLOCKREGION_X0Y2 CLOCKREGION_X1Y2:CLOCKREGION_X1Y2}
+#endgroup
+
+# Clock net "design_1_i/caravel_0/instn_5_4016_BUFG" driven by instance "design_1_i/caravel_0/instn_5_4016_BUFG_inst" located at site "BUFGCTRL_X0Y24"
+#startgroup
+create_pblock {CLKAG_design_1_i/caravel_0/instn_5_4016_BUFG}
+add_cells_to_pblock [get_pblocks  {CLKAG_design_1_i/caravel_0/instn_5_4016_BUFG}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="design_1_i/caravel_0/instn_5_4016_BUFG"}]]]
+resize_pblock [get_pblocks {CLKAG_design_1_i/caravel_0/instn_5_4016_BUFG}] -add {CLOCKREGION_X1Y2:CLOCKREGION_X1Y2}
+#endgroup
+
+# Clock net "design_1_i/caravel_0/instn_5_4015_BUFG" driven by instance "design_1_i/caravel_0/instn_5_4015_BUFG_inst" located at site "BUFGCTRL_X0Y23"
+#startgroup
+create_pblock {CLKAG_design_1_i/caravel_0/instn_5_4015_BUFG}
+add_cells_to_pblock [get_pblocks  {CLKAG_design_1_i/caravel_0/instn_5_4015_BUFG}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="design_1_i/caravel_0/instn_5_4015_BUFG"}]]]
+resize_pblock [get_pblocks {CLKAG_design_1_i/caravel_0/instn_5_4015_BUFG}] -add {CLOCKREGION_X1Y2:CLOCKREGION_X1Y2}
+#endgroup
+
+# Clock net "design_1_i/caravel_0/instn_5_4014_BUFG" driven by instance "design_1_i/caravel_0/instn_5_4014_BUFG_inst" located at site "BUFGCTRL_X0Y22"
+#startgroup
+create_pblock {CLKAG_design_1_i/caravel_0/instn_5_4014_BUFG}
+add_cells_to_pblock [get_pblocks  {CLKAG_design_1_i/caravel_0/instn_5_4014_BUFG}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="design_1_i/caravel_0/instn_5_4014_BUFG"}]]]
+resize_pblock [get_pblocks {CLKAG_design_1_i/caravel_0/instn_5_4014_BUFG}] -add {CLOCKREGION_X1Y2:CLOCKREGION_X1Y2}
+#endgroup
+
+# Clock net "design_1_i/caravel_0/housekeeping/csclk" driven by instance "design_1_i/caravel_0/hkspi_disable_reg_i_2" located at site "BUFGCTRL_X0Y20"
+#startgroup
+create_pblock {CLKAG_design_1_i/caravel_0/housekeeping/csclk}
+add_cells_to_pblock [get_pblocks  {CLKAG_design_1_i/caravel_0/housekeeping/csclk}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="design_1_i/caravel_0/housekeeping/csclk"}]]]
+resize_pblock [get_pblocks {CLKAG_design_1_i/caravel_0/housekeeping/csclk}] -add {CLOCKREGION_X0Y1:CLOCKREGION_X0Y1 CLOCKREGION_X0Y2:CLOCKREGION_X0Y2}
 #endgroup

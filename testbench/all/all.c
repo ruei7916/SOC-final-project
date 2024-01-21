@@ -24,6 +24,7 @@
 #include <irq_vex.h>
 #endif
 
+#define DELAY_COUNT 40
 
 extern void uart_write();
 extern void uart_write_char();
@@ -35,11 +36,11 @@ extern int* qsort();
 // --------------------------------------------------------
 
 /*
-	MPRJ Logic Analyzer Test:
-		- Observes counter value through LA probes [31:0] 
-		- Sets counter initial value through LA probes [63:32]
-		- Flags when counter value exceeds 500 through the management SoC gpio
-		- Outputs message to the UART when the test concludes successfuly
+    MPRJ Logic Analyzer Test:
+        - Observes counter value through LA probes [31:0] 
+        - Sets counter initial value through LA probes [63:32]
+        - Flags when counter value exceeds 500 through the management SoC gpio
+        - Outputs message to the UART when the test concludes successfuly
 */
 
 void main()
@@ -47,30 +48,30 @@ void main()
 #ifdef USER_PROJ_IRQ0_EN
     int mask;
 #endif
-	/* Set up the housekeeping SPI to be connected internally so	*/
-	/* that external pin changes don't affect it.			*/
+    /* Set up the housekeeping SPI to be connected internally so	*/
+    /* that external pin changes don't affect it.			*/
 
-	// reg_spi_enable = 1;
-	// reg_spimaster_cs = 0x00000;
+    // reg_spi_enable = 1;
+    // reg_spimaster_cs = 0x00000;
 
-	// reg_spimaster_control = 0x0801;
+    // reg_spimaster_control = 0x0801;
 
-	// reg_spimaster_control = 0xa002;	// Enable, prescaler = 2,
+    // reg_spimaster_control = 0xa002;	// Enable, prescaler = 2,
                                         // connect to housekeeping SPI
 
-	// Connect the housekeeping SPI to the SPI master
-	// so that the CSB line is not left floating.  This allows
-	// all of the GPIO pins to be used for user functions.
+    // Connect the housekeeping SPI to the SPI master
+    // so that the CSB line is not left floating.  This allows
+    // all of the GPIO pins to be used for user functions.
 
-	// The upper GPIO pins are configured to be output
-	// and accessble to the management SoC.
-	// Used to flad the start/end of a test 
-	// The lower GPIO pins are configured to be output
-	// and accessible to the user project.  They show
-	// the project count value, although this test is
-	// designed to read the project count through the
-	// logic analyzer probes.
-	// I/O 6 is configured for the UART Tx line
+    // The upper GPIO pins are configured to be output
+    // and accessble to the management SoC.
+    // Used to flad the start/end of a test 
+    // The lower GPIO pins are configured to be output
+    // and accessible to the user project.  They show
+    // the project count value, although this test is
+    // designed to read the project count through the
+    // logic analyzer probes.
+    // I/O 6 is configured for the UART Tx line
 
     //reg_spi_enable = 1;
     reg_wb_enable = 1;
@@ -104,40 +105,55 @@ void main()
     reg_mprj_io_4  = GPIO_MODE_MGMT_STD_OUTPUT;
     reg_mprj_io_3  = GPIO_MODE_MGMT_STD_OUTPUT;
     reg_mprj_io_2  = GPIO_MODE_MGMT_STD_OUTPUT;
-    reg_mprj_io_1  = GPIO_MODE_MGMT_STD_OUTPUT;
+    reg_mprj_io_1  = GPIO_MODE_MGMT_STD_INPUT_NOPULL;
     reg_mprj_io_0  = GPIO_MODE_MGMT_STD_OUTPUT;
     reg_mprj_io_6  = GPIO_MODE_USER_STD_OUTPUT;
     reg_mprj_io_5  = GPIO_MODE_USER_STD_INPUT_NOPULL;
     reg_uart_enable = 1;
     #ifdef USER_PROJ_IRQ0_EN	
-	// unmask USER_IRQ_0_INTERRUPT
-	mask = irq_getmask();
-	mask |= 1 << USER_IRQ_0_INTERRUPT; // USER_IRQ_0_INTERRUPT = 2
-	irq_setmask(mask);
-	// enable user_irq_0_ev_enable
-	user_irq_0_ev_enable_write(1);	
+    // unmask USER_IRQ_0_INTERRUPT
+    mask = irq_getmask();
+    mask |= 1 << USER_IRQ_0_INTERRUPT; // USER_IRQ_0_INTERRUPT = 2
+    irq_setmask(mask);
+    // enable user_irq_0_ev_enable
+    user_irq_0_ev_enable_write(1);	
     #endif
-	/* Apply configuration */
-	reg_mprj_xfer = 1;
-	while (reg_mprj_xfer == 1);
-	// start
-	asm ("nop;"
-		"nop;"
-		"nop;"
-	);
-	reg_fir_start = 1;
-	// Flag start of the test 
-	reg_mprj_datal = 0xAB500000;
-	int *tmp = qsort();
-	reg_mprj_datal = *tmp << 16;
-	reg_mprj_datal = *(tmp+1) << 16;
-	reg_mprj_datal = *(tmp+2) << 16;
-	reg_mprj_datal = *(tmp+3) << 16;
-	reg_mprj_datal = *(tmp+4) << 16;
-	reg_mprj_datal = *(tmp+5) << 16;
-	reg_mprj_datal = *(tmp+6) << 16;
-	reg_mprj_datal = *(tmp+7) << 16;
-	reg_mprj_datal = *(tmp+8) << 16;
-	reg_mprj_datal = *(tmp+9) << 16;
-	reg_mprj_datal = 0xAB610000;
+    /* Apply configuration */
+    reg_mprj_xfer = 1;
+    while (reg_mprj_xfer == 1);
+    // start
+    asm ("nop;"
+        "nop;"
+        "nop;"
+    );
+    reg_fir_start = 1;
+    // Flag start of the test 
+    reg_mprj_datal = 0xAB500000;
+    int *tmp = qsort();
+    reg_mprj_datal = *tmp << 16;
+    reg_mprj_datal = *(tmp+1) << 16;
+    reg_mprj_datal = *(tmp+2) << 16;
+    reg_mprj_datal = *(tmp+3) << 16;
+    reg_mprj_datal = *(tmp+4) << 16;
+    reg_mprj_datal = *(tmp+5) << 16;
+    reg_mprj_datal = *(tmp+6) << 16;
+    reg_mprj_datal = *(tmp+7) << 16;
+    reg_mprj_datal = *(tmp+8) << 16;
+    reg_mprj_datal = *(tmp+9) << 16;
+    reg_mprj_datal = 0xAB510000;
+        for(int i = 0; i < DELAY_COUNT; i++) asm volatile ("nop");    //delay
+    //check fir 
+    reg_mprj_datal = (*(volatile uint32_t*)0x3800012c)<<16;
+        for(int i = 0; i < DELAY_COUNT; i++) asm volatile ("nop");    //delay
+    reg_mprj_datal = (*(volatile uint32_t*)0x38000228)<<16;
+        for(int i = 0; i < DELAY_COUNT; i++) asm volatile ("nop");    //delay
+    reg_mprj_datal = 0xAB610000;
+        for(int i = 0; i < DELAY_COUNT; i++) asm volatile ("nop");    //delay
+
+    // check mm
+    reg_mprj_datal = (*(volatile uint32_t*)0x3800022C)<<16;
+        for(int i = 0; i < DELAY_COUNT; i++) asm volatile ("nop");    //delay  
+    reg_mprj_datal = (*(volatile uint32_t*)0x38000268)<<16;
+        for(int i = 0; i < DELAY_COUNT; i++) asm volatile ("nop");    //delay
+    reg_mprj_datal = 0xAB710000;
 }

@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1 (lin64) Build 3526262 Mon Apr 18 15:47:01 MDT 2022
-| Date         : Thu Dec 14 03:36:06 2023
-| Host         : ubuntu2004 running 64-bit Ubuntu 20.04.4 LTS
+| Date         : Mon Jan 22 05:05:15 2024
+| Host         : ubuntu2004 running 64-bit Ubuntu 20.04.6 LTS
 | Command      : report_timing_summary -file timing_report.log
 | Design       : design_1_wrapper
 | Device       : 7z020-clg400
@@ -47,10 +47,10 @@ check_timing report
 
 Table of Contents
 -----------------
-1. checking no_clock (2782)
+1. checking no_clock (71310)
 2. checking constant_clock (0)
 3. checking pulse_width_clock (0)
-4. checking unconstrained_internal_endpoints (2871)
+4. checking unconstrained_internal_endpoints (3487)
 5. checking no_input_delay (0)
 6. checking no_output_delay (0)
 7. checking multiple_clock (0)
@@ -60,8 +60,8 @@ Table of Contents
 11. checking partial_output_delay (0)
 12. checking latch_loops (0)
 
-1. checking no_clock (2782)
----------------------------
+1. checking no_clock (71310)
+----------------------------
  There are 310 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/housekeeping/serial_bb_clock_reg/Q (HIGH)
 
  There are 500 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/housekeeping/serial_bb_enable_reg/Q (HIGH)
@@ -76,7 +76,605 @@ Table of Contents
 
  There are 615 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/housekeeping/wbbd_sck_reg/Q (HIGH)
 
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_arbiter/arbiter_state_q_reg[0]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_arbiter/arbiter_state_q_reg[1]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_dma/FSM_sequential_r_state_q_reg[0]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_dma/FSM_sequential_r_state_q_reg[1]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_dma/FSM_sequential_w_state_q_reg[0]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_dma/FSM_sequential_w_state_q_reg[1]/Q (HIGH)
+
+ There are 32 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_dma/dma_fir_tap_q_reg/Q (HIGH)
+
+ There are 64 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_dma/dma_mode_fir_q_reg/Q (HIGH)
+
+ There are 32 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_dma/dma_mode_mm_q_reg/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_dma/r_stb_o_q_reg/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_dma/w_stb_o_q_reg/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_fir_mm/data_idx_reg[0]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_fir_mm/data_idx_reg[10]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_fir_mm/data_idx_reg[11]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_fir_mm/data_idx_reg[12]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_fir_mm/data_idx_reg[13]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_fir_mm/data_idx_reg[14]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_fir_mm/data_idx_reg[15]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_fir_mm/data_idx_reg[1]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_fir_mm/data_idx_reg[2]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_fir_mm/data_idx_reg[3]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_fir_mm/data_idx_reg[4]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_fir_mm/data_idx_reg[5]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_fir_mm/data_idx_reg[6]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_fir_mm/data_idx_reg[7]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_fir_mm/data_idx_reg[8]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_fir_mm/data_idx_reg[9]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_fir_mm/state_reg[0]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_fir_mm/state_reg[1]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_fir_mm/tap_idx_reg[0]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_fir_mm/tap_idx_reg[1]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_fir_mm/tap_idx_reg[2]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_fir_mm/tap_idx_reg[3]/Q (HIGH)
+
+ There are 384 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/addr_q_reg[10]/Q (HIGH)
+
+ There are 384 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/addr_q_reg[11]/Q (HIGH)
+
+ There are 384 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/addr_q_reg[12]/Q (HIGH)
+
+ There are 384 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/addr_q_reg[13]/Q (HIGH)
+
+ There are 384 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/addr_q_reg[14]/Q (HIGH)
+
+ There are 384 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/addr_q_reg[15]/Q (HIGH)
+
+ There are 384 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/addr_q_reg[16]/Q (HIGH)
+
+ There are 384 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/addr_q_reg[17]/Q (HIGH)
+
+ There are 384 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/addr_q_reg[18]/Q (HIGH)
+
+ There are 384 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/addr_q_reg[19]/Q (HIGH)
+
+ There are 384 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/addr_q_reg[20]/Q (HIGH)
+
+ There are 384 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/addr_q_reg[21]/Q (HIGH)
+
+ There are 384 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/addr_q_reg[22]/Q (HIGH)
+
+ There are 384 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/addr_q_reg[2]/Q (HIGH)
+
+ There are 384 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/addr_q_reg[3]/Q (HIGH)
+
+ There are 384 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/addr_q_reg[4]/Q (HIGH)
+
+ There are 384 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/addr_q_reg[5]/Q (HIGH)
+
+ There are 384 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/addr_q_reg[6]/Q (HIGH)
+
+ There are 384 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/addr_q_reg[7]/Q (HIGH)
+
+ There are 516 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/addr_q_reg[8]/Q (HIGH)
+
+ There are 516 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/addr_q_reg[9]/Q (HIGH)
+
+ There are 449 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a1_reg[3]/Q (HIGH)
+
+ There are 449 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a1_reg[4]/Q (HIGH)
+
+ There are 449 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a1_reg[5]/Q (HIGH)
+
+ There are 449 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a1_reg[6]/Q (HIGH)
+
+ There are 449 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a1_reg[7]/Q (HIGH)
+
+ There are 417 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a2_reg[2]/Q (HIGH)
+
+ There are 417 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a2_reg[3]/Q (HIGH)
+
+ There are 417 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a2_reg[4]/Q (HIGH)
+
+ There are 417 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a2_reg[5]/Q (HIGH)
+
+ There are 417 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a2_reg[6]/Q (HIGH)
+
+ There are 417 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a2_reg[7]/Q (HIGH)
+
+ There are 449 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3_reg[10]/Q (HIGH)
+
+ There are 449 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3_reg[11]/Q (HIGH)
+
+ There are 449 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3_reg[12]/Q (HIGH)
+
+ There are 449 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3_reg[13]/Q (HIGH)
+
+ There are 449 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3_reg[14]/Q (HIGH)
+
+ There are 449 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3_reg[15]/Q (HIGH)
+
+ There are 449 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3_reg[16]/Q (HIGH)
+
+ There are 449 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3_reg[17]/Q (HIGH)
+
+ There are 449 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3_reg[18]/Q (HIGH)
+
+ There are 449 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3_reg[19]/Q (HIGH)
+
+ There are 449 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3_reg[1]/Q (HIGH)
+
+ There are 449 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3_reg[20]/Q (HIGH)
+
+ There are 449 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3_reg[21]/Q (HIGH)
+
+ There are 449 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3_reg[22]/Q (HIGH)
+
+ There are 449 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3_reg[2]/Q (HIGH)
+
+ There are 385 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3_reg[3]/Q (HIGH)
+
+ There are 385 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3_reg[4]/Q (HIGH)
+
+ There are 385 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3_reg[5]/Q (HIGH)
+
+ There are 385 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3_reg[6]/Q (HIGH)
+
+ There are 385 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3_reg[7]/Q (HIGH)
+
+ There are 449 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3_reg[8]/Q (HIGH)
+
+ There are 449 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank0_fetch_a3_reg[9]/Q (HIGH)
+
+ There are 353 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a1_reg[3]/Q (HIGH)
+
+ There are 353 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a1_reg[4]/Q (HIGH)
+
+ There are 353 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a1_reg[5]/Q (HIGH)
+
+ There are 353 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a1_reg[6]/Q (HIGH)
+
+ There are 353 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a1_reg[7]/Q (HIGH)
+
+ There are 321 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a2_reg[2]/Q (HIGH)
+
+ There are 321 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a2_reg[3]/Q (HIGH)
+
+ There are 321 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a2_reg[4]/Q (HIGH)
+
+ There are 321 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a2_reg[5]/Q (HIGH)
+
+ There are 321 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a2_reg[6]/Q (HIGH)
+
+ There are 321 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a2_reg[7]/Q (HIGH)
+
+ There are 353 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3_reg[10]/Q (HIGH)
+
+ There are 353 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3_reg[11]/Q (HIGH)
+
+ There are 353 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3_reg[12]/Q (HIGH)
+
+ There are 353 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3_reg[13]/Q (HIGH)
+
+ There are 353 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3_reg[14]/Q (HIGH)
+
+ There are 353 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3_reg[15]/Q (HIGH)
+
+ There are 353 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3_reg[16]/Q (HIGH)
+
+ There are 353 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3_reg[17]/Q (HIGH)
+
+ There are 353 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3_reg[18]/Q (HIGH)
+
+ There are 353 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3_reg[19]/Q (HIGH)
+
+ There are 353 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3_reg[1]/Q (HIGH)
+
+ There are 353 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3_reg[20]/Q (HIGH)
+
+ There are 353 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3_reg[21]/Q (HIGH)
+
+ There are 353 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3_reg[22]/Q (HIGH)
+
+ There are 353 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3_reg[2]/Q (HIGH)
+
+ There are 289 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3_reg[3]/Q (HIGH)
+
+ There are 289 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3_reg[4]/Q (HIGH)
+
+ There are 289 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3_reg[5]/Q (HIGH)
+
+ There are 289 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3_reg[6]/Q (HIGH)
+
+ There are 289 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3_reg[7]/Q (HIGH)
+
+ There are 353 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3_reg[8]/Q (HIGH)
+
+ There are 353 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank1_fetch_a3_reg[9]/Q (HIGH)
+
+ There are 257 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a1_reg[3]/Q (HIGH)
+
+ There are 257 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a1_reg[4]/Q (HIGH)
+
+ There are 257 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a1_reg[5]/Q (HIGH)
+
+ There are 257 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a1_reg[6]/Q (HIGH)
+
+ There are 257 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a1_reg[7]/Q (HIGH)
+
+ There are 225 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a2_reg[2]/Q (HIGH)
+
+ There are 225 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a2_reg[3]/Q (HIGH)
+
+ There are 225 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a2_reg[4]/Q (HIGH)
+
+ There are 225 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a2_reg[5]/Q (HIGH)
+
+ There are 225 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a2_reg[6]/Q (HIGH)
+
+ There are 225 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a2_reg[7]/Q (HIGH)
+
+ There are 257 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3_reg[10]/Q (HIGH)
+
+ There are 257 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3_reg[11]/Q (HIGH)
+
+ There are 257 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3_reg[12]/Q (HIGH)
+
+ There are 257 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3_reg[13]/Q (HIGH)
+
+ There are 257 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3_reg[14]/Q (HIGH)
+
+ There are 257 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3_reg[15]/Q (HIGH)
+
+ There are 257 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3_reg[16]/Q (HIGH)
+
+ There are 257 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3_reg[17]/Q (HIGH)
+
+ There are 257 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3_reg[18]/Q (HIGH)
+
+ There are 257 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3_reg[19]/Q (HIGH)
+
+ There are 257 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3_reg[1]/Q (HIGH)
+
+ There are 257 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3_reg[20]/Q (HIGH)
+
+ There are 257 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3_reg[21]/Q (HIGH)
+
+ There are 257 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3_reg[22]/Q (HIGH)
+
+ There are 257 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3_reg[2]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3_reg[3]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3_reg[4]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3_reg[5]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3_reg[6]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3_reg[7]/Q (HIGH)
+
+ There are 257 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3_reg[8]/Q (HIGH)
+
+ There are 257 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank2_fetch_a3_reg[9]/Q (HIGH)
+
+ There are 161 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a1_reg[2]/Q (HIGH)
+
+ There are 161 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a1_reg[3]/Q (HIGH)
+
+ There are 161 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a1_reg[4]/Q (HIGH)
+
+ There are 161 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a1_reg[5]/Q (HIGH)
+
+ There are 161 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a1_reg[6]/Q (HIGH)
+
+ There are 161 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a1_reg[7]/Q (HIGH)
+
+ There are 161 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a2_reg[10]/Q (HIGH)
+
+ There are 161 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a2_reg[11]/Q (HIGH)
+
+ There are 161 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a2_reg[12]/Q (HIGH)
+
+ There are 161 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a2_reg[13]/Q (HIGH)
+
+ There are 161 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a2_reg[14]/Q (HIGH)
+
+ There are 161 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a2_reg[15]/Q (HIGH)
+
+ There are 161 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a2_reg[16]/Q (HIGH)
+
+ There are 161 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a2_reg[17]/Q (HIGH)
+
+ There are 161 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a2_reg[18]/Q (HIGH)
+
+ There are 161 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a2_reg[19]/Q (HIGH)
+
+ There are 161 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a2_reg[1]/Q (HIGH)
+
+ There are 161 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a2_reg[20]/Q (HIGH)
+
+ There are 161 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a2_reg[21]/Q (HIGH)
+
+ There are 161 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a2_reg[22]/Q (HIGH)
+
+ There are 129 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a2_reg[2]/Q (HIGH)
+
+ There are 129 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a2_reg[3]/Q (HIGH)
+
+ There are 129 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a2_reg[4]/Q (HIGH)
+
+ There are 129 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a2_reg[5]/Q (HIGH)
+
+ There are 129 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a2_reg[6]/Q (HIGH)
+
+ There are 129 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a2_reg[7]/Q (HIGH)
+
+ There are 161 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a2_reg[8]/Q (HIGH)
+
+ There are 161 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a2_reg[9]/Q (HIGH)
+
+ There are 97 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a3_reg[3]/Q (HIGH)
+
+ There are 97 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a3_reg[4]/Q (HIGH)
+
+ There are 97 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a3_reg[5]/Q (HIGH)
+
+ There are 97 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a3_reg[6]/Q (HIGH)
+
+ There are 97 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/bank3_fetch_a3_reg[7]/Q (HIGH)
+
+ There are 384 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/fetch_count_q_reg[0]/Q (HIGH)
+
+ There are 449 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/fetch_count_q_reg[1]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/out_valid_q_reg/Q (HIGH)
+
+ There are 384 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/prefetch_bank_reg[0]/Q (HIGH)
+
+ There are 384 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/prefetch_bank_reg[1]/Q (HIGH)
+
+ There are 581 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/ready_q_reg/Q (HIGH)
+
+ There are 581 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/refresh_flag_q_reg/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[0][0]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[0][10]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[0][11]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[0][12]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[0][1]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[0][2]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[0][3]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[0][4]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[0][5]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[0][6]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[0][7]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[0][8]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[0][9]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[1][0]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[1][10]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[1][11]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[1][12]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[1][1]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[1][2]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[1][3]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[1][4]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[1][5]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[1][6]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[1][7]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[1][8]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[1][9]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[2][0]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[2][10]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[2][11]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[2][12]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[2][1]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[2][2]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[2][3]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[2][4]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[2][5]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[2][6]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[2][7]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[2][8]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[2][9]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[3][0]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[3][10]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[3][11]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[3][12]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[3][1]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[3][2]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[3][3]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[3][4]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[3][5]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[3][6]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[3][7]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[3][8]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_addr_q_reg[3][9]/Q (HIGH)
+
+ There are 325 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_open_q_reg[0]/Q (HIGH)
+
+ There are 325 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_open_q_reg[1]/Q (HIGH)
+
+ There are 325 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_open_q_reg[2]/Q (HIGH)
+
+ There are 325 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/row_open_q_reg[3]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/saved_addr_q_reg[10]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/saved_addr_q_reg[11]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/saved_addr_q_reg[12]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/saved_addr_q_reg[13]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/saved_addr_q_reg[14]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/saved_addr_q_reg[15]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/saved_addr_q_reg[16]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/saved_addr_q_reg[17]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/saved_addr_q_reg[18]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/saved_addr_q_reg[19]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/saved_addr_q_reg[20]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/saved_addr_q_reg[21]/Q (HIGH)
+
+ There are 193 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/saved_addr_q_reg[22]/Q (HIGH)
+
+ There are 65 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/saved_addr_q_reg[2]/Q (HIGH)
+
+ There are 65 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/saved_addr_q_reg[3]/Q (HIGH)
+
+ There are 65 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/saved_addr_q_reg[4]/Q (HIGH)
+
+ There are 65 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/saved_addr_q_reg[5]/Q (HIGH)
+
+ There are 65 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/saved_addr_q_reg[6]/Q (HIGH)
+
+ There are 65 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/saved_addr_q_reg[7]/Q (HIGH)
+
+ There are 325 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/saved_addr_q_reg[8]/Q (HIGH)
+
+ There are 325 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/saved_addr_q_reg[9]/Q (HIGH)
+
+ There are 65 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/saved_rw_q_reg/Q (HIGH)
+
+ There are 583 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/state_q_reg[0]/Q (HIGH)
+
+ There are 583 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/state_q_reg[1]/Q (HIGH)
+
+ There are 583 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/state_q_reg[2]/Q (HIGH)
+
+ There are 583 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/mprj/u_sdram/user_sdram_controller/state_q_reg[3]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/soc/core/FSM_onehot_grant_reg[1]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/soc/core/FSM_onehot_grant_reg[2]_rep/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/soc/core/VexRiscv/IBusCachedPlugin_cache/lineLoader_address_reg[28]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/soc/core/VexRiscv/IBusCachedPlugin_cache/lineLoader_address_reg[29]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/soc/core/VexRiscv/IBusCachedPlugin_cache/lineLoader_address_reg[30]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/soc/core/VexRiscv/IBusCachedPlugin_cache/lineLoader_address_reg[31]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/soc/core/VexRiscv/IBusCachedPlugin_cache/lineLoader_cmdSent_reg/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/soc/core/VexRiscv/IBusCachedPlugin_cache/lineLoader_valid_reg/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/soc/core/VexRiscv/_zz_iBusWishbone_ADR_reg[0]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/soc/core/VexRiscv/_zz_iBusWishbone_ADR_reg[1]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/soc/core/VexRiscv/_zz_iBusWishbone_ADR_reg[2]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/soc/core/VexRiscv/dBus_cmd_rData_address_reg[28]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/soc/core/VexRiscv/dBus_cmd_rData_address_reg[29]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/soc/core/VexRiscv/dBus_cmd_rData_address_reg[30]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/soc/core/VexRiscv/dBus_cmd_rData_address_reg[31]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/soc/core/VexRiscv/dBus_cmd_rData_wr_reg/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/soc/core/VexRiscv/dBus_cmd_rValid_reg_inv/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/soc/core/dbg_uart_address_reg[26]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/soc/core/dbg_uart_address_reg[27]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/soc/core/dbg_uart_address_reg[28]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/soc/core/dbg_uart_address_reg[29]/Q (HIGH)
+
  There are 52 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/soc/core/flash_clk_reg/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/soc/core/uartwishbonebridge_state_reg[0]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/soc/core/uartwishbonebridge_state_reg[1]/Q (HIGH)
+
+ There are 33 register/latch pins with no clock driven by root clock pin: design_1_i/caravel_0/inst/soc/core/uartwishbonebridge_state_reg[2]/Q (HIGH)
 
 
 2. checking constant_clock (0)
@@ -89,9 +687,9 @@ Table of Contents
  There are 0 register/latch pins which need pulse_width check
 
 
-4. checking unconstrained_internal_endpoints (2871)
+4. checking unconstrained_internal_endpoints (3487)
 ---------------------------------------------------
- There are 2871 pins that are not constrained for maximum delay. (HIGH)
+ There are 3487 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
@@ -150,7 +748,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-      9.268        0.000                      0                12720        0.020        0.000                      0                12720       11.250        0.000                       0                  5263  
+      6.213        0.000                      0                15009        0.039        0.000                      0                15009       11.250        0.000                       0                  6007  
 
 
 All user specified timing constraints are met.
@@ -173,7 +771,7 @@ clk_fpga_0  {0.000 12.500}     25.000          40.000
 
 Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
 -----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-clk_fpga_0          9.268        0.000                      0                12478        0.020        0.000                      0                12478       11.250        0.000                       0                  5263  
+clk_fpga_0          8.889        0.000                      0                14494        0.039        0.000                      0                14494       11.250        0.000                       0                  6007  
 
 
 ------------------------------------------------------------------------------------------------
@@ -192,7 +790,7 @@ From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS
 
 Path Group         From Clock         To Clock               WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
 ----------         ----------         --------               -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
-**async_default**  clk_fpga_0         clk_fpga_0              17.276        0.000                      0                  242        0.496        0.000                      0                  242  
+**async_default**  clk_fpga_0         clk_fpga_0               6.213        0.000                      0                  515        0.581        0.000                      0                  515  
 
 
 ------------------------------------------------------------------------------------------------
@@ -205,15 +803,15 @@ Path Group         From Clock         To Clock               WNS(ns)      TNS(ns
 From Clock:  clk_fpga_0
   To Clock:  clk_fpga_0
 
-Setup :            0  Failing Endpoints,  Worst Slack        9.268ns,  Total Violation        0.000ns
-Hold  :            0  Failing Endpoints,  Worst Slack        0.020ns,  Total Violation        0.000ns
+Setup :            0  Failing Endpoints,  Worst Slack        8.889ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.039ns,  Total Violation        0.000ns
 PW    :            0  Failing Endpoints,  Worst Slack       11.250ns,  Total Violation        0.000ns
 ---------------------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             9.268ns  (required time - arrival time)
+Slack (MET) :             8.889ns  (required time - arrival time)
   Source:                 design_1_i/processing_system7_0/inst/PS7_i/FCLKCLK[0]
                             (clock source 'clk_fpga_0'  {rise@0.000ns fall@12.500ns period=25.000ns})
   Destination:            design_1_i/caravel_ps_0/inst/control_s_axi_U/int_ps_mprj_out_reg[14]/D
@@ -221,10 +819,10 @@ Slack (MET) :             9.268ns  (required time - arrival time)
   Path Group:             clk_fpga_0
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            12.500ns  (clk_fpga_0 rise@25.000ns - clk_fpga_0 fall@12.500ns)
-  Data Path Delay:        5.254ns  (logic 0.344ns (6.547%)  route 4.910ns (93.453%))
+  Data Path Delay:        5.793ns  (logic 0.345ns (5.955%)  route 5.448ns (94.045%))
   Logic Levels:           3  (BUFG=1 LUT1=1 LUT6=1)
-  Clock Path Skew:        2.658ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    2.658ns = ( 27.658 - 25.000 ) 
+  Clock Path Skew:        2.820ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.820ns = ( 27.820 - 25.000 ) 
     Source Clock Delay      (SCD):    0.000ns = ( 12.500 - 12.500 ) 
     Clock Pessimism Removal (CPR):    0.000ns
   Clock Uncertainty:      0.377ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
@@ -239,30 +837,30 @@ Slack (MET) :             9.268ns  (required time - arrival time)
                                                      12.500    12.500 f  
     PS7_X0Y0             PS7                          0.000    12.500 f  design_1_i/processing_system7_0/inst/PS7_i/FCLKCLK[0]
                          net (fo=1, routed)           1.193    13.693    design_1_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]
-    BUFGCTRL_X0Y20       BUFG (Prop_bufg_I_O)         0.101    13.794 f  design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
-                         net (fo=5266, routed)        2.098    15.892    design_1_i/caravel_0/inst/gpio_control_in_1[6]/clock
-    SLICE_X46Y99         LUT6 (Prop_lut6_I3_O)        0.124    16.016 f  design_1_i/caravel_0/inst/gpio_control_in_1[6]/mprj_o[14]_INST_0/O
-                         net (fo=1, routed)           0.784    16.800    design_1_i/caravel_0/inst/gpio_control_in_1[6]/mprj_o[0]
-    SLICE_X46Y105        LUT1 (Prop_lut1_I0_O)        0.119    16.919 f  design_1_i/caravel_0/inst/gpio_control_in_1[6]/mprj_o[0]_hold_fix/O
-                         net (fo=1, routed)           0.835    17.754    design_1_i/caravel_ps_0/inst/control_s_axi_U/mprj_o[0]_hold_fix_1_alias
-    SLICE_X46Y99         FDRE                                         f  design_1_i/caravel_ps_0/inst/control_s_axi_U/int_ps_mprj_out_reg[14]/D
+    BUFGCTRL_X0Y27       BUFG (Prop_bufg_I_O)         0.101    13.794 f  design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=5782, routed)        2.262    16.056    design_1_i/caravel_0/inst/gpio_control_in_1[6]/clock
+    SLICE_X52Y100        LUT6 (Prop_lut6_I3_O)        0.124    16.180 f  design_1_i/caravel_0/inst/gpio_control_in_1[6]/mprj_o[14]_INST_0/O
+                         net (fo=1, routed)           0.855    17.034    design_1_i/caravel_0/inst/gpio_control_in_1[6]/mprj_o[0]
+    SLICE_X43Y100        LUT1 (Prop_lut1_I0_O)        0.120    17.154 f  design_1_i/caravel_0/inst/gpio_control_in_1[6]/mprj_o[0]_hold_fix/O
+                         net (fo=1, routed)           1.139    18.293    design_1_i/caravel_ps_0/inst/control_s_axi_U/mprj_o[0]_hold_fix_1_alias_1
+    SLICE_X52Y100        FDRE                                         f  design_1_i/caravel_ps_0/inst/control_s_axi_U/int_ps_mprj_out_reg[14]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_fpga_0 rise edge)
                                                      25.000    25.000 r  
     PS7_X0Y0             PS7                          0.000    25.000 r  design_1_i/processing_system7_0/inst/PS7_i/FCLKCLK[0]
                          net (fo=1, routed)           1.088    26.088    design_1_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]
-    BUFGCTRL_X0Y20       BUFG (Prop_bufg_I_O)         0.091    26.179 r  design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
-                         net (fo=5266, routed)        1.479    27.658    design_1_i/caravel_ps_0/inst/control_s_axi_U/ap_clk
-    SLICE_X46Y99         FDRE                                         r  design_1_i/caravel_ps_0/inst/control_s_axi_U/int_ps_mprj_out_reg[14]/C
-                         clock pessimism              0.000    27.658    
-                         clock uncertainty           -0.377    27.281    
-    SLICE_X46Y99         FDRE (Setup_fdre_C_D)       -0.259    27.022    design_1_i/caravel_ps_0/inst/control_s_axi_U/int_ps_mprj_out_reg[14]
+    BUFGCTRL_X0Y27       BUFG (Prop_bufg_I_O)         0.091    26.179 r  design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=5782, routed)        1.641    27.820    design_1_i/caravel_ps_0/inst/control_s_axi_U/ap_clk
+    SLICE_X52Y100        FDRE                                         r  design_1_i/caravel_ps_0/inst/control_s_axi_U/int_ps_mprj_out_reg[14]/C
+                         clock pessimism              0.000    27.820    
+                         clock uncertainty           -0.377    27.444    
+    SLICE_X52Y100        FDRE (Setup_fdre_C_D)       -0.261    27.183    design_1_i/caravel_ps_0/inst/control_s_axi_U/int_ps_mprj_out_reg[14]
   -------------------------------------------------------------------
-                         required time                         27.022    
-                         arrival time                         -17.754    
+                         required time                         27.183    
+                         arrival time                         -18.293    
   -------------------------------------------------------------------
-                         slack                                  9.268    
+                         slack                                  8.889    
 
 
 
@@ -270,20 +868,20 @@ Slack (MET) :             9.268ns  (required time - arrival time)
 
 Min Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             0.020ns  (arrival time - required time)
-  Source:                 design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/wpntr/gcc0.gc0.count_d1_reg[4]/C
+Slack (MET) :             0.039ns  (arrival time - required time)
+  Source:                 design_1_i/caravel_0/inst/mprj/u_sdram/user_bram/Dq_dqm_reg[26]/C
                             (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@12.500ns period=25.000ns})
-  Destination:            design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gdm.dm_gen.dm/RAM_reg_0_31_0_0/DP/WADR4
-                            (rising edge-triggered cell RAMD32 clocked by clk_fpga_0  {rise@0.000ns fall@12.500ns period=25.000ns})
+  Destination:            design_1_i/caravel_0/inst/mprj/u_sdram/user_bram/bdi_reg[0][26]/D
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@12.500ns period=25.000ns})
   Path Group:             clk_fpga_0
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
-  Data Path Delay:        0.233ns  (logic 0.141ns (60.453%)  route 0.092ns (39.547%))
+  Data Path Delay:        0.368ns  (logic 0.141ns (38.301%)  route 0.227ns (61.699%))
   Logic Levels:           0  
-  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    1.225ns
-    Source Clock Delay      (SCD):    0.927ns
-    Clock Pessimism Removal (CPR):    0.285ns
+  Clock Path Skew:        0.258ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.541ns
+    Source Clock Delay      (SCD):    1.876ns
+    Clock Pessimism Removal (CPR):    0.406ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -291,30 +889,37 @@ Slack (MET) :             0.020ns  (arrival time - required time)
                                                       0.000     0.000 r  
     PS7_X0Y0             PS7                          0.000     0.000 r  design_1_i/processing_system7_0/inst/PS7_i/FCLKCLK[0]
                          net (fo=1, routed)           0.310     0.310    design_1_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]
-    BUFGCTRL_X0Y20       BUFG (Prop_bufg_I_O)         0.026     0.336 r  design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
-                         net (fo=5266, routed)        0.591     0.927    design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/wpntr/clk
-    SLICE_X31Y49         FDCE                                         r  design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/wpntr/gcc0.gc0.count_d1_reg[4]/C
+    BUFGCTRL_X0Y27       BUFG (Prop_bufg_I_O)         0.026     0.336 r  design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=5782, routed)        0.692     1.028    design_1_i/caravel_0/inst/mprj/u_sdram/user_bram/Bank3/clock
+    SLICE_X50Y50         LUT2 (Prop_lut2_I0_O)        0.045     1.073 r  design_1_i/caravel_0/inst/mprj/u_sdram/user_bram/Bank3/RAM_reg_i_1__1/O
+                         net (fo=1, routed)           0.215     1.288    design_1_i/caravel_0/inst/mprj/u_sdram/user_bram/Bank3/Sys_clk
+    BUFGCTRL_X0Y21       BUFG (Prop_bufg_I_O)         0.026     1.314 r  design_1_i/caravel_0/inst/mprj/u_sdram/user_bram/Bank3/Sys_clk_BUFG_inst/O
+                         net (fo=231, routed)         0.562     1.876    design_1_i/caravel_0/inst/mprj/u_sdram/user_bram/Sys_clk
+    SLICE_X48Y48         FDCE                                         r  design_1_i/caravel_0/inst/mprj/u_sdram/user_bram/Dq_dqm_reg[26]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X31Y49         FDCE (Prop_fdce_C_Q)         0.141     1.068 r  design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/wpntr/gcc0.gc0.count_d1_reg[4]/Q
-                         net (fo=5, routed)           0.092     1.160    design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gdm.dm_gen.dm/RAM_reg_0_31_0_0/A4
-    SLICE_X30Y49         RAMD32                                       r  design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gdm.dm_gen.dm/RAM_reg_0_31_0_0/DP/WADR4
+    SLICE_X48Y48         FDCE (Prop_fdce_C_Q)         0.141     2.017 r  design_1_i/caravel_0/inst/mprj/u_sdram/user_bram/Dq_dqm_reg[26]/Q
+                         net (fo=4, routed)           0.227     2.244    design_1_i/caravel_0/inst/mprj/u_sdram/user_bram/Dq_dqm[26]
+    SLICE_X52Y46         FDCE                                         r  design_1_i/caravel_0/inst/mprj/u_sdram/user_bram/bdi_reg[0][26]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_fpga_0 rise edge)
                                                       0.000     0.000 r  
     PS7_X0Y0             PS7                          0.000     0.000 r  design_1_i/processing_system7_0/inst/PS7_i/FCLKCLK[0]
                          net (fo=1, routed)           0.337     0.337    design_1_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]
-    BUFGCTRL_X0Y20       BUFG (Prop_bufg_I_O)         0.029     0.366 r  design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
-                         net (fo=5266, routed)        0.859     1.225    design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gdm.dm_gen.dm/RAM_reg_0_31_0_0/WCLK
-    SLICE_X30Y49         RAMD32                                       r  design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gdm.dm_gen.dm/RAM_reg_0_31_0_0/DP/CLK
-                         clock pessimism             -0.285     0.940    
-    SLICE_X30Y49         RAMD32 (Hold_ramd32_CLK_WADR4)
-                                                      0.200     1.140    design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gdm.dm_gen.dm/RAM_reg_0_31_0_0/DP
+    BUFGCTRL_X0Y27       BUFG (Prop_bufg_I_O)         0.029     0.366 r  design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=5782, routed)        1.026     1.392    design_1_i/caravel_0/inst/mprj/u_sdram/user_bram/Bank3/clock
+    SLICE_X50Y50         LUT2 (Prop_lut2_I0_O)        0.056     1.448 r  design_1_i/caravel_0/inst/mprj/u_sdram/user_bram/Bank3/RAM_reg_i_1__1/O
+                         net (fo=1, routed)           0.239     1.687    design_1_i/caravel_0/inst/mprj/u_sdram/user_bram/Bank3/Sys_clk
+    BUFGCTRL_X0Y21       BUFG (Prop_bufg_I_O)         0.029     1.716 r  design_1_i/caravel_0/inst/mprj/u_sdram/user_bram/Bank3/Sys_clk_BUFG_inst/O
+                         net (fo=231, routed)         0.825     2.541    design_1_i/caravel_0/inst/mprj/u_sdram/user_bram/Sys_clk
+    SLICE_X52Y46         FDCE                                         r  design_1_i/caravel_0/inst/mprj/u_sdram/user_bram/bdi_reg[0][26]/C
+                         clock pessimism             -0.406     2.134    
+    SLICE_X52Y46         FDCE (Hold_fdce_C_D)         0.071     2.205    design_1_i/caravel_0/inst/mprj/u_sdram/user_bram/bdi_reg[0][26]
   -------------------------------------------------------------------
-                         required time                         -1.140    
-                         arrival time                           1.160    
+                         required time                         -2.205    
+                         arrival time                           2.244    
   -------------------------------------------------------------------
-                         slack                                  0.020    
+                         slack                                  0.039    
 
 
 
@@ -328,9 +933,9 @@ Period(ns):         25.000
 Sources:            { design_1_i/processing_system7_0/inst/PS7_i/FCLKCLK[0] }
 
 Check Type        Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location      Pin
-Min Period        n/a     RAMB36E1/CLKARDCLK  n/a            2.944         25.000      22.056     RAMB36_X2Y13  design_1_i/caravel_0/inst/mprj/user_bram/RAM_reg/CLKARDCLK
-Low Pulse Width   Slow    RAMD32/CLK          n/a            1.250         12.500      11.250     SLICE_X30Y49  design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gdm.dm_gen.dm/RAM_reg_0_31_0_0/DP/CLK
-High Pulse Width  Slow    RAMD32/CLK          n/a            1.250         12.500      11.250     SLICE_X30Y49  design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gdm.dm_gen.dm/RAM_reg_0_31_0_0/DP/CLK
+Min Period        n/a     RAMB36E1/CLKARDCLK  n/a            2.944         25.000      22.056     RAMB36_X3Y9   design_1_i/caravel_0/inst/mprj/u_sdram/user_bram/Bank0/RAM_reg/CLKARDCLK
+Low Pulse Width   Slow    RAMD32/CLK          n/a            1.250         12.500      11.250     SLICE_X26Y44  design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gdm.dm_gen.dm/RAM_reg_0_31_0_0/DP/CLK
+High Pulse Width  Slow    RAMD32/CLK          n/a            1.250         12.500      11.250     SLICE_X26Y44  design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gdm.dm_gen.dm/RAM_reg_0_31_0_0/DP/CLK
 
 
 
@@ -339,26 +944,26 @@ Path Group:  **async_default**
 From Clock:  clk_fpga_0
   To Clock:  clk_fpga_0
 
-Setup :            0  Failing Endpoints,  Worst Slack       17.276ns,  Total Violation        0.000ns
-Hold  :            0  Failing Endpoints,  Worst Slack        0.496ns,  Total Violation        0.000ns
+Setup :            0  Failing Endpoints,  Worst Slack        6.213ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.581ns,  Total Violation        0.000ns
 ---------------------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             17.276ns  (required time - arrival time)
+Slack (MET) :             6.213ns  (required time - arrival time)
   Source:                 design_1_i/output_pin_0/inst/control_s_axi_U/int_outpin_ctrl_reg[0]/C
                             (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@12.500ns period=25.000ns})
-  Destination:            design_1_i/caravel_0/inst/housekeeping/serial_resetn_pre_reg/CLR
+  Destination:            design_1_i/caravel_0/inst/mprj/u_sdram/user_bram/iCKe_f_reg/CLR
                             (recovery check against rising-edge clock clk_fpga_0  {rise@0.000ns fall@12.500ns period=25.000ns})
   Path Group:             **async_default**
   Path Type:              Recovery (Max at Slow Process Corner)
-  Requirement:            25.000ns  (clk_fpga_0 rise@25.000ns - clk_fpga_0 rise@0.000ns)
-  Data Path Delay:        6.965ns  (logic 0.580ns (8.327%)  route 6.385ns (91.673%))
-  Logic Levels:           1  (LUT1=1)
-  Clock Path Skew:        0.023ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    2.832ns = ( 27.832 - 25.000 ) 
-    Source Clock Delay      (SCD):    2.938ns
+  Requirement:            12.500ns  (clk_fpga_0 fall@12.500ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        5.217ns  (logic 0.606ns (11.615%)  route 4.611ns (88.385%))
+  Logic Levels:           1  (LUT2=1)
+  Clock Path Skew:        -0.171ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.646ns = ( 15.146 - 12.500 ) 
+    Source Clock Delay      (SCD):    2.946ns
     Clock Pessimism Removal (CPR):    0.129ns
   Clock Uncertainty:      0.377ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
@@ -372,32 +977,32 @@ Slack (MET) :             17.276ns  (required time - arrival time)
                                                       0.000     0.000 r  
     PS7_X0Y0             PS7                          0.000     0.000 r  design_1_i/processing_system7_0/inst/PS7_i/FCLKCLK[0]
                          net (fo=1, routed)           1.193     1.193    design_1_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]
-    BUFGCTRL_X0Y20       BUFG (Prop_bufg_I_O)         0.101     1.294 r  design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
-                         net (fo=5266, routed)        1.644     2.938    design_1_i/output_pin_0/inst/control_s_axi_U/ap_clk
-    SLICE_X40Y84         FDRE                                         r  design_1_i/output_pin_0/inst/control_s_axi_U/int_outpin_ctrl_reg[0]/C
+    BUFGCTRL_X0Y27       BUFG (Prop_bufg_I_O)         0.101     1.294 r  design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=5782, routed)        1.652     2.946    design_1_i/output_pin_0/inst/control_s_axi_U/ap_clk
+    SLICE_X40Y98         FDRE                                         r  design_1_i/output_pin_0/inst/control_s_axi_U/int_outpin_ctrl_reg[0]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X40Y84         FDRE (Prop_fdre_C_Q)         0.456     3.394 r  design_1_i/output_pin_0/inst/control_s_axi_U/int_outpin_ctrl_reg[0]/Q
-                         net (fo=9, routed)           1.085     4.479    design_1_i/caravel_0/inst/housekeeping/resetb
-    SLICE_X42Y89         LUT1 (Prop_lut1_I0_O)        0.124     4.603 f  design_1_i/caravel_0/inst/housekeeping/FSM_sequential_xfer_state[0]_i_2/O
-                         net (fo=662, routed)         5.300     9.903    design_1_i/caravel_0/inst/housekeeping/pad_flash_csb_oeb0
-    SLICE_X45Y102        FDCE                                         f  design_1_i/caravel_0/inst/housekeeping/serial_resetn_pre_reg/CLR
+    SLICE_X40Y98         FDRE (Prop_fdre_C_Q)         0.456     3.402 r  design_1_i/output_pin_0/inst/control_s_axi_U/int_outpin_ctrl_reg[0]/Q
+                         net (fo=9, routed)           2.396     5.798    design_1_i/caravel_0/inst/soc/resetb
+    SLICE_X49Y68         LUT2 (Prop_lut2_I1_O)        0.150     5.948 f  design_1_i/caravel_0/inst/soc/int_rst_i_1/O
+                         net (fo=465, routed)         2.215     8.163    design_1_i/caravel_0/inst/mprj/u_sdram/user_bram/SR[0]
+    SLICE_X50Y50         FDCE                                         f  design_1_i/caravel_0/inst/mprj/u_sdram/user_bram/iCKe_f_reg/CLR
   -------------------------------------------------------------------    -------------------
 
-                         (clock clk_fpga_0 rise edge)
-                                                     25.000    25.000 r  
-    PS7_X0Y0             PS7                          0.000    25.000 r  design_1_i/processing_system7_0/inst/PS7_i/FCLKCLK[0]
-                         net (fo=1, routed)           1.088    26.088    design_1_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]
-    BUFGCTRL_X0Y20       BUFG (Prop_bufg_I_O)         0.091    26.179 r  design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
-                         net (fo=5266, routed)        1.653    27.832    design_1_i/caravel_0/inst/housekeeping/clock
-    SLICE_X45Y102        FDCE                                         r  design_1_i/caravel_0/inst/housekeeping/serial_resetn_pre_reg/C
-                         clock pessimism              0.129    27.961    
-                         clock uncertainty           -0.377    27.584    
-    SLICE_X45Y102        FDCE (Recov_fdce_C_CLR)     -0.405    27.179    design_1_i/caravel_0/inst/housekeeping/serial_resetn_pre_reg
+                         (clock clk_fpga_0 fall edge)
+                                                     12.500    12.500 f  
+    PS7_X0Y0             PS7                          0.000    12.500 f  design_1_i/processing_system7_0/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    13.588    design_1_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y27       BUFG (Prop_bufg_I_O)         0.091    13.679 f  design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=5782, routed)        1.467    15.146    design_1_i/caravel_0/inst/mprj/u_sdram/user_bram/clock
+    SLICE_X50Y50         FDCE                                         r  design_1_i/caravel_0/inst/mprj/u_sdram/user_bram/iCKe_f_reg/C  (IS_INVERTED)
+                         clock pessimism              0.129    15.275    
+                         clock uncertainty           -0.377    14.898    
+    SLICE_X50Y50         FDCE (Recov_fdce_C_CLR)     -0.522    14.376    design_1_i/caravel_0/inst/mprj/u_sdram/user_bram/iCKe_f_reg
   -------------------------------------------------------------------
-                         required time                         27.179    
-                         arrival time                          -9.903    
+                         required time                         14.376    
+                         arrival time                          -8.163    
   -------------------------------------------------------------------
-                         slack                                 17.276    
+                         slack                                  6.213    
 
 
 
@@ -405,20 +1010,20 @@ Slack (MET) :             17.276ns  (required time - arrival time)
 
 Min Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             0.496ns  (arrival time - required time)
-  Source:                 design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.gcc_rst.sckt_wr_rst_cc_reg[0]/C
-                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@12.500ns period=25.000ns})
-  Destination:            design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[1]/CLR
+Slack (MET) :             0.581ns  (arrival time - required time)
+  Source:                 design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst/arststages_ff_reg[1]/C
+                            (rising edge-triggered cell FDPE clocked by clk_fpga_0  {rise@0.000ns fall@12.500ns period=25.000ns})
+  Destination:            design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[0]/CLR
                             (removal check against rising-edge clock clk_fpga_0  {rise@0.000ns fall@12.500ns period=25.000ns})
   Path Group:             **async_default**
   Path Type:              Removal (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
-  Data Path Delay:        0.462ns  (logic 0.209ns (45.198%)  route 0.253ns (54.802%))
+  Data Path Delay:        0.529ns  (logic 0.227ns (42.872%)  route 0.302ns (57.128%))
   Logic Levels:           1  (LUT3=1)
-  Clock Path Skew:        0.033ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    1.197ns
-    Source Clock Delay      (SCD):    0.901ns
-    Clock Pessimism Removal (CPR):    0.263ns
+  Clock Path Skew:        0.015ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.225ns
+    Source Clock Delay      (SCD):    0.928ns
+    Clock Pessimism Removal (CPR):    0.282ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -426,31 +1031,31 @@ Slack (MET) :             0.496ns  (arrival time - required time)
                                                       0.000     0.000 r  
     PS7_X0Y0             PS7                          0.000     0.000 r  design_1_i/processing_system7_0/inst/PS7_i/FCLKCLK[0]
                          net (fo=1, routed)           0.310     0.310    design_1_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]
-    BUFGCTRL_X0Y20       BUFG (Prop_bufg_I_O)         0.026     0.336 r  design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
-                         net (fo=5266, routed)        0.565     0.901    design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/clk
-    SLICE_X34Y49         FDRE                                         r  design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.gcc_rst.sckt_wr_rst_cc_reg[0]/C
+    BUFGCTRL_X0Y27       BUFG (Prop_bufg_I_O)         0.026     0.336 r  design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=5782, routed)        0.592     0.928    design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst/dest_clk
+    SLICE_X27Y47         FDPE                                         r  design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst/arststages_ff_reg[1]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X34Y49         FDRE (Prop_fdre_C_Q)         0.164     1.065 f  design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.gcc_rst.sckt_wr_rst_cc_reg[0]/Q
-                         net (fo=2, routed)           0.125     1.189    design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.gcc_rst.sckt_wr_rst_cc[0]
-    SLICE_X33Y49         LUT3 (Prop_lut3_I1_O)        0.045     1.234 f  design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/gpregsm1.curr_fwft_state[1]_i_2/O
-                         net (fo=33, routed)          0.129     1.363    design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[4]_1
-    SLICE_X32Y49         FDCE                                         f  design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[1]/CLR
+    SLICE_X27Y47         FDPE (Prop_fdpe_C_Q)         0.128     1.056 f  design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst/arststages_ff_reg[1]/Q
+                         net (fo=2, routed)           0.119     1.174    design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.rst_wr_reg2
+    SLICE_X27Y46         LUT3 (Prop_lut3_I2_O)        0.099     1.273 f  design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/gpregsm1.curr_fwft_state[1]_i_2/O
+                         net (fo=33, routed)          0.184     1.457    design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[4]_1
+    SLICE_X26Y46         FDCE                                         f  design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[0]/CLR
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_fpga_0 rise edge)
                                                       0.000     0.000 r  
     PS7_X0Y0             PS7                          0.000     0.000 r  design_1_i/processing_system7_0/inst/PS7_i/FCLKCLK[0]
                          net (fo=1, routed)           0.337     0.337    design_1_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]
-    BUFGCTRL_X0Y20       BUFG (Prop_bufg_I_O)         0.029     0.366 r  design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
-                         net (fo=5266, routed)        0.831     1.197    design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/clk
-    SLICE_X32Y49         FDCE                                         r  design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[1]/C
-                         clock pessimism             -0.263     0.934    
-    SLICE_X32Y49         FDCE (Remov_fdce_C_CLR)     -0.067     0.867    design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[1]
+    BUFGCTRL_X0Y27       BUFG (Prop_bufg_I_O)         0.029     0.366 r  design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=5782, routed)        0.859     1.225    design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/clk
+    SLICE_X26Y46         FDCE                                         r  design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[0]/C
+                         clock pessimism             -0.282     0.943    
+    SLICE_X26Y46         FDCE (Remov_fdce_C_CLR)     -0.067     0.876    design_1_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[0]
   -------------------------------------------------------------------
-                         required time                         -0.867    
-                         arrival time                           1.363    
+                         required time                         -0.876    
+                         arrival time                           1.457    
   -------------------------------------------------------------------
-                         slack                                  0.496    
+                         slack                                  0.581    
 
 
 

@@ -64,4 +64,46 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_xl
 # IP: bd/design_1/ip/design_1_xlconstant_1_0/design_1_xlconstant_1_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_xlconstant_1_0 || ORIG_REF_NAME==design_1_xlconstant_1_0} -quiet] -quiet
 
-# XDC: /home/ubuntu/soc_design-lab6/vivado/vvd_caravel_fpga/vvd_caravel_fpga.gen/sources_1/bd/design_1/design_1_ooc.xdc
+# XDC: /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.gen/sources_1/bd/design_1/ip/design_1_auto_pc_0/design_1_auto_pc_0_ooc.xdc
+
+# XDC: /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.gen/sources_1/bd/design_1/ip/design_1_auto_us_0/design_1_auto_us_0_clocks.xdc
+set_property KEEP_HIERARCHY SOFT [get_cells [split [join [get_cells -hier -filter {REF_NAME==design_1_auto_us_0 || ORIG_REF_NAME==design_1_auto_us_0} -quiet] {/inst } ]/inst ] -quiet] -quiet
+
+# XDC: /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.gen/sources_1/bd/design_1/ip/design_1_auto_us_0/design_1_auto_us_0_ooc.xdc
+
+# XDC: /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.gen/sources_1/bd/design_1/ip/design_1_blk_mem_gen_0_0/design_1_blk_mem_gen_0_0_ooc.xdc
+
+# XDC: /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.gen/sources_1/bd/design_1/ip/design_1_caravel_ps_0_0/constraints/caravel_ps_ooc.xdc
+
+# XDC: /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.gen/sources_1/bd/design_1/ip/design_1_output_pin_0_0/constraints/output_pin_ooc.xdc
+
+# XDC: /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.gen/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/design_1_processing_system7_0_0.xdc
+set_property KEEP_HIERARCHY SOFT [get_cells [split [join [get_cells -hier -filter {REF_NAME==design_1_processing_system7_0_0 || ORIG_REF_NAME==design_1_processing_system7_0_0} -quiet] {/inst } ]/inst ] -quiet] -quiet
+
+# XDC: /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.gen/sources_1/bd/design_1/ip/design_1_auto_pc_1/design_1_auto_pc_1_ooc.xdc
+
+# XDC: /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.gen/sources_1/bd/design_1/ip/design_1_read_romcode_0_0/constraints/read_romcode_ooc.xdc
+
+# XDC: /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.gen/sources_1/bd/design_1/ip/design_1_rst_ps7_0_10M_0/design_1_rst_ps7_0_10M_0_board.xdc
+set_property KEEP_HIERARCHY SOFT [get_cells [split [join [get_cells -hier -filter {REF_NAME==design_1_rst_ps7_0_10M_0 || ORIG_REF_NAME==design_1_rst_ps7_0_10M_0} -quiet] {/U0 } ]/U0 ] -quiet] -quiet
+
+# XDC: /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.gen/sources_1/bd/design_1/ip/design_1_rst_ps7_0_10M_0/design_1_rst_ps7_0_10M_0.xdc
+#dup# set_property KEEP_HIERARCHY SOFT [get_cells [split [join [get_cells -hier -filter {REF_NAME==design_1_rst_ps7_0_10M_0 || ORIG_REF_NAME==design_1_rst_ps7_0_10M_0} -quiet] {/U0 } ]/U0 ] -quiet] -quiet
+
+# XDC: /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.gen/sources_1/bd/design_1/ip/design_1_axi_uartlite_0_0/design_1_axi_uartlite_0_0_board.xdc
+set_property KEEP_HIERARCHY SOFT [get_cells [split [join [get_cells -hier -filter {REF_NAME==design_1_axi_uartlite_0_0 || ORIG_REF_NAME==design_1_axi_uartlite_0_0} -quiet] {/U0 } ]/U0 ] -quiet] -quiet
+
+# XDC: /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.gen/sources_1/bd/design_1/ip/design_1_axi_uartlite_0_0/design_1_axi_uartlite_0_0_ooc.xdc
+
+# XDC: /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.gen/sources_1/bd/design_1/ip/design_1_axi_uartlite_0_0/design_1_axi_uartlite_0_0.xdc
+#dup# set_property KEEP_HIERARCHY SOFT [get_cells [split [join [get_cells -hier -filter {REF_NAME==design_1_axi_uartlite_0_0 || ORIG_REF_NAME==design_1_axi_uartlite_0_0} -quiet] {/U0 } ]/U0 ] -quiet] -quiet
+
+# XDC: /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.gen/sources_1/bd/design_1/ip/design_1_axi_intc_0_0/design_1_axi_intc_0_0.xdc
+set_property KEEP_HIERARCHY SOFT [get_cells [split [join [get_cells -hier -filter {REF_NAME==design_1_axi_intc_0_0 || ORIG_REF_NAME==design_1_axi_intc_0_0} -quiet] {/U0 } ]/U0 ] -quiet] -quiet
+
+# XDC: /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.gen/sources_1/bd/design_1/ip/design_1_axi_intc_0_0/design_1_axi_intc_0_0_clocks.xdc
+#dup# set_property KEEP_HIERARCHY SOFT [get_cells [split [join [get_cells -hier -filter {REF_NAME==design_1_axi_intc_0_0 || ORIG_REF_NAME==design_1_axi_intc_0_0} -quiet] {/U0 } ]/U0 ] -quiet] -quiet
+
+# XDC: /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.gen/sources_1/bd/design_1/ip/design_1_axi_intc_0_0/design_1_axi_intc_0_0_ooc.xdc
+
+# XDC: /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.gen/sources_1/bd/design_1/design_1_ooc.xdc
