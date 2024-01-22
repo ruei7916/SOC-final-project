@@ -4,6 +4,7 @@
 Caravel SOC with four tasks: FIR, matrix multiplication, quick sort, and UART loopback.
 
 ### Our design
+You cas see the report [here](assets/Lab6-wlos-baseline_workbook.pdf).
 ![caravel](assets/caravel.png)
 - Since FIR and matrix multiplication both need multiply-add operation and doing multiplication using softare is very slow (150+ cycles for a 32-bit multiplication), we design a accelerator that can do both FIR and matrix multiplication.
 - Quick sort is done by CPU.
