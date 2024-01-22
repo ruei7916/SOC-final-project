@@ -24,7 +24,7 @@
 #include <irq_vex.h>
 #endif
 
-#define DELAY_COUNT 40
+#define DELAY_COUNT 20000
 
 extern void uart_write();
 extern void uart_write_char();
@@ -105,8 +105,8 @@ void main()
     reg_mprj_io_4  = GPIO_MODE_MGMT_STD_OUTPUT;
     reg_mprj_io_3  = GPIO_MODE_MGMT_STD_OUTPUT;
     reg_mprj_io_2  = GPIO_MODE_MGMT_STD_OUTPUT;
-    reg_mprj_io_1  = GPIO_MODE_MGMT_STD_INPUT_NOPULL;
-    reg_mprj_io_0  = GPIO_MODE_MGMT_STD_OUTPUT;
+    reg_mprj_io_1  = GPIO_MODE_MGMT_STD_OUTPUT;
+    reg_mprj_io_0  = GPIO_MODE_MGMT_STD_INPUT_NOPULL;
     reg_mprj_io_6  = GPIO_MODE_USER_STD_OUTPUT;
     reg_mprj_io_5  = GPIO_MODE_USER_STD_INPUT_NOPULL;
     reg_uart_enable = 1;
@@ -141,19 +141,25 @@ void main()
     reg_mprj_datal = *(tmp+8) << 16;
     reg_mprj_datal = *(tmp+9) << 16;
     reg_mprj_datal = 0xAB510000;
-        for(int i = 0; i < DELAY_COUNT; i++) asm volatile ("nop");    //delay
+
+        for(int i = 0; i < 10000; i++) asm volatile ("nop");    //delay
     //check fir 
     reg_mprj_datal = (*(volatile uint32_t*)0x3800012c)<<16;
+
         for(int i = 0; i < DELAY_COUNT; i++) asm volatile ("nop");    //delay
     reg_mprj_datal = (*(volatile uint32_t*)0x38000228)<<16;
+
         for(int i = 0; i < DELAY_COUNT; i++) asm volatile ("nop");    //delay
     reg_mprj_datal = 0xAB610000;
-        for(int i = 0; i < DELAY_COUNT; i++) asm volatile ("nop");    //delay
+
+        for(int i = 0; i < 10000; i++) asm volatile ("nop");    //delay
 
     // check mm
     reg_mprj_datal = (*(volatile uint32_t*)0x3800022C)<<16;
+
         for(int i = 0; i < DELAY_COUNT; i++) asm volatile ("nop");    //delay  
     reg_mprj_datal = (*(volatile uint32_t*)0x38000268)<<16;
+
         for(int i = 0; i < DELAY_COUNT; i++) asm volatile ("nop");    //delay
     reg_mprj_datal = 0xAB710000;
 }

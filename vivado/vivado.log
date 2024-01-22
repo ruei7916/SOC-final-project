@@ -2,13 +2,13 @@
 # Vivado v2022.1 (64-bit)
 # SW Build 3526262 on Mon Apr 18 15:47:01 MDT 2022
 # IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
-# Start of session at: Mon Jan 22 05:09:41 2024
-# Process ID: 58042
+# Start of session at: Mon Jan 22 16:26:08 2024
+# Process ID: 20050
 # Current directory: /home/ubuntu/SOC-final-project/vivado
 # Command line: vivado
 # Log file: /home/ubuntu/SOC-final-project/vivado/vivado.log
 # Journal file: /home/ubuntu/SOC-final-project/vivado/vivado.jou
-# Running On: ubuntu2004, OS: Linux, CPU Frequency: 2918.280 MHz, CPU Physical cores: 4, Host memory: 10424 MB
+# Running On: ubuntu2004, OS: Linux, CPU Frequency: 2918.412 MHz, CPU Physical cores: 4, Host memory: 10424 MB
 #-----------------------------------------------------------
 start_gui
 WARNING: [Board 49-26] cannot add Board Part xilinx.com:vpk120_es:part0:1.2 available at /tools/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vpk120/es/1.2/board.xml as part xcvp1202-vsva2785-2mp-e-s-es1 specified in board_part file is either invalid or not available
@@ -27,10 +27,9 @@ INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/ubuntu/SOC-final-projec
 INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/ubuntu/SOC-final-project/vivado/vitis_prj/hls_output_pin'.
 INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/ubuntu/SOC-final-project/vivado/vitis_prj/hls_read_romcode'.
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2022.1/data/ip'.
-open_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:06 . Memory (MB): peak = 7713.652 ; gain = 156.531 ; free physical = 4094 ; free virtual = 7139
+open_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:05 . Memory (MB): peak = 7709.156 ; gain = 152.480 ; free physical = 4049 ; free virtual = 6609
 delete_ip_run [get_files -of_objects [get_fileset sources_1] /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.srcs/sources_1/bd/design_1/design_1.bd]
-delete_fileset: Time (s): cpu = 00:00:04 ; elapsed = 00:00:08 . Memory (MB): peak = 7902.754 ; gain = 34.992 ; free physical = 2401 ; free virtual = 5496
-delete_ip_run: Time (s): cpu = 00:00:16 ; elapsed = 00:00:22 . Memory (MB): peak = 7902.754 ; gain = 34.992 ; free physical = 1383 ; free virtual = 4478
+delete_ip_run: Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 7837.230 ; gain = 0.000 ; free physical = 1254 ; free virtual = 3861
 set_property synth_checkpoint_mode None [get_files  /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.srcs/sources_1/bd/design_1/design_1.bd]
 generate_target all [get_files  /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.srcs/sources_1/bd/design_1/design_1.bd]
 INFO: [BD 41-1662] The design 'design_1.bd' is already validated. Therefore parameter propagation will not be re-run.
@@ -61,31 +60,16 @@ INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_uartlite
 INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_intc_0 .
 Exporting to file /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.gen/sources_1/bd/design_1/hw_handoff/design_1.hwh
 Generated Hardware Definition File /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.gen/sources_1/bd/design_1/synth/design_1.hwdef
-generate_target: Time (s): cpu = 00:00:11 ; elapsed = 00:00:21 . Memory (MB): peak = 7902.754 ; gain = 0.000 ; free physical = 582 ; free virtual = 3659
+generate_target: Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 7837.230 ; gain = 0.000 ; free physical = 149 ; free virtual = 2736
 export_ip_user_files -of_objects [get_files /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.srcs/sources_1/bd/design_1/design_1.bd] -no_script -sync -force -quiet
 export_simulation -of_objects [get_files /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.srcs/sources_1/bd/design_1/design_1.bd] -directory /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.ip_user_files/sim_scripts -ip_user_files_dir /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.ip_user_files -ipstatic_source_dir /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.ip_user_files/ipstatic -lib_map_path [list {modelsim=/home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.cache/compile_simlib/modelsim} {questa=/home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.cache/compile_simlib/questa} {xcelium=/home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.cache/compile_simlib/xcelium} {vcs=/home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.cache/compile_simlib/vcs} {riviera=/home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.cache/compile_simlib/riviera}] -use_ip_compiled_libs -force -quiet
 update_compile_order -fileset sources_1
 reset_run synth_1
 INFO: [Project 1-1160] Copying file /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.runs/synth_1/design_1_wrapper.dcp to /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.srcs/utils_1/imports/synth_1 and adding it to utils fileset
 launch_runs impl_1 -to_step write_bitstream -jobs 4
-[Mon Jan 22 05:21:03 2024] Launched synth_1...
+[Mon Jan 22 16:27:49 2024] Launched synth_1...
 Run output will be captured here: /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.runs/synth_1/runme.log
-[Mon Jan 22 05:21:03 2024] Launched impl_1...
+[Mon Jan 22 16:27:49 2024] Launched impl_1...
 Run output will be captured here: /home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga/vvd_caravel_fpga.runs/impl_1/runme.log
-write_project_tcl -no_copy_sources -use_bd_files {/home/ubuntu/SOC-final-project/vivado/vvd_caravel_fpga.tcl}
-INFO: [Vivado-projutils-8] Tcl script 'vvd_caravel_fpga.tcl' generated in output directory '/home/ubuntu/SOC-final-project/vivado'
-
-INFO: [Vivado-projutils-15] Please note that by default, the file path for the project source files were set wth respect to the 'origin_dir' variable in the
- generated script. When this script is executed from the output directory, these source files will be referenced with respect to this 'origin_dir' path value.
- In case this script was later moved to a different directory, the 'origin_dir' value must be set manually in the script with the path
- relative to the new output directory to make sure that the source files are referenced correctly from the original project. You can also set the
- 'origin_dir' automatically by setting the 'origin_dir_loc' variable in the tcl shell before sourcing this generated script. The 'origin_dir_loc'
- variable should be set to the path relative to the new output directory. Alternatively, if you are sourcing the script from the Vivado command line,
- then set the origin dir using '-tclargs --origin_dir <path>'. For example, 'vivado -mode tcl -source vvd_caravel_fpga.tcl -tclargs --origin_dir ".."
-
-WARNING: [Vivado-projutils-10] Found source(s) that were local or imported into the project. If this project is being source controlled, then
- please ensure that the project source(s) are also part of this source controlled data. The list of these local source(s) can be found in the generated script
- under the header section.
-
 exit
-INFO: [Common 17-206] Exiting Vivado at Mon Jan 22 06:07:57 2024...
+INFO: [Common 17-206] Exiting Vivado at Mon Jan 22 16:44:33 2024...

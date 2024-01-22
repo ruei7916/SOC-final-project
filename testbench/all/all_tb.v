@@ -155,12 +155,13 @@ module all_tb;
 			$display ("Monitor: Timeout, Simulation done");
 		`endif*/
 		$display("%c[0m",27);
+		wait(checkbits == 16'hAB71);
 		$finish;
 	end
 	initial begin
 		fork
 			workload;
-			//uart;
+			uart;
 		join
 	end
 
