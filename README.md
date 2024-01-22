@@ -1,4 +1,17 @@
-# WorkLoad Optimize SOC (WLOS) Baseline
+# WorkLoad Optimize SOC (WLOS)
+
+## About this project
+Caravel SOC with four tasks: FIR, matrix multiplication, quick sort, and UART loopback.
+
+### Our design
+![caravel](assets/caravel.png)
+- Since FIR and matrix multiplication both need multiply-add operation and doing multiplication using softare is very slow (150+ cycles for a 32-bit multiplication), we design a accelerator that can do both FIR and matrix multiplication.
+- Quick sort is done by CPU.
+- UART loopback is handled by CPU. When the uart hardware receives a new data, it will send interrupt request to CPU. Then the CPU will read back the data and send it out.
+- We also implemented a arbiter and a DMA so that the accelerator can fetch data from memory while the CPU is doing quick sort
+- SDRAM with prefetch functionality (4 banks).
+- We also modified `crt0_Vex.S` and `sections.lds` to put the data and program at our desired position in the SDRAM.
+
 
 ### Simulation for all workload
 ```sh
@@ -35,7 +48,8 @@ source run_clean
 source run_sim
 ```
 
-## Verification with Vivado
+## Verification with FPGA
+![fpga](assets/fpga.png)
 ### Synthesis and Generate bitstream
 ```sh
 cd ~/SOC-final-project/vivado
